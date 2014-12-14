@@ -14,19 +14,21 @@ CREATE TABLE Users (
 	CONSTRAINT email_unique UNIQUE (email)
 );
 
-CREATE TABLE Addresses (
-	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	num INT UNSIGNED NOT NULL,
-	way_type enum() NOT NULL,
-	way_name VARCHAR(255) NOT NULL,
-	id_postcode INT UNSIGNED NOT NULL,
-	FOREIGN KEY(id_postcode) REFERENCES Postcodes(id)
-	CONSTRAINT unique_address UNIQUE (num, way_type, way_name, id_postcode)
-);
-
-
 CREATE TABLE Postcodes (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	postcode CHAR(5) NOT NULL UNIQUE,
 	city VARCHAR(255)
 );
+
+
+CREATE TABLE Addresses (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	num INT UNSIGNED NOT NULL,
+	/*way_type enum() NOT NULL,*/
+	way_name VARCHAR(255) NOT NULL,
+	id_postcode INT UNSIGNED NOT NULL,
+	FOREIGN KEY(id_postcode) REFERENCES Postcodes(id),
+	CONSTRAINT unique_address UNIQUE (num, way_name, id_postcode)
+);
+
+

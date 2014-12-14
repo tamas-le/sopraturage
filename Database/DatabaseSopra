@@ -1,0 +1,32 @@
+CREATE DATABASE Sopraturage
+	CHARACTER SET 'utf8'
+	COLLATE 'utf8_bin';
+
+CREATE TABLE Users (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	surname CHAR(13) NOT NULL,
+	name VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL,
+	password CHAR(32) NOT NULL,
+	phone_number CHAR(10) NOT NULL,
+	driver BOOLEAN NOT NULL,
+	notifications_accept BOOLEAN NOT NULL,
+	CONSTRAINT email_unique UNIQUE (email)
+);
+
+CREATE TABLE Addresses (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	num INT UNSIGNED NOT NULL,
+	way_type enum() NOT NULL,
+	way_name VARCHAR(255) NOT NULL,
+	id_postcode INT UNSIGNED NOT NULL,
+	FOREIGN KEY(id_postcode) REFERENCES Postcodes(id)
+	CONSTRAINT unique_address UNIQUE (num, way_type, way_name, id_postcode)
+);
+
+
+CREATE TABLE Postcodes (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	postcode CHAR(5) NOT NULL UNIQUE,
+	city VARCHAR(255)
+);

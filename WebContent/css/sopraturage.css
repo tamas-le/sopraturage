@@ -83,3 +83,9 @@ p {
 	font-family : Arial;	
 	
 }
+
+.error {
+	font-size : 14px;
+	color : #d3182a;
+
+}

@@ -83,7 +83,7 @@
     		var codePostal = document.getElementById('postCode');
     		var form = document.getElementById('form_create_account');
     
-    		var checkPasswordValidity = function() {
+    		var checkPostcodeValidity = function() {
         		if (codePostal.value > 99999 || codePostal <0) {
             		codePostal.setCustomValidity('Postcode is not correct.');
             		updateErrorMessage();
@@ -96,12 +96,12 @@
         		form.getElementsByClassName('error')[0].innerHTML = codePostal.validationMessage;
     		};
     
-    		codePostal.addEventListener('change', checkPasswordValidity, false);
+    		codePostal.addEventListener('change', checkPostcodeValidity, false);
     		
     
     		form.addEventListener('submit', function(event) {
         		if (form.classList) form.classList.add('submitted');
-        			checkPasswordValidity();
+        			checkPostcodeValidity();
         		if (!this.checkValidity()) {
             		event.preventDefault();
             		updateErrorMessage();

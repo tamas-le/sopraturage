@@ -2,7 +2,7 @@ CREATE DATABASE Sopraturage
 	CHARACTER SET 'utf8'
 	COLLATE 'utf8_bin';
 
-
+USE Sopraturage;
 
 CREATE TABLE Postcodes (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -71,6 +71,37 @@ CREATE TABLE Sessions (
 );
 
 
+DELIMITER $$
+CREATE TRIGGER validate_email_and_number_before_insert BEFORE INSERT ON Sopraturage.Users
+FOR EACH ROW 
+BEGIN 
+IF (NEW.email REGEXP "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9.-]+$" ) = 0 THEN 
+  SIGNAL SQLSTATE '12345'
+     SET MESSAGE_TEXT = 'Wroooong email address!!!';
+
+ELSEIF (NEW.phone_number REGEXP "^0[1-68]([0-9]{2}){4}$") = 0 THEN 
+	SIGNAL SQLSTATE '12345'
+     SET MESSAGE_TEXT = 'Wroooong phone number !!!';
+END IF;
+
+END$$
+DELIMITER ;
+
+
+
+
+DELIMITER $$
+CREATE TRIGGER validate_postcode_before_insert BEFORE INSERT ON Sopraturage.Postcodes
+FOR EACH ROW 
+BEGIN 
+IF (NEW.postcode REGEXP "^[0-9]{5}$" ) = 0 THEN 
+  SIGNAL SQLSTATE '12345'
+     SET MESSAGE_TEXT = 'Wroooong postcode!!!';
+END IF;
+
+END$$
+DELIMITER ;
+
 
 INSERT INTO Postcodes (postcode, city)
 	 VALUES ('31400', 'Toulouse'),
@@ -110,10 +141,11 @@ INSERT INTO Users (surname, name, email, password, phone_number, workplace, home
 	 		('Loïc', 'Boyeldieu', "loic.boyeldieu@gmail.com", "pd", "0654567654", 2, 3);
 
 
+
 INSERT INTO Administrators
 	 VALUES (1);
 
-	 
+
 -- Récuperer toutes les workplaces
 
 SELECT num, way_type, way_name, postcode, city

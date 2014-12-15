@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sopraturage.models.Information;
-
 /**
  * Servlet implementation class InscriptionServlet
  */
@@ -43,7 +41,7 @@ public class InscriptionServlet extends HttpServlet {
 		String userName=request.getParameter("name");
 		writer.println("<h1>Salut "+userName+"</h1>");
 		
-		Information infos;
+		
 		
 		
 		

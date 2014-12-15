@@ -112,3 +112,13 @@ INSERT INTO Users (surname, name, email, password, phone_number, workplace, home
 
 INSERT INTO Administrators
 	 VALUES (1);
+
+	 
+-- Récuperer toutes les workplaces
+
+SELECT num, way_type, way_name, postcode, city
+FROM Addresses
+INNER JOIN Postcodes
+ON Addresses.id_postcode = Postcodes.id
+INNER JOIN Workplaces
+ON Workplaces.id = Addresses.id;

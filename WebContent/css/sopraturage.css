@@ -1,0 +1,14 @@
+body {
+height:100%;
+margin : 0;
+padding:0;
+background: url('../images/brushed.png'); /*#4b8baf*/
+}
+
+.page{
+	margin:auto;
+	width:70%;
+	height:1000px;
+	background-color : white;
+	box-shadow : 0px 0px 3px rgb(150,150,150);
+}

@@ -14,7 +14,7 @@ CREATE TABLE Postcodes (
 CREATE TABLE Addresses (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	num INT UNSIGNED NOT NULL,
-	way_type enum("rue", "avenue", "chemin", "allÃ©e", "boulevard", "route", "ruelle") NOT NULL,
+	way_type enum("rue", "avenue", "chemin", "allée", "boulevard", "route", "ruelle") NOT NULL,
 	way_name VARCHAR(255) NOT NULL,
 	id_postcode INT UNSIGNED NOT NULL,
 	FOREIGN KEY(id_postcode) REFERENCES Postcodes(id),
@@ -75,10 +75,10 @@ CREATE TABLE Sessions (
 INSERT INTO Postcodes (postcode, city)
 	 VALUES ('31400', 'Toulouse'),
 	 		('31770', 'Colomiers'),
-			('30100', 'AlÃ¨s');
+			('30100', 'Alès');
 
 
 INSERT INTO Addresses (num, way_type, way_name, id_postcode)
 	 VALUES ('17', 'avenue', "Colonel Roche", (SELECT id FROM Postcodes WHERE postcode = "31400")),
 	 		('37', 'chemin', "Ramassiers", (SELECT id FROM Postcodes WHERE postcode = "31770")),
-	 		('378', 'chemin', "Espinaux Ã  la bedosse", (SELECT id FROM Postcodes WHERE postcode = "30100"));
+	 		('378', 'chemin', "Espinaux à la bedosse", (SELECT id FROM Postcodes WHERE postcode = "30100"));

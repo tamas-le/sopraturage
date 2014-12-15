@@ -2,6 +2,7 @@ package sopraturage.models;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,13 +29,27 @@ public class TestDatabase extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("testdb.html");
+		//RequestDispatcher view = request.getRequestDispatcher("testdb.html");
 		PrintWriter writer= response.getWriter();
-		response.setContentType("text/html");
-		view.forward(request, response);
+		response.setContentType("text/plain");
+		//view.forward(request, response);
 		DatabaseManager manager = new DatabaseManager();
 		manager.connectoDatabase();
-		
+		writer.println("salut");
+		ResultSet resultat=manager.query("SELECT * FROM addresses;");
+		writer.println("salut bébé");
+		int id,num;
+		try {
+			while (resultat.next()){
+				id=resultat.getInt("id");
+				num=resultat.getInt("num");
+				writer.println("id "+id+" num"+num);
+			}
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
 	}
 
 	/**

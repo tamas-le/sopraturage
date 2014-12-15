@@ -68,7 +68,7 @@ public class InscriptionServlet extends HttpServlet {
 		}else {
 			num=0;
 		}
-			
+
 
 		String wayChoice=request.getParameter("typeWay");
 		String way=request.getParameter("way");
@@ -78,27 +78,34 @@ public class InscriptionServlet extends HttpServlet {
 
 		Address adress=new Address(wayChoice, way,postcode , num);
 		writer.println("<p>"+adress+"</p>");
-		
+
 		String surname=request.getParameter("surname");
 		String name=request.getParameter("name");
-		
+
 		String emailString=request.getParameter("email");
+		InternetAddress email;
 		try{
-			InternetAddress email=InternetAddress.parse(emailString)[0];
+			email=InternetAddress.parse(emailString)[0];
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		
-		
+
+
 		String phone =request.getParameter("phoneNumber");
+
+		String password=request.getParameter("pass");
+
+
+		String driver =request.getParameter("driver");
+		String notification= request.getParameter("notify");
 		
-		String password="123";
-		
-		
-		
-		
-		
-		//User user= new User(surname, name, email, phone, password, driver, notification, working);
+		writer.println("<p>"+driver+" "+notification+" </p>");
+
+
+
+
+
+		//User user= new User(surname, name, email, phone, password, driver, notification, null);
 
 
 

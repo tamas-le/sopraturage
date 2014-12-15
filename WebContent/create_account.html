@@ -84,8 +84,8 @@
     		var form = document.getElementById('form_create_account');
     
     		var checkPostcodeValidity = function() {
-        		if (codePostal.value > 99999 || codePostal <0) {
-            		codePostal.setCustomValidity('Postcode is not correct.');
+        		if (codePostal.value > 99999 || codePostal.value <0) {
+            		codePostal.setCustomValidity('postcode is not correct.');
             		updateErrorMessage();
       		  	} else {
             		codePostal.setCustomValidity('');

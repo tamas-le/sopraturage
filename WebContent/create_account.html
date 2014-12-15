@@ -14,18 +14,18 @@
 <body>
 
 	<div class="page">
-		<img src="images/covoit.jpg" width="100%" />
+		<img src="images/ban.jpg" width="100%" />
 		<div class="titre_page">
 			<h1>Create an account</h1>
 		</div>
 
 
-
+		<div class="form_create_account">
 		<form class="formulaire" action="/inscriptionservlet.do" method="post">
-			<input type="text" name="name" placeholder="Name" /><br /> <input
-				type="text" name="surname" placeholder="Surname" /><br /> <input
-				type="email" name="email" placeholder="Email" /><br /> <input
-				type="tel" name="phoneNumber" placeholder="Phone Number" /><br />
+			<input type="text" name="name" placeholder="Name" /><br /> 
+			<input type="text" name="surname" placeholder="Surname" /><br /> 
+			<input type="email" name="email" placeholder="Email" /><br /> 
+			<input type="tel" name="phoneNumber" placeholder="Phone Number" /><br />
 			<SELECT name="workplace">
 				<option>Toulouse</option>
 				<option>Blagnac</option>
@@ -34,10 +34,11 @@
 			</SELECT>
 			<br/> 
 			<input type="text" name="home" placeholder="Home Adress" /> <br />
-			<input type="checkbox" name="driver" value="driver_ok" /><p>I am a driver</p> <br />
-			<input type="checkbox" name="notify" value="notify_ok" /><p>I want to be notify</p><br /> 
+			<input type="checkbox" name="driver" value="driver_ok" /><label for = "driver">I am a driver</label> <br/><br/>
+			<input type="checkbox" name="notify" value="notify_ok" /><label for = "notify">I want to be notify</label><br/> 
 			<input type="submit" id="submit" name="connexion" value="&rarr;" /><br />
 		</form>
+		</div>
 
 	</div>
 

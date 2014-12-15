@@ -1,3 +1,4 @@
+package sopraturage.models;
 import java.util.Arrays;
 
 import javax.mail.internet.InternetAddress;

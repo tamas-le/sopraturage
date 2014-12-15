@@ -31,23 +31,10 @@ public class TestDatabase extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("testdb.html");
 		PrintWriter writer= response.getWriter();
 		response.setContentType("text/html");
-		
-		
-		
-		
-		
-		
-		/* Chargement du driver JDBC pour MySQL */
-		try {
-		    Class.forName( "com.mysql.jdbc.Driver" );
-		    System.out.println("ça marche !");
-		 
-		} catch ( ClassNotFoundException e ) {
-			System.out.println("ça marche pas :(");
-		}
-		
-		
 		view.forward(request, response);
+		DatabaseManager manager = new DatabaseManager();
+		manager.connectoDatabase();
+		
 	}
 
 	/**

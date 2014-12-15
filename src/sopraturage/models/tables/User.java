@@ -7,13 +7,13 @@ public class User {
 	private String surname;
 	private String name;
 	private InternetAddress email;
-	private int [] phone;
+	private String phone;
 	private String password;
 	private boolean driver;
 	private boolean notification;
 	private boolean [] working;
 	public User(String surname, String name, InternetAddress email,
-			int[] phone, String password, boolean driver, boolean notification,
+			String phone, String password, boolean driver, boolean notification,
 			boolean[] working) {
 		super();
 		this.surname = surname;
@@ -43,10 +43,10 @@ public class User {
 	public void setEmail(InternetAddress email) {
 		this.email = email;
 	}
-	public int[] getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int[] phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getPassword() {

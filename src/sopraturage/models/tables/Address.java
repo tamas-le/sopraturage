@@ -4,16 +4,13 @@ package sopraturage.models.tables;
 
 public class Address {
 	
-	public enum WayType{
-		rue,avenue,chemin,allée,boulevard,route,ruelle
-	};
-	
-	private WayType waytype;
+
+	private String waytype;
 	private String wayName;
 	private PostCode postCode;
 	private int num;
 	
-	public Address(WayType waytype, String wayName, PostCode postCode, int num) {
+	public Address(String waytype, String wayName, PostCode postCode, int num) {
 		super();
 		this.waytype = waytype;
 		this.wayName = wayName;
@@ -21,11 +18,11 @@ public class Address {
 		this.num = num;
 	}
 
-	public WayType getWaytype() {
+	public String getWaytype() {
 		return waytype;
 	}
 
-	public void setWaytype(WayType waytype) {
+	public void setWaytype(String waytype) {
 		this.waytype = waytype;
 	}
 
@@ -51,6 +48,12 @@ public class Address {
 
 	public void setNum(int num) {
 		this.num = num;
+	}
+
+	@Override
+	public String toString() {
+		return "Address [waytype=" + waytype + ", wayName=" + wayName
+				+ ", postCode=" + postCode + ", num=" + num + "]";
 	}
 	
 	

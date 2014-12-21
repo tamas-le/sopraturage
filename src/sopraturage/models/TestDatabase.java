@@ -35,9 +35,7 @@ public class TestDatabase extends HttpServlet {
 		//view.forward(request, response);
 		DatabaseManager manager = new DatabaseManager();
 		manager.connectoDatabase();
-		writer.println("salut");
 		ResultSet resultat=manager.query("SELECT * FROM addresses;");
-		writer.println("salut bébé");
 		int id,num;
 		try {
 			while (resultat.next()){

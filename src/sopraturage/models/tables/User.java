@@ -1,18 +1,20 @@
 package sopraturage.models.tables;
 
+import java.util.Arrays;
+
 import javax.mail.internet.InternetAddress;
 
 public class User {
 	
 	private String surname;
 	private String name;
-	private InternetAddress email;
+	private String email;
 	private String phone;
 	private String password;
 	private boolean driver;
 	private boolean notification;
 	private boolean [] working;
-	public User(String surname, String name, InternetAddress email,
+	public User(String surname, String name, String email,
 			String phone, String password, boolean driver, boolean notification,
 			boolean[] working) {
 		super();
@@ -37,10 +39,10 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public InternetAddress getEmail() {
+	public String getEmail() {
 		return email;
 	}
-	public void setEmail(InternetAddress email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 	public String getPhone() {
@@ -73,6 +75,16 @@ public class User {
 	public void setWorking(boolean[] working) {
 		this.working = working;
 	}
+	
+	@Override
+	public String toString() {
+		return "User [surname=" + surname + ", name=" + name + ", email="
+				+ email + ", phone=" + phone + ", password=" + password
+				+ ", driver=" + driver + ", notification=" + notification
+				+ ", working=" + Arrays.toString(working) + "]";
+	}
+	
+	
 	
 	
 	

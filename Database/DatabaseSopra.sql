@@ -137,8 +137,8 @@ INSERT INTO Workplaces
 
 INSERT INTO Users (surname, name, email, password, phone_number, workplace, home)
 	 VALUES ('Julien', 'Baladier', "julien.baladier@gmail.com", "beaugosse", "0642971715", 2, 1),
-	 		('Aurélien', 'Tamas-Leloup', "aurelien.tamasle@gmail.com", "pd", "0654567654", 2, 3),
-	 		('Loïc', 'Boyeldieu', "loic.boyeldieu@gmail.com", "pd", "0654567654", 2, 3);
+	 		('Aurelien', 'Tamas-Leloup', "aurelien.tamasle@gmail.com", "pd", "0654567654", 2, 3),
+	 		('Loic', 'Boyeldieu', "loic.boyeldieu@gmail.com", "pd", "0654567654", 2, 3);
 
 
 

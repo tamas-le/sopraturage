@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,14 +33,15 @@ public class TestDatabase extends HttpServlet {
 		response.setContentType("text/plain");
 		//view.forward(request, response);
 		DatabaseManager manager = new DatabaseManager();
-		manager.connectoDatabase();
-		ResultSet resultat=manager.query("SELECT * FROM addresses;");
-		int id,num;
+		writer.println(manager.urlServ);
+
+		
+		manager.connectoDatabaseOnline();
+		ResultSet resultat=manager.query("SELECT * FROM Numero;");
 		try {
 			while (resultat.next()){
-				id=resultat.getInt("id");
-				num=resultat.getInt("num");
-				writer.println("id "+id+" num"+num);
+				int num=resultat.getInt("num");
+				writer.println("Numéro : "+num);
 			}
 			
 		} catch (Exception e){

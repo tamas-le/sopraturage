@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sopraturage.models.DatabaseManager;
 import sopraturage.models.tables.Address;
 import sopraturage.models.tables.PostCode;
 import sopraturage.models.tables.User;
@@ -41,23 +42,19 @@ public class InscriptionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		PrintWriter writer = response.getWriter();
 
 
 		// Création du postcode
-
 		String stringpostcode=request.getParameter("postCode");
-
 		if (!stringpostcode.equals(""))
 			stringpostcode=stringpostcode.substring(0, 5);
-
 		String city=request.getParameter("city");
-
 		PostCode postcode= new PostCode(stringpostcode, city);
-
-		writer.println("<h1>PostCode : "+stringpostcode+" City : "+city+"</h1>");
 		writer.println("<p>"+postcode+"</p>");
 
+		
 
 		//Création de l'adresse
 
@@ -68,17 +65,14 @@ public class InscriptionServlet extends HttpServlet {
 		}else {
 			num=0;
 		}
-
-
 		String wayChoice=request.getParameter("typeWay");
 		String way=request.getParameter("way");
-
-
-		writer.println("<h1>Num : "+num+" Way : "+wayChoice+"</h1>");
 
 		Address adress=new Address(wayChoice, way,postcode , num);
 		writer.println("<p>"+adress+"</p>");
 
+		//Création de l'utilisateur
+		
 		String surname=request.getParameter("surname");
 		String name=request.getParameter("name");
 
@@ -87,7 +81,6 @@ public class InscriptionServlet extends HttpServlet {
 		String phone =request.getParameter("phoneNumber");
 
 		String password=request.getParameter("pass");
-
 
 		String driver =request.getParameter("driver");
 		String notification= request.getParameter("notify");
@@ -106,15 +99,37 @@ public class InscriptionServlet extends HttpServlet {
 		User user= new User(surname, name, emailString, phone, password, isDriver, isNotified, null);
 
 		writer.println("<p>"+user+" </p>");
-
 		
+		DatabaseManager manager=new DatabaseManager();
+		//manager.connectoDatabase();
+		manager.connectoDatabaseOnline();
 		
+		int code=manager.insert(postcode);
+
+		writer.println("<p>"+code+" </p>");
+		
+		int id =manager.getId(postcode);
+
+		writer.println("<p>id : "+id+" </p>");
+		
+		int code2=manager.insert(adress, id,true);
 
 
+		writer.println("<p>"+code2+" </p>");
+		
+		int id2=manager.getId(adress, id);
+		
+		writer.println("<p>"+id2+" </p>");
 
 
-
-
+		int code3=manager.insert(user, id2);
+		writer.println("<p>"+code3+" </p>");
+		
+		if (code3==1){
+			writer.println("Compte créé !");
+		} else {
+			writer.println("Compte pas créé !");
+		}
 
 
 	}

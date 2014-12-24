@@ -57,6 +57,10 @@ public class Address {
 	}
 	
 	
+	public String toStringBetter(){
+		return num+" "+wayName+" "+waytype+" "+postCode.toStringBetter();
+	}
+	
 	
 	
 	

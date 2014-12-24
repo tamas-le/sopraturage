@@ -37,7 +37,6 @@ public class Forgot extends HttpServlet {
 		PrintWriter writer=response.getWriter();
 		writer.println("Alors comme ça t'as oublié ton mot de passe ?");
 		manager= new DatabaseManager();
-		manager.connectoDatabase();
 		RequestDispatcher view = request.getRequestDispatcher("forgot.html");
 		view.forward(request, response);
 

@@ -31,6 +31,12 @@ public class PostCode {
 	public String toString() {
 		return "PostCode [postcode=" + postcode + ", city=" + city + "]";
 	}
+
+
+	public String toStringBetter() {
+	
+		return postcode+" "+city;
+	}
 	
 	
 	

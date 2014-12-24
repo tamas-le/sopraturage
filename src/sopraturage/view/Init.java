@@ -36,9 +36,7 @@ public class Init extends HttpServlet {
 		response.setContentType("text/html");
 		writer.println("<h1>Salut</h1>");
 		DatabaseManager manager = new DatabaseManager();
-		//manager.connectoDatabase();
 		
-		manager.connectoDatabaseOnline();
 
 		String query="SELECT num, way_type, way_name, postcode, "
 				+ "city FROM Addresses INNER JOIN Postcodes "
@@ -66,11 +64,10 @@ public class Init extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 
-			
-			
-			
 		} catch (Exception e){
 			e.printStackTrace();
+		} finally {
+			manager.closeConnection();
 		}
 
 	}

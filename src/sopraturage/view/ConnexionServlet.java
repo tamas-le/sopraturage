@@ -45,9 +45,8 @@ public class ConnexionServlet extends HttpServlet {
 		writer.println(login+"  "+pw);
 
 		DatabaseManager manager=new DatabaseManager();
-		//manager.connectoDatabase();
 
-		manager.connectoDatabaseOnline();
+		
 		if (manager.isPasswordOK(login, pw))
 		{
 			writer.println("Le mot de passe est bon");

@@ -31,22 +31,7 @@ public class TestDatabase extends HttpServlet {
 		//RequestDispatcher view = request.getRequestDispatcher("testdb.html");
 		PrintWriter writer= response.getWriter();
 		response.setContentType("text/plain");
-		//view.forward(request, response);
-		DatabaseManager manager = new DatabaseManager();
-		writer.println(manager.urlServ);
-
 		
-		manager.connectoDatabaseOnline();
-		ResultSet resultat=manager.query("SELECT * FROM Numero;");
-		try {
-			while (resultat.next()){
-				int num=resultat.getInt("num");
-				writer.println("Numéro : "+num);
-			}
-			
-		} catch (Exception e){
-			e.printStackTrace();
-		}
 
 	}
 

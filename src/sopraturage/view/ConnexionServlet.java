@@ -50,6 +50,7 @@ public class ConnexionServlet extends HttpServlet {
 		if (manager.isPasswordOK(login, pw))
 		{
 			writer.println("Le mot de passe est bon");
+			
 		}else {
 			writer.println("Le mot de passe est mauvais");
 		}

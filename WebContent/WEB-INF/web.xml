@@ -17,12 +17,12 @@
 	
 	
 	<servlet>
-		<servlet-name>Init</servlet-name>
-		<servlet-class>sopraturage.view.Init</servlet-class>
+		<servlet-name>Create</servlet-name>
+		<servlet-class>sopraturage.view.InscriptionServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Init</servlet-name>
-		<url-pattern>/init</url-pattern>
+		<servlet-name>Create</servlet-name>
+		<url-pattern>/create</url-pattern>
 	</servlet-mapping>
 	
 	

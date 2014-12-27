@@ -110,7 +110,7 @@ public class DatabaseManager {
 		try{
 			connect();
 			ResultSet resultat=statement.executeQuery("SELECT email,password "
-					+ "FROM users "
+					+ "FROM Users "
 					+ "WHERE email='"+login+"' "
 					+ "AND password='"+pwd+"'");
 
@@ -140,7 +140,7 @@ public class DatabaseManager {
 	public boolean isAdmin(int id){
 		try {
 			connect();
-			String request="SELECT administrators.id  FROM administrators WHERE "+id+"=administrators.id";
+			String request="SELECT administrators.id  FROM Administrators WHERE "+id+"=administrators.id";
 			ResultSet resultat = query(request);
 			String retour=new String();
 			while (resultat.next()){
@@ -184,14 +184,14 @@ public class DatabaseManager {
 		int statut=-1;
 
 		try{
-			String insertionAdress="INSERT INTO addresses (num, way_type, way_name, id_postcode)"
+			String insertionAdress="INSERT INTO Addresses (num, way_type, way_name, id_postcode)"
 					+ "VALUES ("+a.getNum()+",'"+a.getWaytype()+"','"+a.getWayName()+"','"+idPostCode+"');";
 
 			connect();
 			statut=statement.executeUpdate(insertionAdress);
 
 			if (home){
-				String insertionHome="INSERT INTO homes "
+				String insertionHome="INSERT INTO Homes "
 						+ "VALUES ("+getId(a, idPostCode)+");";
 				statut=statement.executeUpdate(insertionHome);
 			}
@@ -207,8 +207,10 @@ public class DatabaseManager {
 	public int insert(User u,int idAdress){
 		int statut=-1;
 		try{
-			String insertUser="INSERT INTO Users (surname, name, email, password, phone_number, workplace, home)"
-					+ "VALUES ('"+u.getName()+"', '"+u.getSurname()+"', '"+u.getEmail()+"', '"+u.getPassword()+"', '"+u.getPhone()+"', 2,"+idAdress+" )";
+			String insertUser="INSERT INTO Users (surname, name, email, password, phone_number, workplace, home,is_a_driver,accept_notifications)"
+					+ "VALUES ('"+u.getName()+"', '"+u.getSurname()+"', '"+u.getEmail()+"', '"+u.getPassword()+"', '"
+							+ ""+u.getPhone()+"', "+u.getWorplaceId()+","+idAdress+","
+									+ ""+u.isDriver()+","+u.isNotification()+" )";
 
 			connect();
 			statut=statement.executeUpdate(insertUser);
@@ -227,7 +229,7 @@ public class DatabaseManager {
 		int  id=-1;
 
 		try{
-			String sql="SELECT id FROM postcodes WHERE postcode='"+pc.getPostcode()+"';";
+			String sql="SELECT id FROM Postcodes WHERE postcode='"+pc.getPostcode()+"';";
 			connect();
 			ResultSet resultat=statement.executeQuery(sql);
 			while(resultat.next()){

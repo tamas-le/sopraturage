@@ -62,7 +62,7 @@ public class ConnexionServlet extends HttpServlet {
 		{
 			ApplicationData.workplaces=manager.getWorkplaces();
 			writer.println("Le mot de passe est bon");
-			ResultSet resultat=manager.query("SELECT *  FROM users WHERE email='"+login+"';");
+			ResultSet resultat=manager.query("SELECT *  FROM Users WHERE email='"+login+"';");
 			
 			try{
 				while (resultat.next()){

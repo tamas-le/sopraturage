@@ -9,7 +9,16 @@ public class Address {
 	private String wayName;
 	private PostCode postCode;
 	private int num;
+	private int id;
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Address(String waytype, String wayName, PostCode postCode, int num) {
 		super();
 		this.waytype = waytype;
@@ -50,13 +59,16 @@ public class Address {
 		this.num = num;
 	}
 
+
+	
+	
 	@Override
 	public String toString() {
 		return "Address [waytype=" + waytype + ", wayName=" + wayName
-				+ ", postCode=" + postCode + ", num=" + num + "]";
+				+ ", postCode=" + postCode + ", num=" + num + ", id=" + id
+				+ "]";
 	}
-	
-	
+
 	public String toStringBetter(){
 		return num+" "+waytype+" "+wayName+" "+postCode.toStringBetter();
 	}

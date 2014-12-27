@@ -14,9 +14,35 @@ public class User {
 	private boolean driver;
 	private boolean notification;
 	private boolean [] working;
+	private int worplaceId;
+	
+	
+	
+	
+	
+	public int getWorplaceId() {
+		return worplaceId;
+	}
+
+
+	public void setWorplaceId(int worplaceId) {
+		this.worplaceId = worplaceId;
+	}
+
+
+	@Override
+	public String toString() {
+		return "User [surname=" + surname + ", name=" + name + ", email="
+				+ email + ", phone=" + phone + ", password=" + password
+				+ ", driver=" + driver + ", notification=" + notification
+				+ ", working=" + Arrays.toString(working) + ", worplaceId="
+				+ worplaceId + "]";
+	}
+	
+	
 	public User(String surname, String name, String email,
 			String phone, String password, boolean driver, boolean notification,
-			boolean[] working) {
+			boolean[] working,int id) {
 		super();
 		this.surname = surname;
 		this.name = name;
@@ -26,6 +52,7 @@ public class User {
 		this.driver = driver;
 		this.notification = notification;
 		this.working = working;
+		this.worplaceId=id;
 	}
 	public String getSurname() {
 		return surname;
@@ -76,13 +103,7 @@ public class User {
 		this.working = working;
 	}
 	
-	@Override
-	public String toString() {
-		return "User [surname=" + surname + ", name=" + name + ", email="
-				+ email + ", phone=" + phone + ", password=" + password
-				+ ", driver=" + driver + ", notification=" + notification
-				+ ", working=" + Arrays.toString(working) + "]";
-	}
+
 	
 	
 	

@@ -1,4 +1,4 @@
-package sopraturage.view;
+package sopraturage.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,7 +17,7 @@ import sopraturage.models.DatabaseManager;
  * Servlet implementation class Forgot
  */
 @WebServlet("/Forgot")
-public class Forgot extends HttpServlet {
+public class ForgotServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private DatabaseManager manager;
@@ -25,7 +25,7 @@ public class Forgot extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Forgot() {
+	public ForgotServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

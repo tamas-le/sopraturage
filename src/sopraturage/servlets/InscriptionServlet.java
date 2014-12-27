@@ -1,4 +1,4 @@
-package sopraturage.view;
+package sopraturage.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,6 +23,8 @@ import sopraturage.models.tables.User;
 @WebServlet("/inscriptionservlet.do")
 public class InscriptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private LinkedList<Address> addressList;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -36,44 +38,20 @@ public class InscriptionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		PrintWriter writer=response.getWriter();
 		
-		
-		
+
+
 		DatabaseManager manager = new DatabaseManager();
-		
-		String sql="SELECT num, way_type, way_name, postcode, "
-				+ "city FROM Addresses INNER JOIN Postcodes "
-				+ "ON Addresses.id_postcode = Postcodes.id INNER "
-				+ "JOIN Workplaces ON Workplaces.id = Addresses.id;";
-		
-		ResultSet resultat=manager.query(sql);
-		
-		int num;
-		String wayType,wayName,postcode,city;
-		PostCode pCode;
-		Address address;
-		LinkedList<Address> addressList= new LinkedList<Address>();
-		
-		try{
-			while (resultat.next()){
-				wayName=resultat.getString("way_name");
-				wayType=resultat.getString("way_type");
-				postcode=resultat.getString("postcode");
-				num=resultat.getInt("num");
-				city=resultat.getString("city");
-				addressList.add(new Address(wayType, wayName,new PostCode(postcode, city), num));
-			}
-			
-			request.setAttribute("adresse",addressList );
-			
-		} catch (Exception e){
-			e.printStackTrace();
+
+		addressList= manager.getWorkplaces();
+
+		for(Address a :addressList){
+			writer.print(a);
 		}
 
-		
-		
-		
-		
+		request.setAttribute("adresse",addressList );
 		RequestDispatcher view = request.getRequestDispatcher("create_account.jsp");
 		view.forward(request, response);
 	}
@@ -86,6 +64,7 @@ public class InscriptionServlet extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		response.setContentType("text/html");
 
+		DatabaseManager manager=new DatabaseManager();
 
 		// Création du postcode
 		String stringpostcode=request.getParameter("postCode");
@@ -123,6 +102,19 @@ public class InscriptionServlet extends HttpServlet {
 
 		String driver =request.getParameter("driver");
 		String notification= request.getParameter("notify");
+		
+		
+		String workplace=request.getParameter("workplace");
+		int id=0;
+		addressList=new LinkedList<Address>();
+		addressList=manager.getWorkplaces();
+		
+		
+		for (Address a:addressList){
+			if (workplace.equals(a.toStringBetter())){
+				id=a.getId();
+			}
+		}
 
 		boolean isDriver= false;
 		boolean isNotified=false;
@@ -134,23 +126,23 @@ public class InscriptionServlet extends HttpServlet {
 			isNotified=true;
 		}
 
-		User user= new User(surname, name, emailString, phone, password, isDriver, isNotified, null);
+		User user= new User(surname, name, emailString, phone, password, isDriver, isNotified, null,id);
 
 		writer.println("<p>"+user+" </p>");
 
 
-		DatabaseManager manager=new DatabaseManager();
+		
 
 		int code=manager.insert(postcode);
 		writer.println("<p>Insertion du code postal : "+code+" </p>");
 
-		int id =manager.getId(postcode);
-		writer.println("<p>id du code postal  : "+id+" </p>");
+		int id1 =manager.getId(postcode);
+		writer.println("<p>id du code postal  : "+id1+" </p>");
 
-		int code2=manager.insert(adress, id,true);
+		int code2=manager.insert(adress, id1,true);
 		writer.println("<p> Insertion de l'adresse : "+code2+" </p>");
 
-		int id2=manager.getId(adress, id);
+		int id2=manager.getId(adress, id1);
 		writer.println("<p>id adresse "+id2+" </p>");
 
 		int code3=manager.insert(user, id2);

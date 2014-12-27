@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 
 import sopraturage.models.tables.Address;
 import sopraturage.models.tables.PostCode;
@@ -37,7 +38,7 @@ public class DatabaseManager {
 			urlServ="jdbc:mysql://"+dbhost+":"+dbport+"/tomcatsopra";
 		}
 	}
-	
+
 	private void connect() throws SQLException{
 		if (LOCAL){
 			connectoDatabase();
@@ -46,19 +47,19 @@ public class DatabaseManager {
 		}
 	}
 
-	
+
 	// Se connecte à la base de donnée en local
 	private void connectoDatabase() throws SQLException{
-			try {
-				Class.forName("com.mysql.jdbc.Driver").newInstance();
-				connexion = DriverManager.getConnection( url, utilisateur, motDePasse );
-				statement = connexion.createStatement();
-			} catch (InstantiationException | IllegalAccessException
-					| ClassNotFoundException e) 
-			{
-				e.printStackTrace();
-			}
-		
+		try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			connexion = DriverManager.getConnection( url, utilisateur, motDePasse );
+			statement = connexion.createStatement();
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException e) 
+		{
+			e.printStackTrace();
+		}
+
 
 	}
 
@@ -75,7 +76,7 @@ public class DatabaseManager {
 		}
 
 	}
-	
+
 	public void closeConnection(){
 		try {
 			if (connexion !=null){
@@ -87,7 +88,7 @@ public class DatabaseManager {
 	}
 
 
-	
+
 	// execute un requete qui attend un retour : SELECT ,....
 	public ResultSet query(String request){
 		ResultSet resultat;
@@ -101,8 +102,8 @@ public class DatabaseManager {
 		return null;
 
 	}
-	
-	
+
+
 
 	//renvoie vrai si le couple login pwd existe dans la BDD
 	public boolean isPasswordOK(String login,String pwd){
@@ -135,6 +136,31 @@ public class DatabaseManager {
 
 	}
 
+	//renvoie vrai si un utilisateur est admin
+	public boolean isAdmin(int id){
+		try {
+			connect();
+			String request="SELECT administrators.id  FROM administrators WHERE "+id+"=administrators.id";
+			ResultSet resultat = query(request);
+			String retour=new String();
+			while (resultat.next()){
+				retour+=resultat.getInt("id");
+			}
+
+			if (retour.equals("")){
+				return false;
+			} else {
+				return true;
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+
+		return false;
+	}
+
 	public int insert(PostCode pc){
 		int statutpostCode=-1;
 
@@ -148,19 +174,19 @@ public class DatabaseManager {
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		
+
 		return statutpostCode;
 	}
-	
-	
+
+
 
 	public int insert(Address a,int idPostCode,boolean home){
 		int statut=-1;
-		
+
 		try{
 			String insertionAdress="INSERT INTO addresses (num, way_type, way_name, id_postcode)"
 					+ "VALUES ("+a.getNum()+",'"+a.getWaytype()+"','"+a.getWayName()+"','"+idPostCode+"');";
-			
+
 			connect();
 			statut=statement.executeUpdate(insertionAdress);
 
@@ -233,6 +259,45 @@ public class DatabaseManager {
 			e.printStackTrace();
 		} 
 		return -1;
+	}
+
+	public LinkedList<Address> getWorkplaces(){
+		
+		String sql="SELECT num, way_type, way_name, postcode,Addresses.id, "
+				+ "city FROM Addresses INNER JOIN Postcodes "
+				+ "ON Addresses.id_postcode = Postcodes.id INNER "
+				+ "JOIN Workplaces ON Workplaces.id = Addresses.id;";
+
+		int num;
+		int id;
+		String wayType,wayName,postcode,city;
+		PostCode pCode;
+		Address address;
+		LinkedList<Address> addressList= new LinkedList<Address>();
+		ResultSet resultat=query(sql);
+
+		try{
+
+			while (resultat.next()){
+				wayName=resultat.getString("way_name");
+				wayType=resultat.getString("way_type");
+				postcode=resultat.getString("postcode");
+				num=resultat.getInt("num");
+				id=resultat.getInt("id");
+				city=resultat.getString("city");
+				address=new Address(wayType, wayName,new PostCode(postcode, city), num);
+				address.setId(id);
+				addressList.add(address);
+			}
+			return addressList;
+
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+
+
+
+		return null;
 	}
 
 

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import sopraturage.ApplicationData;
 import sopraturage.models.DatabaseManager;
@@ -61,16 +62,22 @@ public class ConnexionServlet extends HttpServlet {
 		if (manager.isPasswordOK(login, pw))
 		{
 			writer.println("Le mot de passe est bon");
-			ApplicationData.fetch(login);
+			ApplicationData data=new ApplicationData();
+			data.fetch(login);
 
-			writer.println("id : "+ ApplicationData.localUser.getUserId());
-			writer.println(ApplicationData.localUser);
-			writer.println("Admin ? : "+ ApplicationData.admin);
-			for (Address a:ApplicationData.workplaces){
+			HttpSession session=request.getSession();
+			session.setAttribute("data", data);
+			
+			ApplicationData dataSession=(ApplicationData)session.getAttribute("data");
+			
+			writer.println("id : "+ dataSession.localUser.getUserId());
+			writer.println(dataSession.localUser);
+			writer.println("Admin ? : "+ dataSession.admin);
+			for (Address a:dataSession.workplaces){
 				writer.println("Workplace : "+ a);
 			}
 			
-			writer.println("Home : "+ ApplicationData.home);
+			writer.println("Home : "+ dataSession.home);
 
 			response.sendRedirect("home");
 

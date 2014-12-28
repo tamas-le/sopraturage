@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import sopraturage.ApplicationData;
 
@@ -33,8 +34,17 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter writer=response.getWriter();
 		
-		if (ApplicationData.localUser!=null){
+		HttpSession session=request.getSession();
+		ApplicationData data=(ApplicationData)session.getAttribute("data");
+		
+		if (data!=null){
+			request.setAttribute("admin", data.admin);
+			request.setAttribute("name", data.localUser.getSurname());
+			
 			RequestDispatcher view = request.getRequestDispatcher("home.jsp");
+			view.forward(request, response);
+		} else {
+			RequestDispatcher view = request.getRequestDispatcher("index.html");
 			view.forward(request, response);
 		}
 

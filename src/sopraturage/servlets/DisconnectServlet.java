@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import sopraturage.ApplicationData;
 
@@ -32,7 +33,11 @@ public class DisconnectServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		ApplicationData.reset();
+		HttpSession session=request.getSession();
+		session.setAttribute("data", null);
+		//session.invalidate();
+		
+		//session=null;
 		
 		RequestDispatcher view = request.getRequestDispatcher("index.html");
 		view.forward(request, response);

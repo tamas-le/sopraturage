@@ -9,16 +9,19 @@
 </head>
 <body>
 	<%
-		out.println("<h1>Bienvenue "
-				+ ApplicationData.localUser.getSurname() + "</h1>");
-	%>
 	
+	String name=(String)request.getAttribute("name");
+		out.println("<h1>Bienvenue "
+				+ name + "</h1>");
+	%>
+
 	<h2>What do you want to do ?</h2>
 
 	<a href="modify">Modify Account</a>
 	<a href="#">Search</a>
 	<%
-		if (ApplicationData.admin) {
+	Boolean admin=(Boolean)request.getAttribute("admin");
+		if (admin) {
 			out.println("<a href='#'>Admin Page</a>");
 		}
 	%>

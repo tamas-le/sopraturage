@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sopraturage.ApplicationData;
+import sopraturage.models.tables.PostCode;
 
 /**
  * Servlet implementation class ModifyServlet
@@ -43,7 +44,29 @@ public class ModifyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().print("coucou");;
+		PrintWriter writer=response.getWriter();
+		response.setContentType("text/html");
+		
+		
+		String stringpostcode=request.getParameter("postCode");
+		String city=request.getParameter("city");
+		PostCode newpostcode= new PostCode(stringpostcode, city);
+		
+		if (!ApplicationData.home.getPostCode().equals(newpostcode)){
+			writer.println("<p> Le code postal a changé !</p>");
+		}
+		
+		String phone =request.getParameter("phoneNumber");
+		
+		if (!ApplicationData.localUser.getPhone().equals(phone)){
+			writer.println("<p> Le numéro de tel a changé !</p>");
+		}
+		
+
+		
+		
+		
+		
 	}
 
 }

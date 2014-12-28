@@ -2,6 +2,13 @@ package sopraturage.models.tables;
 
 public class PostCode {
 	
+	@Override
+	public boolean equals(Object another) {
+		PostCode postcode=(PostCode)another;
+		return this.postcode.equals(postcode.getPostcode()) && this.city.equals(postcode.getCity());
+	}
+
+
 	private String postcode;
 	private String city;
 	

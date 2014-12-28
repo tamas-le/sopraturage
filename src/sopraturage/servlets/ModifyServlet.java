@@ -32,7 +32,9 @@ public class ModifyServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setAttribute("adresse",ApplicationData.workplaces );
+		request.setAttribute("adresses",ApplicationData.workplaces );
+		request.setAttribute("user", ApplicationData.localUser);
+		request.setAttribute("adress", ApplicationData.home);
 		RequestDispatcher view = request.getRequestDispatcher("modifs.jsp");
 		view.forward(request, response);
 	}
@@ -41,7 +43,7 @@ public class ModifyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		response.getWriter().print("coucou");;
 	}
 
 }

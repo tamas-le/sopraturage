@@ -126,9 +126,7 @@ public class InscriptionServlet extends HttpServlet {
 			isNotified=true;
 		}
 
-		User user= new User(surname, name, emailString, phone, password, isDriver, isNotified, null,id);
-
-		writer.println("<p>"+user+" </p>");
+		
 
 
 		
@@ -144,6 +142,10 @@ public class InscriptionServlet extends HttpServlet {
 
 		int id2=manager.getId(adress, id1);
 		writer.println("<p>id adresse "+id2+" </p>");
+		
+		User user= new User(surname, name, emailString, phone, password, isDriver, isNotified, null,id,id2);
+
+		writer.println("<p>"+user+" </p>");
 
 		int code3=manager.insert(user, id2);
 		writer.println("<p>"+code3+" </p>");

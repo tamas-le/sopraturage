@@ -301,6 +301,64 @@ public class DatabaseManager {
 
 		return null;
 	}
+	
+	public Address getAddressFromID(int id){
+		try {
+			connect();
+			
+			String sql="SELECT num,way_type,way_name,postcode,city "
+					+ "FROM Addresses "
+					+ "INNER JOIN Postcodes "
+					+ "ON Addresses.id_postcode=Postcodes.id "
+					+ "WHERE Addresses.id="+id+";";
+			
+			ResultSet resultat = query(sql);
+			while (resultat.next()){
+				return new Address(
+						resultat.getString("way_type"), 
+						resultat.getString("way_name"), 
+						new PostCode(resultat.getString("postcode"), resultat.getString("city")),
+						resultat.getInt("num"));
+
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+		}
+		return null;
+	}
+	
+	public User getUserFromLogin(String login){
+	
+		ResultSet resultat=query("SELECT *  FROM Users WHERE email='"+login+"';");
+		try {
+			while (resultat.next()){
+				User u =new User(
+						resultat.getString("surname"), 
+						resultat.getString("name"), 
+						resultat.getString("email"), 
+						resultat.getString("phone_number"), 
+						resultat.getString("password"), 
+						resultat.getBoolean("is_a_driver"), 
+						resultat.getBoolean("accept_notifications"), 
+						null,
+						resultat.getInt("workplace"),
+						resultat.getInt("home"));
+				u.setUserId(resultat.getInt("id"));
+				return u;
+				
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+		return null;
+		
+	}
 
 
 

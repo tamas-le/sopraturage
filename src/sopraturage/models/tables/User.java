@@ -15,11 +15,20 @@ public class User {
 	private boolean notification;
 	private boolean [] working;
 	private int worplaceId;
+	private int homeId;
+	private int userId;
 	
-	
-	
-	
-	
+
+	public int getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+
 	public int getWorplaceId() {
 		return worplaceId;
 	}
@@ -30,19 +39,32 @@ public class User {
 	}
 
 
+
+	
+	
+	public int getHomeId() {
+		return homeId;
+	}
+
+
+	public void setHomeId(int homeId) {
+		this.homeId = homeId;
+	}
+
+
 	@Override
 	public String toString() {
 		return "User [surname=" + surname + ", name=" + name + ", email="
 				+ email + ", phone=" + phone + ", password=" + password
 				+ ", driver=" + driver + ", notification=" + notification
 				+ ", working=" + Arrays.toString(working) + ", worplaceId="
-				+ worplaceId + "]";
+				+ worplaceId + ", homeId=" + homeId + "]";
 	}
-	
-	
+
+
 	public User(String surname, String name, String email,
 			String phone, String password, boolean driver, boolean notification,
-			boolean[] working,int id) {
+			boolean[] working,int id,int hid) {
 		super();
 		this.surname = surname;
 		this.name = name;
@@ -53,7 +75,9 @@ public class User {
 		this.notification = notification;
 		this.working = working;
 		this.worplaceId=id;
+		this.homeId=hid;
 	}
+	
 	public String getSurname() {
 		return surname;
 	}

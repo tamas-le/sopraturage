@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import sopraturage.ApplicationData;
 import sopraturage.models.DatabaseManager;
+import sopraturage.models.tables.Address;
 import sopraturage.models.tables.User;
 
 /**
@@ -35,19 +35,19 @@ public class ConnexionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 
-		
-		
-		
-		
+
+
+
+
+
 		PrintWriter writer=response.getWriter();
 		writer.println("Vous avez tapé :");
 		String login=request.getParameter("pseudo");
@@ -57,50 +57,24 @@ public class ConnexionServlet extends HttpServlet {
 
 		DatabaseManager manager=new DatabaseManager();
 
-		
+
 		if (manager.isPasswordOK(login, pw))
 		{
-			ApplicationData.workplaces=manager.getWorkplaces();
 			writer.println("Le mot de passe est bon");
-			ResultSet resultat=manager.query("SELECT *  FROM Users WHERE email='"+login+"';");
-			
-			try{
-				while (resultat.next()){
-					
-					ApplicationData.userID=resultat.getInt("id");
-					ApplicationData.localUser=new User(
-							resultat.getString("surname"), 
-							resultat.getString("name"), 
-							resultat.getString("email"), 
-							resultat.getString("phone_number"), 
-							resultat.getString("password"), 
-							resultat.getBoolean("is_a_driver"), 
-							resultat.getBoolean("accept_notifications"), 
-							null,
-							resultat.getInt("workplace"));
-				}
-				
-				manager.closeConnection();
-				writer.println("id : "+ ApplicationData.userID);
-				writer.println(ApplicationData.localUser);
-				
-				if (manager.isAdmin(ApplicationData.userID)){
-					writer.println("ADMIN !!!");
-					ApplicationData.admin=true;
-				} else {
-					ApplicationData.admin=false;
-				}
-				
-				
-				
-				
-				
-				response.sendRedirect("home");
-			} catch (Exception e){
-				e.printStackTrace();
+			ApplicationData.fetch(login);
+
+			writer.println("id : "+ ApplicationData.localUser.getUserId());
+			writer.println(ApplicationData.localUser);
+			writer.println("Admin ? : "+ ApplicationData.admin);
+			for (Address a:ApplicationData.workplaces){
+				writer.println("Workplace : "+ a);
 			}
 			
-			
+			writer.println("Home : "+ ApplicationData.home);
+
+			response.sendRedirect("home");
+
+
 		}else {
 			writer.println("Le mot de passe est mauvais");
 		}

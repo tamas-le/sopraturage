@@ -70,6 +70,7 @@ public class InscriptionServlet extends HttpServlet {
 		String stringpostcode=request.getParameter("postCode");
 		String city=request.getParameter("city");
 		PostCode postcode= new PostCode(stringpostcode, city);
+		
 		writer.println("<p>"+postcode+"</p>");
 
 
@@ -152,9 +153,17 @@ public class InscriptionServlet extends HttpServlet {
 
 		if (code3==1){
 			writer.println("Compte créé !");
+			request.setAttribute("created", true);
 		} else {
 			writer.println("Compte pas créé !");
+			request.setAttribute("created", false);
+			
 		}
+		
+		
+		
+		RequestDispatcher view = request.getRequestDispatcher("check_create.jsp");
+		view.forward(request, response);
 
 
 	}

@@ -72,6 +72,23 @@ public class Address {
 	public String toStringBetter(){
 		return num+" "+waytype+" "+wayName+" "+postCode.toStringBetter();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Address another =(Address)obj;
+		if (postCode.equals(another.postCode)){
+			if (this.waytype.equals(another.waytype)){
+				if (this.num==another.num){
+					return (wayName.equals(another.wayName));
+				}
+			}
+			
+		}
+		return false;
+	}
+	
+	
+	
 	
 	
 	

@@ -26,6 +26,7 @@ public class ApplicationData {
 
 		localUser=manager.getUserFromLogin(login);
 		home=manager.getAddressFromID(localUser.getHomeId());
+		home.setId(localUser.getHomeId());
 
 		if (manager.isAdmin(localUser.getUserId())){
 			admin=true;
@@ -34,6 +35,24 @@ public class ApplicationData {
 		}
 
 	}
+
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "ApplicationData [localUser=" + localUser + ", admin=" + admin
+				+ ", workplaces=" + workplaces + ", home=" + home + "]";
+	}
+
+
+
+
+
+
+	
 
 
 }

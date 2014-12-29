@@ -10,6 +10,22 @@
     <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>Admin</servlet-name>
+    <servlet-class>sopraturage.servlets.AdminServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Admin</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>Workplace</servlet-name>
+    <servlet-class>sopraturage.servlets.admin.WorkplaceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Workplace</servlet-name>
+    <url-pattern>/manage_workplaces</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>Create</servlet-name>
     <servlet-class>sopraturage.servlets.InscriptionServlet</servlet-class>
   </servlet>
@@ -49,7 +65,7 @@
     <servlet-name>Disco</servlet-name>
     <url-pattern>/disconnect</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>Modify</servlet-name>
     <servlet-class>sopraturage.servlets.ModifyServlet</servlet-class>
   </servlet>

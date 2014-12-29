@@ -11,7 +11,7 @@
 	<%
 	
 	String name=(String)request.getAttribute("name");
-		out.println("<h1>Bienvenue "
+		out.println("<h1>Welcome "
 				+ name + "</h1>");
 	%>
 
@@ -22,7 +22,7 @@
 	<%
 	Boolean admin=(Boolean)request.getAttribute("admin");
 		if (admin) {
-			out.println("<a href='#'>Admin Page</a>");
+			out.println("<a href='admin'>Admin Page</a>");
 		}
 	%>
 

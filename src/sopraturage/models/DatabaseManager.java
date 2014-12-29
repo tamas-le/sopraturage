@@ -15,7 +15,7 @@ import sopraturage.models.tables.User;
 
 public class DatabaseManager {
 
-	private static final boolean LOCAL=false;
+	private static final boolean LOCAL=true;
 
 	// Pour la base de donnée en local
 	private static final String url = "jdbc:mysql://localhost:3306/sopraturage";
@@ -194,13 +194,19 @@ public class DatabaseManager {
 				String insertionHome="INSERT INTO Homes "
 						+ "VALUES ("+getId(a, idPostCode)+");";
 				statut=statement.executeUpdate(insertionHome);
+			} else {
+				String insertion="INSERT INTO Workplaces "
+						+ "VALUES ("+getId(a, idPostCode)+");";
+				statut=statement.executeUpdate(insertion);
 			}
 
 
 			return statut;
 		} catch (Exception e){
 			e.printStackTrace();
-		} 
+		} finally {
+			closeConnection();
+		}
 		return statut;
 	}
 
@@ -209,8 +215,8 @@ public class DatabaseManager {
 		try{
 			String insertUser="INSERT INTO Users (surname, name, email, password, phone_number, workplace, home,is_a_driver,accept_notifications)"
 					+ "VALUES ('"+u.getName()+"', '"+u.getSurname()+"', '"+u.getEmail()+"', '"+u.getPassword()+"', '"
-							+ ""+u.getPhone()+"', "+u.getWorplaceId()+","+idAdress+","
-									+ ""+u.isDriver()+","+u.isNotification()+" )";
+					+ ""+u.getPhone()+"', "+u.getWorplaceId()+","+idAdress+","
+					+ ""+u.isDriver()+","+u.isNotification()+" )";
 
 			connect();
 			statut=statement.executeUpdate(insertUser);
@@ -264,7 +270,7 @@ public class DatabaseManager {
 	}
 
 	public LinkedList<Address> getWorkplaces(){
-		
+
 		String sql="SELECT num, way_type, way_name, postcode,Addresses.id, "
 				+ "city FROM Addresses INNER JOIN Postcodes "
 				+ "ON Addresses.id_postcode = Postcodes.id INNER "
@@ -301,17 +307,17 @@ public class DatabaseManager {
 
 		return null;
 	}
-	
+
 	public Address getAddressFromID(int id){
 		try {
 			connect();
-			
+
 			String sql="SELECT num,way_type,way_name,postcode,city "
 					+ "FROM Addresses "
 					+ "INNER JOIN Postcodes "
 					+ "ON Addresses.id_postcode=Postcodes.id "
 					+ "WHERE Addresses.id="+id+";";
-			
+
 			ResultSet resultat = query(sql);
 			while (resultat.next()){
 				return new Address(
@@ -321,18 +327,18 @@ public class DatabaseManager {
 						resultat.getInt("num"));
 
 			}
-			
+
 		} catch(Exception e) {
 			e.printStackTrace();
-			
+
 		} finally {
-			
+
 		}
 		return null;
 	}
-	
+
 	public User getUserFromLogin(String login){
-	
+
 		ResultSet resultat=query("SELECT *  FROM Users WHERE email='"+login+"';");
 		try {
 			while (resultat.next()){
@@ -349,7 +355,7 @@ public class DatabaseManager {
 						resultat.getInt("home"));
 				u.setUserId(resultat.getInt("id"));
 				return u;
-				
+
 			}
 		} catch (Exception e){
 			e.printStackTrace();
@@ -357,7 +363,122 @@ public class DatabaseManager {
 			closeConnection();
 		}
 		return null;
-		
+
+	}
+
+	public int update(User u){
+		int code=-1;
+		try {
+			connect();
+			String sql ="UPDATE Users "
+					+ "SET phone_number='"+u.getPhone()+"',"
+					+ "password='"+u.getPassword()+"',"
+					+ "is_a_driver="+u.isDriver()+","
+					+ "accept_notifications="+u.isNotification()+","
+					+ "workplace="+u.getWorplaceId()+","
+					+ "home="+u.getHomeId()+" "
+					+ "WHERE email='"+u.getEmail()+"';";
+			code=statement.executeUpdate(sql);
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+		return code;
+	}
+
+	public int update(PostCode pc){
+		int code =-1;
+		try {
+			if (getId(pc)==-1)
+			{
+				return insert(pc);
+			} else {
+				return 0;
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+
+
+
+		return code;
+	}
+
+
+	public int update(Address a){
+		int code=-1;
+		try{
+			connect();
+
+			if (getNumberUserFromIdAdress(a.getId())<2)
+			{
+				int idPostcode=getId(a.getPostCode());
+				String sql="UPDATE Addresses "
+						+ "SET num="+a.getNum()+","
+						+ "way_type='"+a.getWaytype()+"',"
+						+ "way_name='"+a.getWayName()+"',"
+						+ "id_postcode="+idPostcode+" "
+						+ "WHERE id="+a.getId()+";";
+				code=statement.executeUpdate(sql);
+			} else{
+
+				code=insert(a, getId(a.getPostCode()), true);
+
+			}
+
+
+
+		}catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+
+		return code;
+	}
+
+	public int getNumberUserFromIdAdress(int id){
+		int number=0;
+		try{
+			connect();
+			String sql="SELECT COUNT(*) AS nombre FROM sopraturage.users WHERE home="+id+";";
+			ResultSet resultat=query(sql);
+			while (resultat.next()){
+				number=resultat.getInt("nombre");
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+		}finally{
+			closeConnection();
+		}
+		return number;
+	}
+
+	public int deleteAddress(int id, boolean home){
+		int code=-1;
+
+		try{
+			connect();
+			
+			if (home){
+				statement.executeUpdate("DELETE FROM Homes WHERE id="+id+";");
+			} else {
+				statement.executeUpdate("DELETE FROM Workplaces WHERE id="+id+";");
+			}
+			
+			statement.executeUpdate("DELETE FROM Addresses WHERE id="+id+";");
+			code =0;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			closeConnection();
+		}
+		return code;
+
 	}
 
 

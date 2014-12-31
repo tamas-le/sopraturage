@@ -17,7 +17,15 @@
     <servlet-name>Admin</servlet-name>
     <url-pattern>/admin</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
+    <servlet-name>Account</servlet-name>
+    <servlet-class>sopraturage.servlets.admin.AccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Account</servlet-name>
+    <url-pattern>/account</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>Workplace</servlet-name>
     <servlet-class>sopraturage.servlets.admin.WorkplaceServlet</servlet-class>
   </servlet>

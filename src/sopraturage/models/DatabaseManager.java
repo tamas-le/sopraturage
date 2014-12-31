@@ -9,6 +9,7 @@ import java.util.LinkedList;
 
 import sopraturage.models.tables.Address;
 import sopraturage.models.tables.PostCode;
+import sopraturage.models.tables.TinyUser;
 import sopraturage.models.tables.User;
 
 
@@ -267,6 +268,26 @@ public class DatabaseManager {
 			e.printStackTrace();
 		} 
 		return -1;
+	}
+	
+	
+	public LinkedList<TinyUser> getUsers(){
+		String sql ="SELECT * FROM Users;";
+		LinkedList<TinyUser> userList=new LinkedList<TinyUser>();
+		ResultSet resultat=query(sql);
+		try{
+			while(resultat.next()){
+				userList.add(new TinyUser(resultat.getString("email"),resultat.getInt("id"), resultat.getString("surname"), resultat.getString("name")));
+				
+			}
+			return userList;
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		
+		return null;
 	}
 
 	public LinkedList<Address> getWorkplaces(){

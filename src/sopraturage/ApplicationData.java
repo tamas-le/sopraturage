@@ -35,6 +35,11 @@ public class ApplicationData {
 		}
 
 	}
+	
+	public void updateWorkplaces(){
+		DatabaseManager manager=new DatabaseManager();
+		workplaces=manager.getWorkplaces();
+	}
 
 
 

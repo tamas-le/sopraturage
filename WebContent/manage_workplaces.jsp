@@ -45,17 +45,15 @@
 		<br /> <input type="text" name="city" placeholder="City" /> <br />
 		<br /> <br /> <input type="submit" name="Add" value="Add" />
 
-		<h2>Delete a workplace</h2>
+		<h2>Modify a workplace</h2>
 
 		<select name="workplace">
 			<%
-		for (Address a : workplaces) {
-			out.println("<option>" + a.toStringBetter() + "</option>");
-		}
-		
-		
-		%>
-		</select> <input type="submit" name="Delete" value="Delete" />
+				for (Address a : workplaces) {
+					out.println("<option>" + a.toStringBetter() + "</option>");
+				}
+			%>
+		</select> <input type="submit" name="Modify" value="Modify" />
 
 
 	</form>

@@ -7,12 +7,16 @@
 <title>Sopraturage</title>
 </head>
 <body>
-
-	<h2>Admin Page</h2>
-	<a href="account">Manage accounts</a>
-	<a href="manage_workplaces">Manage workplaces</a>
-	<a href="reports">Generate Reports</a>
-	<a href="home">Back to the home page</a>
+	<%
+		Boolean status = (Boolean) request.getAttribute("status");
+		if (status) {
+			out.println("<p>Your changes have been saved</p>");
+		} else {
+			out.println("<p>Something went wrong </p>");
+		}
+		
+	%>
+	<a href='admin'>Back to the admin home page</a>
 
 </body>
 </html>

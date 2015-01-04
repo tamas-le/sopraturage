@@ -11,7 +11,12 @@
 <title>Sopraturage</title>
 </head>
 <body>
-	<h2>Modify your information</h2>
+	<h2>Modify user information</h2>
+	<%
+	
+	User u = (User) request.getAttribute("user");
+	out.println("<h3>Email : "+u.getEmail()+"</h3>");
+	%>
 
 
 	<form action='' method='post'>
@@ -19,7 +24,7 @@
 		<p>Phone number :</p>
 
 		<%
-			User u = (User) request.getAttribute("user");
+			
 			out.println("<input type='tel' id='phone' name='phoneNumber' placeholder='Phone Number' maxlength='10' value='"
 					+ u.getPhone() + "' />");
 		%>

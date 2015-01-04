@@ -501,6 +501,33 @@ public class DatabaseManager {
 		return code;
 
 	}
+	
+	public int deleteUser(User u, int id){
+		int code =-1;
+		boolean yadautremec=false;
+		try{
+			
+			int homeid=u.getHomeId();
+			if (getNumberUserFromIdAdress(homeid)>=2){
+				yadautremec=true;
+			}
+			connect();
+			statement.executeUpdate("DELETE FROM Users WHERE id="+id+";");
+			
+			if (!yadautremec){
+				deleteAddress(homeid, true);
+			}
+			
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			closeConnection();
+		}
+		
+		
+		return code;
+	}
 
 
 

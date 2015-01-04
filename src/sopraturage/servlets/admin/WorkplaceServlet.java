@@ -161,19 +161,20 @@ public class WorkplaceServlet extends HttpServlet {
 			}
 
 			if (c==-1){
-				request.getSession().setAttribute("status", false);
+				request.setAttribute("status", false);
 			} else {
-				request.getSession().setAttribute("status", true);
+				request.setAttribute("status", true);
 			}
 			
 			view = request.getRequestDispatcher("check_admin.jsp");
+			view.forward(request, response);
+			//response.sendRedirect("b");
 			
-
 		} else {
 			view= request.getRequestDispatcher("check_admin.jsp");
 		}
 
-		view.forward(request, response);
+		
 
 	}
 

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sopraturage.mail.Mailer;
 import sopraturage.models.DatabaseManager;
 
 /**
@@ -46,21 +47,42 @@ public class ForgotServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+		PrintWriter out=response.getWriter();
+		manager=new DatabaseManager();
 		String email=request.getParameter("email");
+		Mailer mailer;
+		String password=new String();
 		if (email!=null){
+			mailer=new Mailer("noreply@sopra.fr", email, "localhost");
 			String query = "SELECT email,password "
-					+ "FROM users "
+					+ "FROM Users "
 					+ "WHERE email='"+email+"'";
-			
+
 			ResultSet resultat=manager.query(query);
 			try {
-				String password=resultat.getString("password");
+				
+				while (resultat.next()){
+					password=resultat.getString("password");
+				}
+				
+				int code=mailer.sendMail("Forgotten Password", "Hi, I heard you've forgotten your password."
+						+ "so here it is : "+password);
+
+				if (code!=-1){
+					out.print("mail envoyé");
+				} else {
+					out.print("error");
+				}
+				//out.println(password);
+
+
+
 			} catch (Exception e){
 				e.printStackTrace();
 			}
-			
-			
+
+
 
 		}
 	}

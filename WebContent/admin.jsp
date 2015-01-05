@@ -11,7 +11,7 @@
 	<h2>Admin Page</h2>
 	<a href="account">Manage accounts</a>
 	<a href="manage_workplaces">Manage workplaces</a>
-	<a href="reports">Generate Reports</a>
+	<a href="report">Generate Reports</a>
 	<a href="home">Back to the home page</a>
 
 </body>

@@ -14,6 +14,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/Aurélien/Downloads/javax.mail.jar" sourcepath=""/>
+	<classpathentry kind="lib" path="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/javax.mail.jar" sourcepath=""/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

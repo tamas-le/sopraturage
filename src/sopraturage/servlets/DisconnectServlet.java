@@ -2,6 +2,8 @@ package sopraturage.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import sopraturage.ApplicationData;
+import sopraturage.models.DatabaseManager;
 
 /**
  * Servlet implementation class DisconnectServlet
@@ -33,7 +36,24 @@ public class DisconnectServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		PrintWriter out=response.getWriter();
 		HttpSession session=request.getSession();
+		
+		Timestamp timestamp=(Timestamp)session.getAttribute("start");
+		
+		DatabaseManager manager= new DatabaseManager();
+		Timestamp timestampfin=new Timestamp(System.currentTimeMillis());
+		
+		ApplicationData data=(ApplicationData)session.getAttribute("data");
+		
+		out.println(data.localUser.getUserId());
+		out.println(timestamp);
+		out.println(timestampfin);
+		
+		//manager.updateSession(data.localUser.getUserId(), timestamp, timestampfin);
+		
+		
+
 		
 		session.setAttribute("data", null);
 		session.invalidate();
@@ -41,8 +61,8 @@ public class DisconnectServlet extends HttpServlet {
 		
 		//session=null;
 		
-		RequestDispatcher view = request.getRequestDispatcher("index.html");
-		view.forward(request, response);
+//		RequestDispatcher view = request.getRequestDispatcher("index.html");
+//		view.forward(request, response);
 		
 		
 	}

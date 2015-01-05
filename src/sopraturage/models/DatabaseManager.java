@@ -1,14 +1,17 @@
 package sopraturage.models;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 
 import sopraturage.models.tables.Address;
 import sopraturage.models.tables.PostCode;
+import sopraturage.models.tables.Session;
 import sopraturage.models.tables.TinyUser;
 import sopraturage.models.tables.User;
 
@@ -269,8 +272,8 @@ public class DatabaseManager {
 		} 
 		return -1;
 	}
-	
-	
+
+
 	public LinkedList<TinyUser> getUsers(){
 		String sql ="SELECT * FROM Users;";
 		LinkedList<TinyUser> userList=new LinkedList<TinyUser>();
@@ -278,15 +281,45 @@ public class DatabaseManager {
 		try{
 			while(resultat.next()){
 				userList.add(new TinyUser(resultat.getString("email"),resultat.getInt("id"), resultat.getString("surname"), resultat.getString("name")));
-				
+
 			}
 			return userList;
-			
+
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		
-		
+
+
+		return null;
+	}
+
+	public LinkedList<Session> getSessions(){
+		String sql="SELECT name, surname,email,time_stamp_connection,time_stamp_deconnection,Users.id "
+				+ "FROM Users "
+				+ "INNER JOIN Sessions "
+				+ "ON Sessions.id=Users.id;";
+		ResultSet resultat=query(sql);
+		LinkedList<Session> sessions=new LinkedList<Session>();
+		try {
+			while(resultat.next()){
+				sessions.add(new Session(
+						resultat.getTimestamp("time_stamp_connection"),
+						resultat.getTimestamp("time_stamp_deconnection"),
+						new TinyUser(
+								resultat.getString("email"),
+								resultat.getInt("id"),
+								resultat.getString("surname"),
+								resultat.getString("name"))));
+
+			}
+
+			return sessions;
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			closeConnection();
+		}
+
 		return null;
 	}
 
@@ -484,13 +517,13 @@ public class DatabaseManager {
 
 		try{
 			connect();
-			
+
 			if (home){
 				statement.executeUpdate("DELETE FROM Homes WHERE id="+id+";");
 			} else {
 				statement.executeUpdate("DELETE FROM Workplaces WHERE id="+id+";");
 			}
-			
+
 			statement.executeUpdate("DELETE FROM Addresses WHERE id="+id+";");
 			code =0;
 		} catch (Exception e) {
@@ -501,33 +534,71 @@ public class DatabaseManager {
 		return code;
 
 	}
-	
+
 	public int deleteUser(User u, int id){
 		int code =-1;
 		boolean yadautremec=false;
 		try{
-			
+
 			int homeid=u.getHomeId();
 			if (getNumberUserFromIdAdress(homeid)>=2){
 				yadautremec=true;
 			}
 			connect();
 			statement.executeUpdate("DELETE FROM Users WHERE id="+id+";");
-			
+
 			if (!yadautremec){
 				deleteAddress(homeid, true);
 			}
-			
-			
+
+
 		} catch (Exception e){
 			e.printStackTrace();
 		} finally{
 			closeConnection();
 		}
-		
-		
+
+
 		return code;
 	}
+
+	public int saveSession(int id,Timestamp debut,Timestamp fin){
+		int code=-1;
+		try {
+			connect();
+			String sql="INSERT INTO Sessions(id,time_stamp_connection,time_stamp_deconnection) "
+					+ "VALUES ("+id+",'"+debut+"','"+fin+"'); ";
+			statement.executeUpdate(sql);
+			code =0;
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+		return code;
+	}
+
+	public int updateSession(int id,Timestamp debut,Timestamp fin){
+		int code=-1;
+		try {
+			connect();
+			String sql="UPDATE Sessions "
+					+ "SET time_stamp_deconnection='"+fin+"' "
+					+ "WHERE id="+id+" AND "
+					+ "time_stamp_connection='"+debut+"'; ";
+			statement.executeUpdate(sql);
+			code =0;
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+		return code;
+	}
+
+
 
 
 

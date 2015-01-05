@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sopraturage.models.DatabaseManager;
+import sopraturage.models.tables.Session;
 import sopraturage.models.tables.TinyUser;
 import sopraturage.models.tables.User;
 
@@ -49,7 +50,11 @@ public class ReportServlet extends HttpServlet {
 		if (request.getParameter("go")!=null){
 			String rapport=request.getParameter("report");
 			if (rapport.equals("Connexion")){
-
+				LinkedList<Session> sessions=manager.getSessions();
+				
+				request.setAttribute("list", sessions);
+				RequestDispatcher view=request.getRequestDispatcher("reportDriver.jsp");
+				view.forward(request, response);
 			} else if (rapport.equals("Location")){
 
 			} else if (rapport.equals("Driver")){

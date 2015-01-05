@@ -2,7 +2,8 @@ package sopraturage.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import sopraturage.ApplicationData;
 import sopraturage.models.DatabaseManager;
 import sopraturage.models.tables.Address;
-import sopraturage.models.tables.User;
 
 /**
  * Servlet implementation class ConnexionServlet
@@ -43,11 +43,6 @@ public class ConnexionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-
-
-
 
 		PrintWriter writer=response.getWriter();
 		writer.println("Vous avez tapé :");
@@ -78,7 +73,15 @@ public class ConnexionServlet extends HttpServlet {
 			}
 			
 			writer.println("Home : "+ dataSession.home);
-
+			Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+			Timestamp timestampfin=new Timestamp(timestamp.getTime()+1800000);
+			writer.println(timestamp);
+			writer.println(timestampfin);
+			
+			session.setAttribute("start", timestamp);
+			manager.saveSession(dataSession.localUser.getUserId(),timestamp,timestampfin);
+			
+			
 			response.sendRedirect("home");
 
 

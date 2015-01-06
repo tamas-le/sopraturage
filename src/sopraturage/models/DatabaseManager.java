@@ -19,7 +19,7 @@ import sopraturage.models.tables.User;
 
 public class DatabaseManager {
 
-	private static final boolean LOCAL=false;
+	private static final boolean LOCAL=true;
 
 	// Pour la base de donnée en local
 	private static final String url = "jdbc:mysql://localhost:3306/sopraturage";

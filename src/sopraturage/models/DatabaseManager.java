@@ -579,7 +579,7 @@ public class DatabaseManager {
 		return code;
 	}
 
-	public int updateSession(int id,Timestamp debut,Timestamp fin){
+	public int updateSession(int id,String debut,Timestamp fin){
 		int code=-1;
 		try {
 			connect();

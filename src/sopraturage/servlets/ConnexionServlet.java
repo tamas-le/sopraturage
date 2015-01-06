@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import sopraturage.ApplicationData;
 import sopraturage.models.DatabaseManager;
 import sopraturage.models.tables.Address;
+import sopraturage.util.TimeStampCut;
 
 /**
  * Servlet implementation class ConnexionServlet
@@ -78,7 +79,9 @@ public class ConnexionServlet extends HttpServlet {
 			writer.println(timestamp);
 			writer.println(timestampfin);
 			
-			session.setAttribute("start", timestamp);
+			TimeStampCut cutter=new TimeStampCut(timestamp);
+			
+			session.setAttribute("start", cutter.getResult());
 			manager.saveSession(dataSession.localUser.getUserId(),timestamp,timestampfin);
 			
 			

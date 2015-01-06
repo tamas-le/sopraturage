@@ -39,7 +39,7 @@ public class DisconnectServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		HttpSession session=request.getSession();
 		
-		Timestamp timestamp=(Timestamp)session.getAttribute("start");
+		String timestampString=(String)session.getAttribute("start");
 		
 		DatabaseManager manager= new DatabaseManager();
 		Timestamp timestampfin=new Timestamp(System.currentTimeMillis());
@@ -47,10 +47,24 @@ public class DisconnectServlet extends HttpServlet {
 		ApplicationData data=(ApplicationData)session.getAttribute("data");
 		
 		out.println(data.localUser.getUserId());
-		out.println(timestamp);
+		out.println(timestampString);
 		out.println(timestampfin);
 		
-		//manager.updateSession(data.localUser.getUserId(), timestamp, timestampfin);
+//		String sql="SELECT * FROM Sessions WHERE id="+data.localUser.getUserId()+" AND "
+//				+ "time_stamp_connection='"+timestampString+"';";
+//		ResultSet resultat=manager.query(sql);
+//		int compte=0;
+//		try  {
+//			while (resultat.next()){
+//				out.println(resultat.getInt("id"));
+//				compte++;
+//			}
+//			out.println("Compte : "+compte);
+//		} catch (Exception e){
+//			e.printStackTrace();
+//		}
+		
+		manager.updateSession(data.localUser.getUserId(), timestampString, timestampfin);
 		
 		
 

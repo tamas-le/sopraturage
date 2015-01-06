@@ -19,7 +19,7 @@ import sopraturage.models.tables.User;
 
 public class DatabaseManager {
 
-	private static final boolean LOCAL=true;
+	private static final boolean LOCAL=false;
 
 	// Pour la base de donnée en local
 	private static final String url = "jdbc:mysql://localhost:3306/sopraturage";
@@ -144,7 +144,7 @@ public class DatabaseManager {
 	public boolean isAdmin(int id){
 		try {
 			connect();
-			String request="SELECT administrators.id  FROM Administrators WHERE "+id+"=administrators.id";
+			String request="SELECT Administrators.id  FROM Administrators WHERE "+id+"=Administrators.id";
 			ResultSet resultat = query(request);
 			String retour=new String();
 			while (resultat.next()){

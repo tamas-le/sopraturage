@@ -93,7 +93,7 @@ public class WorkplaceServlet extends HttpServlet {
 			}
 
 			 view = request.getRequestDispatcher("check_admin.jsp");
-			//view.forward(request, response);
+			view.forward(request, response);
 		} else if (request.getParameter("Modify")!=null) {
 			out.println("modification");
 			String workplace=request.getParameter("workplace");

@@ -53,7 +53,7 @@ public class ReportServlet extends HttpServlet {
 				LinkedList<Session> sessions=manager.getSessions();
 				
 				request.setAttribute("list", sessions);
-				RequestDispatcher view=request.getRequestDispatcher("reportDriver.jsp");
+				RequestDispatcher view=request.getRequestDispatcher("reportConnexion.jsp");
 				view.forward(request, response);
 			} else if (rapport.equals("Location")){
 

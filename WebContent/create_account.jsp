@@ -21,7 +21,11 @@
 <body>
 
 	<div class="page">
-		<img src="images/ban.jpg" width="100%" />
+	
+		<div class="head">
+			<h2>Sopraturage</h2>
+		</div>
+		
 		<div class="titre_page">
 			<h1>Create an account</h1>
 		</div>
@@ -73,7 +77,7 @@
 				<input type="checkbox" name="driver" value="driver_ok" /><label
 					for="driver">I am a driver</label> <br /> <input type="checkbox"
 					name="notify" value="notify_ok" /><label for="notify">I
-					want to be notify</label><br /> <br /> <input type="submit" id="submit"
+					want to be notify</label><br /> <br /> <br /> <input type="submit" id="submit"
 					name="connexion" value="&rarr;" /><br />
 			</form>
 			<p></p>
@@ -85,39 +89,6 @@
 
 </body>
 
-<script>
-<!--
-	(function() {
-		var codePostal = document.getElementById('postCode');
-		var form = document.getElementById('form_create_account');
 
-		var checkPostcodeValidity = function() {
-			if (codePostal.value > 99999 || codePostal.value < 0) {
-				codePostal.setCustomValidity('postcode is not correct.');
-				updateErrorMessage();
-			} else {
-				codePostal.setCustomValidity('');
-			}
-		};
-
-		var updateErrorMessage = function() {
-			form.getElementsByClassName('error')[0].innerHTML = codePostal.validationMessage;
-		};
-
-		codePostal.addEventListener('change', checkPostcodeValidity, false);
-
-		form.addEventListener('submit', function(event) {
-			if (form.classList)
-				form.classList.add('submitted');
-			checkPostcodeValidity();
-			if (!this.checkValidity()) {
-				event.preventDefault();
-				updateErrorMessage();
-				codePostal.focus();
-			}
-		}, false);
-	}());
-	-->
-</script>
 
 </html>

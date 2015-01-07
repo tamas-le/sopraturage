@@ -1,3 +1,4 @@
+<%@page import="sopraturage.ApplicationData"%>
 <div class="page">
 
 	<div class="head">
@@ -23,7 +24,8 @@
 	<a href="modify"><li>My Account</li></a>
 	
 	<%
-	Boolean admin=(Boolean)request.getAttribute("admin");
+	ApplicationData data=(ApplicationData)session.getAttribute("data");
+	Boolean admin=data.admin;
 		if (admin) {
 			out.println("<a href='admin'><li>Administration</li></a>");
 		}

@@ -579,12 +579,12 @@ public class DatabaseManager {
 		return code;
 	}
 
-	public int updateSession(int id,String debut,Timestamp fin){
+	public int updateSession(int id,String debut,String fin){
 		int code=-1;
 		try {
 			connect();
 			String sql="UPDATE Sessions "
-					+ "SET time_stamp_deconnection='"+fin+"' "
+					+ "SET time_stamp_deconnection='"+fin+"', time_stamp_connection='"+debut+"'  "
 					+ "WHERE id="+id+" AND "
 					+ "time_stamp_connection='"+debut+"'; ";
 			statement.executeUpdate(sql);

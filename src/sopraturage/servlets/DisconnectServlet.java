@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import sopraturage.ApplicationData;
 import sopraturage.models.DatabaseManager;
+import sopraturage.util.TimeStampCut;
 
 /**
  * Servlet implementation class DisconnectServlet
@@ -43,40 +44,30 @@ public class DisconnectServlet extends HttpServlet {
 		
 		DatabaseManager manager= new DatabaseManager();
 		Timestamp timestampfin=new Timestamp(System.currentTimeMillis());
+		TimeStampCut cutter=new TimeStampCut(timestampfin);
+		String timestampfinString=cutter.getResult();
 		
 		ApplicationData data=(ApplicationData)session.getAttribute("data");
 		
 		out.println(data.localUser.getUserId());
 		out.println(timestampString);
-		out.println(timestampfin);
+		out.println(timestampfinString);
 		
-//		String sql="SELECT * FROM Sessions WHERE id="+data.localUser.getUserId()+" AND "
-//				+ "time_stamp_connection='"+timestampString+"';";
-//		ResultSet resultat=manager.query(sql);
-//		int compte=0;
-//		try  {
-//			while (resultat.next()){
-//				out.println(resultat.getInt("id"));
-//				compte++;
-//			}
-//			out.println("Compte : "+compte);
-//		} catch (Exception e){
-//			e.printStackTrace();
-//		}
+
 		
-		manager.updateSession(data.localUser.getUserId(), timestampString, timestampfin);
+		manager.updateSession(data.localUser.getUserId(), timestampString, timestampfinString);
 		
 		
 
 		
 		session.setAttribute("data", null);
 		session.invalidate();
-		//
+
 		
 		//session=null;
 		
-//		RequestDispatcher view = request.getRequestDispatcher("index.html");
-//		view.forward(request, response);
+		RequestDispatcher view = request.getRequestDispatcher("index.html");
+		view.forward(request, response);
 		
 		
 	}

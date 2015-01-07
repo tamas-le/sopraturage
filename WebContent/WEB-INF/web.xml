@@ -9,8 +9,7 @@
     <servlet-name>Connexion</servlet-name>
     <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
- 
-   <servlet>
+  <servlet>
     <servlet-name>Report</servlet-name>
     <servlet-class>sopraturage.servlets.admin.ReportServlet</servlet-class>
   </servlet>
@@ -18,8 +17,6 @@
     <servlet-name>Report</servlet-name>
     <url-pattern>/report</url-pattern>
   </servlet-mapping>
- 
- 
   <servlet>
     <servlet-name>Admin</servlet-name>
     <servlet-class>sopraturage.servlets.AdminServlet</servlet-class>

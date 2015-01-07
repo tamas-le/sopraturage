@@ -8,7 +8,7 @@ background: url('../images/brushed.png'); /*#4b8baf*/
 
 ul{
 	
-	width : 950px;
+	width : 80%;
 	height : 45px;
 	text-align:center;
 	padding:0;
@@ -106,7 +106,6 @@ form select{
 	height : 100%;
 	width : 49%;
 	text-align : right;
-	
 }
 
 h1{
@@ -123,8 +122,9 @@ h1{
 
 
 .pseudo a{
+	position:relative;
+	top : 5px;
  	padding-right : 15px;
- 	line-height : 35px;
 	font-size : 15px;
 	text-align: right;
 	font-family: 'Eurostile', Arial;
@@ -155,7 +155,8 @@ h2{
 
 .img_rouages{
 	position:relative;
-	top : 5px;
+	top : 10px;
+	padding-right : 5px;
 }
 
 label{
@@ -184,4 +185,14 @@ p {
 	font-size : 14px;
 	color : #d3182a;
 
+}
+
+.content {
+	width : 100%;
+	height : 800px;
+
+}
+
+.selected {
+	color : rgb(80,80,80);
 }

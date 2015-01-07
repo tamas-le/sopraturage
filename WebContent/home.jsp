@@ -21,7 +21,7 @@
 			<%
 	
 			String email=(String)request.getAttribute("email");
-			out.println("<a href=''>"+ email +"</a>");
+			out.println("<a href='admin'>"+ email +"</a>");
 			%>
 	
 		</div>
@@ -41,12 +41,20 @@
 		}
 	%>
 
-	<a href="disconnect"><li>Disconnection</li></a>
+	<a href="disconnect"><li>Log out</li></a>
 
 	</ul>
 		
 
+</div>
+
+<br />
+<div class="page">
+	
+	<div class="content">
 	</div>
+	
+</div>
 
 </body>
 </html>

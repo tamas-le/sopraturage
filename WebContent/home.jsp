@@ -9,7 +9,7 @@
 <link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-
+	
 <%@ include file="header.jsp" %>
 
 <div class="page">

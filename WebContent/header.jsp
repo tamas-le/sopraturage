@@ -1,4 +1,6 @@
-<div class="head">
+<div class="page">
+
+	<div class="head">
 		<div class="titre_sop">
 			<h1>Sopraturage</h1>
 		</div>

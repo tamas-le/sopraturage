@@ -8,8 +8,9 @@
 		<div class="pseudo">
 			<span class="img_rouages"><img src="images/gear.png" width="20px" height="20px"></span>
 			<%
+			ApplicationData data=(ApplicationData)session.getAttribute("data");
 	
-			String email=(String)request.getAttribute("email");
+			String email=data.localUser.getEmail();
 			out.println("<a href='admin'>"+ email +"</a>");
 			%>
 	
@@ -24,7 +25,7 @@
 	<a href="modify"><li>My Account</li></a>
 	
 	<%
-	ApplicationData data=(ApplicationData)session.getAttribute("data");
+	
 	Boolean admin=data.admin;
 		if (admin) {
 			out.println("<a href='admin'><li>Administration</li></a>");

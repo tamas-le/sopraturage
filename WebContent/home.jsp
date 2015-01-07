@@ -6,8 +6,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Sopraturage</title>
+<link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+	<div class="page">
+	
+	
+	<div class="head">
+			<h1>Sopraturage</h1>
+			
+	</div>
+	
+	
+		
+		
+	
 	<%
 	
 	String name=(String)request.getAttribute("name");
@@ -15,20 +28,25 @@
 				+ name + "</h1>");
 	%>
 
-	<h2>What do you want to do ?</h2>
+	<ul class="menu">
 
-	<a href="modify">Modify Account</a>
-	<a href="#">Search</a>
+	<a href="#"><li>Search</li></a>
+
+	<a href="modify"><li>My Account</li></a>
+	
 	<%
 	Boolean admin=(Boolean)request.getAttribute("admin");
 		if (admin) {
-			out.println("<a href='admin'>Admin Page</a>");
+			out.println("<a href='admin'><li>Administration</li></a>");
 		}
 	%>
 
-	<a href="disconnect">Disconnect</a>
+	<a href="disconnect"><li>Disconnection</li></a>
 
+	</ul>
+		
 
+	</div>
 
 </body>
 </html>

@@ -20,8 +20,7 @@
 			</TR>
 
 			<%
-				LinkedList<TinyUser> list = (LinkedList) request
-						.getAttribute("list");
+				LinkedList<TinyUser> list = (LinkedList) request.getAttribute("list");
 
 				for (TinyUser t : list) {
 					out.println("<TR>");

@@ -6,6 +6,42 @@ background: url('../images/brushed.png'); /*#4b8baf*/
 }
 
 
+ul{
+	
+	width : 950px;
+	height : 45px;
+	text-align:center;
+	padding:0;
+	margin:auto;	
+}
+
+li {
+	height : 45px;
+	display : inline-block;
+	text-decoration:none;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-size : 17px;
+	line-height : 45px;
+	margin-left : 40px;
+	margin-right : 40px;
+	color : #cc0000;
+	/*color : #34495e;*/
+	font-weight : normal;
+	
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	-ms-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+
+li:hover{
+	color : rgb(80,80,80);
+	
+	
+}
+
+
 
 .page{
 	margin:auto;

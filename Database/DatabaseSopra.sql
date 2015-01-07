@@ -3,9 +3,6 @@ DROP DATABASE Sopraturage;
 CREATE DATABASE Sopraturage
 	CHARACTER SET 'utf8'
 	COLLATE 'utf8_bin';
-	
-CREATE USER 'java'@'localhost' IDENTIFIED BY '123';
-GRANT ALL ON sopraturage.* TO 'java'@'localhost' IDENTIFIED BY '123';
 
 USE Sopraturage;
 
@@ -23,8 +20,11 @@ CREATE TABLE Addresses (
 	way_type enum("rue", "avenue", "chemin", "allée", "boulevard", "route", "ruelle") NOT NULL,
 	way_name VARCHAR(255) NOT NULL,
 	id_postcode INT UNSIGNED NOT NULL,
+	longitude FLOAT(10, 7) NOT NULL,
+	latitude FLOAT(10, 7) NOT NULL,
 	FOREIGN KEY(id_postcode) REFERENCES Postcodes(id),
-	CONSTRAINT unique_address UNIQUE (num, way_type, way_name, id_postcode)
+	CONSTRAINT address_unique UNIQUE (num, way_type, way_name, id_postcode),
+	CONSTRAINT coodinates_unique UNIQUE (longitude, latitude)
 );
 
 
@@ -106,6 +106,32 @@ BEGIN
 IF (NEW.postcode REGEXP "^[0-9]{5}$" ) = 0 THEN 
   SIGNAL SQLSTATE '12345'
      SET MESSAGE_TEXT = 'Wroooong postcode!!!';
+END IF;
+
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE TRIGGER validate_coordinates BEFORE INSERT ON Sopraturage.Addresses
+FOR EACH ROW 
+BEGIN 
+IF ((NEW.longitude < -180) OR (NEW.longitude > 180) OR (NEW.latitude < -180) OR (NEW.latitude > 180)) THEN 
+  SIGNAL SQLSTATE '12345'
+     SET MESSAGE_TEXT = 'Wroooong coordinates';
+END IF;
+
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE TRIGGER validate_time_stamps BEFORE INSERT ON Sopraturage.Sessions
+FOR EACH ROW 
+BEGIN 
+IF (NEW.time_stamp_connection > NEW.time_stamp_deconnection) THEN 
+  SIGNAL SQLSTATE '12345'
+     SET MESSAGE_TEXT = 'Wroooong connection/deconnection times';
 END IF;
 
 END$$

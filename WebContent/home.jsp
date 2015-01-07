@@ -13,20 +13,20 @@
 	
 	
 	<div class="head">
+		<div class="titre_sop">
 			<h1>Sopraturage</h1>
-			
+		</div>
+		<div class="pseudo">
+			<span class="img_rouages"><img src="images/gear.png" width="20px" height="20px"></span>
+			<%
+	
+			String email=(String)request.getAttribute("email");
+			out.println("<a href=''>"+ email +"</a>");
+			%>
+	
+		</div>
 	</div>
 	
-	
-		
-		
-	
-	<%
-	
-	String name=(String)request.getAttribute("name");
-		out.println("<h1>Welcome "
-				+ name + "</h1>");
-	%>
 
 	<ul class="menu">
 

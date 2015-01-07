@@ -24,13 +24,13 @@ INSERT INTO Homes
 
 
 
-INSERT INTO Workplaces
+INSERT INTO Workplaces (id, name)
 	 VALUES ((SELECT id FROM Addresses WHERE num = "37" and 
 	 										 way_type="chemin" and 
 	 										 way_name="Ramassiers" and 
-	 										 id_postcode = (SELECT id FROM Postcodes WHERE postcode = "31770")));
+	 										 id_postcode = (SELECT id FROM Postcodes WHERE postcode = "31770")), "yes babey");
 
-INSERT INTO Users (surname, name, email, password, phone_number, workplace, home)
+INSERT INTO Users (first_name, last_name, email, password, phone_number, workplace, home)
 	 VALUES ('Julien', 'Baladier', "julien.baladier@gmail.com", "beaugosse", "0642971715", 2, 1),
 	 		('Aurélien', 'Tamas-Leloup', "aurelien.tamasle@gmail.com", "pd", "0654567654", 2, 3),
 	 		('Loïc', 'Boyeldieu', "loic.boyeldieu@gmail.com", "pd", "0654567654", 2, 3);

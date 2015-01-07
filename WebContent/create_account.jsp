@@ -23,11 +23,11 @@
 	<div class="page">
 	
 		<div class="head">
-			<h2>Sopraturage</h2>
+			<h1>Sopraturage</h1>
 		</div>
 		
 		<div class="titre_page">
-			<h1>Create an account</h1>
+			<h2>Create an account</h2>
 		</div>
 
 

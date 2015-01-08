@@ -3,6 +3,9 @@ DROP DATABASE Sopraturage;
 CREATE DATABASE Sopraturage
 	CHARACTER SET 'utf8'
 	COLLATE 'utf8_bin';
+	
+CREATE USER 'java'@'localhost' IDENTIFIED BY '123';
+GRANT ALL ON sopraturage.* TO 'java'@'localhost' IDENTIFIED BY '123';
 
 USE Sopraturage;
 

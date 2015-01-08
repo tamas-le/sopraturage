@@ -70,7 +70,7 @@ public class TestGeocoding {
 			}
 		} catch(Exception ex) {
 			//Log.e(TAG, "Failed to send HTTP POST request due to: " + ex);
-			System.out.println("Echec HTTP POST à cause de : "+ex);
+			System.out.println("Echec HTTP GET à cause de : "+ex);
 		}
 		
 		

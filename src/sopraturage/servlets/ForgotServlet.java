@@ -51,6 +51,18 @@ public class ForgotServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		manager=new DatabaseManager();
 		String email=request.getParameter("email");
+
+	// On vérifie si l'@ mail donnée est déjà enregistrée
+		String queryMailExsistenceCheck = "SELECT * FROM Users"
+					+ "WHERE email='"+email+"'";
+		ResultSet mailCheckResult = manager.query(queryMailExsistenceCheck);
+	// Si aucune colonne n'est retournée, on affiche une erreur
+		if (mailCheckResult.wasNull()){
+			out.println("Attention : cette addresse mail n'est pas encore enregistrée");		
+		}
+	// Sinon on envoie le mail
+		else {
+
 		Mailer mailer;
 		String password=new String();
 		if (email!=null){
@@ -81,6 +93,7 @@ public class ForgotServlet extends HttpServlet {
 			} catch (Exception e){
 				e.printStackTrace();
 			}
+		}
 
 
 

@@ -52,48 +52,44 @@ public class ForgotServlet extends HttpServlet {
 		manager=new DatabaseManager();
 		String email=request.getParameter("email");
 
-	// On vérifie si l'@ mail donnée est déjà enregistrée
-		String queryMailExsistenceCheck = "SELECT * FROM Users"
-					+ "WHERE email='"+email+"'";
-		ResultSet mailCheckResult = manager.query(queryMailExsistenceCheck);
-	// Si aucune colonne n'est retournée, on affiche une erreur
-		if (mailCheckResult.wasNull()){
-			out.println("Attention : cette addresse mail n'est pas encore enregistrée");		
+		if (!manager.mailCheck(email)){
+			out.println("This email address doesn't exist");
 		}
-	// Sinon on envoie le mail
+
+
 		else {
 
-		Mailer mailer;
-		String password=new String();
-		if (email!=null){
-			mailer=new Mailer("noreply@sopra.fr", email, "localhost");
-			String query = "SELECT email,password "
-					+ "FROM Users "
-					+ "WHERE email='"+email+"'";
+			Mailer mailer;
+			String password=new String();
+			if (email!=null){
+				mailer=new Mailer("noreply@sopra.fr", email, "localhost");
+				String query = "SELECT email,password "
+						+ "FROM Users "
+						+ "WHERE email='"+email+"'";
 
-			ResultSet resultat=manager.query(query);
-			try {
-				
-				while (resultat.next()){
-					password=resultat.getString("password");
+				ResultSet resultat=manager.query(query);
+				try {
+
+					while (resultat.next()){
+						password=resultat.getString("password");
+					}
+
+					int code=mailer.sendMail("Forgotten Password", "Hi, I heard you've forgotten your password."
+							+ "so here it is : "+password);
+
+					if (code!=-1){
+						out.print("mail envoyé");
+					} else {
+						out.print("error");
+					}
+					//out.println(password);
+
+
+
+				} catch (Exception e){
+					e.printStackTrace();
 				}
-				
-				int code=mailer.sendMail("Forgotten Password", "Hi, I heard you've forgotten your password."
-						+ "so here it is : "+password);
-
-				if (code!=-1){
-					out.print("mail envoyé");
-				} else {
-					out.print("error");
-				}
-				//out.println(password);
-
-
-
-			} catch (Exception e){
-				e.printStackTrace();
 			}
-		}
 
 
 

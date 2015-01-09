@@ -139,6 +139,27 @@ public class DatabaseManager {
 		return false;
 
 	}
+	
+	public boolean mailCheck(String email){
+		try {
+			connect();
+			String sql="SELECT * FROM Users WHERE email='"+email+"';";
+			ResultSet resultat = query(sql);
+			while (resultat.next()){
+				if (resultat.getString("email")!=null){
+					return true;
+				} else {
+					return false;
+				}
+			}
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+		return false;
+	}
 
 	//renvoie vrai si un utilisateur est admin
 	public boolean isAdmin(int id){

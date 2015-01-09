@@ -1,5 +1,6 @@
 package sopraturage.servlets.admin;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
@@ -51,10 +52,27 @@ public class ReportServlet extends HttpServlet {
 			String rapport=request.getParameter("report");
 			if (rapport.equals("Connexion")){
 				LinkedList<Session> sessions=manager.getSessions();
+				response.setContentType("text/csv");
+				response.setHeader("Content-Disposition", "attachment; filename=\"connexion.csv\"");
 				
-				request.setAttribute("list", sessions);
-				RequestDispatcher view=request.getRequestDispatcher("reportConnexion.jsp");
-				view.forward(request, response);
+				PrintWriter writer = response.getWriter();
+				
+				for(Session s:sessions){
+					writer.append(s.getTinyUser().getSurname());
+					writer.append(",");
+					writer.append(s.getTinyUser().getName());
+					writer.append(",");
+					writer.append(s.getTinyUser().getEmail());
+					writer.append(",");
+					writer.append(s.getDebut().toString());
+					writer.append(",");
+					writer.append(s.getFin().toString());
+					writer.append("\n");	
+				}
+				
+//				request.setAttribute("list", sessions);
+//				RequestDispatcher view=request.getRequestDispatcher("reportConnexion.jsp");
+//				view.forward(request, response);
 			} else if (rapport.equals("Location")){
 
 			} else if (rapport.equals("Driver")){

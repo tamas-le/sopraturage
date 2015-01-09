@@ -9,6 +9,14 @@
     <servlet-name>Connexion</servlet-name>
     <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>Search</servlet-name>
+    <servlet-class>sopraturage.servlets.SearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Search</servlet-name>
+    <url-pattern>/search</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>Report</servlet-name>
     <servlet-class>sopraturage.servlets.admin.ReportServlet</servlet-class>

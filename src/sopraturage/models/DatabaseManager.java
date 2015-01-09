@@ -320,7 +320,7 @@ public class DatabaseManager {
 	}
 
 	public LinkedList<Session> getSessions(){
-		String sql="SELECT name, surname,email,time_stamp_connection,time_stamp_deconnection,Users.id "
+		String sql="SELECT first_name, last_name,email,time_stamp_connection,time_stamp_deconnection,Users.id "
 				+ "FROM Users "
 				+ "INNER JOIN Sessions "
 				+ "ON Sessions.id=Users.id;";
@@ -334,8 +334,8 @@ public class DatabaseManager {
 						new TinyUser(
 								resultat.getString("email"),
 								resultat.getInt("id"),
-								resultat.getString("surname"),
-								resultat.getString("name"))));
+								resultat.getString("first_name"),
+								resultat.getString("last_name"))));
 
 			}
 

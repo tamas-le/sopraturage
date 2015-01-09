@@ -39,8 +39,8 @@
 
 
 				<p>Personal information :</p>
-				<input type="text" name="name" placeholder="Name" required/><br /> <br />
-				<input type="text" name="surname" placeholder="Surname" required/><br /> <br />
+				<input type="text" name="name" placeholder="First Name" required/><br /> <br />
+				<input type="text" name="surname" placeholder="Last Name" required/><br /> <br />
 				<input type="password" name="pass" placeholder="Password" required/><br />
 				<br /> 
 				<input type="email" id="email" name="email" placeholder="Email" required/><br /> <br /> 

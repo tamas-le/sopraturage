@@ -23,13 +23,13 @@
 	<div class="form_create_account">
 	
 	<form method='post'>
-		
 		<TABLE BORDER="1">
 			<TR>
 				<TH>Name</TH>
 				<TH>Email</TH>
 
-				<TH>Actions</TH>
+				<TH>Modify</TH>
+				<TH>Delete</TH>
 			</TR>
 
 			<%
@@ -40,16 +40,15 @@
 					out.println("<td>" + t.getName() + " " + t.getSurname()
 							+ "</td>");
 					out.println("<td>" + t.getEmail() + "</td>");
-					out.println("<td> <input type='submit' name='M" + t.getId()
-							+ "' value='Modify'/> <input type='submit' name='D"
-							+ t.getId() + "' value='Delete'/></td>");
+					out.println("<td> <input type='submit' name='M" + t.getId()+ "' value='Modify'/> </td>");
+					out.println("<td>"+ "<input type='submit' name='D"+ t.getId() + "' value='Delete'/></td>");
 					out.println("</TR>");
 				}
 			%>
 
 		</TABLE>
 	</form>
-	<a href='admin'>Back to the admin home page</a>
+
 
 	</div>
 </div>

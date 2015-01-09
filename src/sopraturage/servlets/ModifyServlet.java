@@ -12,10 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import sopraturage.ApplicationData;
+import sopraturage.maps.GoogleRequester;
+import sopraturage.maps.results.LatLng;
 import sopraturage.models.DatabaseManager;
 import sopraturage.models.tables.Address;
 import sopraturage.models.tables.PostCode;
 import sopraturage.models.tables.User;
+import sopraturage.models.tables.Workplace;
 
 /**
  * Servlet implementation class ModifyServlet
@@ -85,6 +88,7 @@ public class ModifyServlet extends HttpServlet {
 		}
 		String wayChoice=request.getParameter("typeWay");
 		String way=request.getParameter("way");
+		
 
 		Address newadress=new Address(wayChoice, way,newpostcode , num);
 		
@@ -93,6 +97,10 @@ public class ModifyServlet extends HttpServlet {
 			writer.println("<p> Id de l'adresse "+data.home.getId()+"</p>");
 			writer.println("<p>Nombre "+manager.getNumberUserFromIdAdress(data.home.getId())+"</p>");
 			newadress.setId(data.home.getId());
+			GoogleRequester requester=new GoogleRequester();
+			LatLng coord=requester.getCoordinate(newadress.toStringBetter());
+			newadress.setLat(coord.lat);
+			newadress.setLon(coord.lng);
 			int c=manager.update(newadress);
 			writer.println("<p> code"+c+"</p>");
 		}
@@ -164,13 +172,18 @@ public class ModifyServlet extends HttpServlet {
 		}
 		newUser.setHomeId(manager.getId(newadress, manager.getId(newpostcode)));
 		
-		int code = manager.update(newUser);
+		int code =-1;
+		code=manager.update(newUser);
 		writer.println("<p>"+code+"</p>");
 		
-		
-		
-
-
+		if (code==1 || code==0){
+			request.setAttribute("created", true);
+		} else {
+			request.setAttribute("created", false);
+		}
+	
+		RequestDispatcher view = request.getRequestDispatcher("check_modifs.jsp");
+		view.forward(request, response);
 
 
 	}

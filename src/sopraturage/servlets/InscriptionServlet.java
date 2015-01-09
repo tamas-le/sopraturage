@@ -147,7 +147,7 @@ public class InscriptionServlet extends HttpServlet {
 		int id1 =manager.getId(postcode);
 		writer.println("<p>id du code postal  : "+id1+" </p>");
 
-		int code2=manager.insert(adress, id1,true);
+		int code2=manager.insert(adress, id1);
 		writer.println("<p> Insertion de l'adresse : "+code2+" </p>");
 
 		int id2=manager.getId(adress, id1);

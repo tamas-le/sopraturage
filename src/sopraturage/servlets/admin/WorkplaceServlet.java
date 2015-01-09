@@ -12,10 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.connector.Request;
+
 import sopraturage.ApplicationData;
+import sopraturage.maps.GoogleRequester;
+import sopraturage.maps.results.LatLng;
 import sopraturage.models.DatabaseManager;
 import sopraturage.models.tables.Address;
 import sopraturage.models.tables.PostCode;
+import sopraturage.models.tables.Workplace;
 
 /**
  * Servlet implementation class WorkplaceServlet
@@ -79,10 +84,15 @@ public class WorkplaceServlet extends HttpServlet {
 			}
 			String wayChoice=request.getParameter("typeWay");
 			String way=request.getParameter("way");
+			String name=request.getParameter("name");
 
-			Address adress=new Address(wayChoice, way,postcode , num);
+			Workplace adress=new Workplace(wayChoice, way,postcode , num,name);
+			GoogleRequester requester=new GoogleRequester();
 
-			int code=manager.insert(adress, manager.getId(postcode), false);
+			LatLng coord=requester.getCoordinate(adress.toStringBetter());
+			adress.setLat(coord.lat);
+			adress.setLon(coord.lng);
+			int code=manager.insert(adress, manager.getId(postcode));
 			if (code==1){
 				ApplicationData data=(ApplicationData)request.getSession().getAttribute("data");
 				data.updateWorkplaces();
@@ -156,6 +166,11 @@ public class WorkplaceServlet extends HttpServlet {
 			if (!newadress.equals(oldAdress)){
 				out.println("<p> L'adresse a changée !</p>");
 				newadress.setId(oldAdress.getId());
+				GoogleRequester requester=new GoogleRequester();
+
+				LatLng coord=requester.getCoordinate(newadress.toStringBetter());
+				newadress.setLat(coord.lat);
+				newadress.setLon(coord.lng);
 				c=manager.update(newadress);
 				out.println("<p> code"+c+"</p>");
 			}

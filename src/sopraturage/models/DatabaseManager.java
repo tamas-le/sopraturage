@@ -14,6 +14,7 @@ import sopraturage.models.tables.PostCode;
 import sopraturage.models.tables.Session;
 import sopraturage.models.tables.TinyUser;
 import sopraturage.models.tables.User;
+import sopraturage.models.tables.Workplace;
 
 
 
@@ -139,7 +140,7 @@ public class DatabaseManager {
 		return false;
 
 	}
-	
+
 	public boolean mailCheck(String email){
 		try {
 			connect();
@@ -152,7 +153,7 @@ public class DatabaseManager {
 					return false;
 				}
 			}
-			
+
 		} catch (Exception e){
 			e.printStackTrace();
 		} finally {
@@ -205,7 +206,7 @@ public class DatabaseManager {
 
 
 
-	public int insert(Address a,int idPostCode,boolean home){
+	public int insert(Address a,int idPostCode){
 		int statut=-1;
 
 		try{
@@ -215,15 +216,33 @@ public class DatabaseManager {
 			connect();
 			statut=statement.executeUpdate(insertionAdress);
 
-			if (home){
-				String insertionHome="INSERT INTO Homes "
-						+ "VALUES ("+getId(a, idPostCode)+");";
-				statut=statement.executeUpdate(insertionHome);
-			} else {
-				String insertion="INSERT INTO Workplaces "
-						+ "VALUES ("+getId(a, idPostCode)+");";
-				statut=statement.executeUpdate(insertion);
-			}
+			String insertionHome="INSERT INTO Homes "
+					+ "VALUES ("+getId(a, idPostCode)+");";
+			statut=statement.executeUpdate(insertionHome);
+			return statut;
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+		return statut;
+	}
+
+
+	public int insert(Workplace a,int idPostCode){
+		int statut=-1;
+
+		try{
+			String insertionAdress="INSERT INTO Addresses (num, way_type, way_name, id_postcode, longitude, latitude)"
+					+ "VALUES ("+a.getNum()+",'"+a.getWaytype()+"','"+a.getWayName()+"','"+idPostCode+"',"+a.getLon()+","+a.getLat()+");";
+
+			connect();
+			statut=statement.executeUpdate(insertionAdress);
+
+
+			String insertion="INSERT INTO Workplaces (id, name) "
+					+ "VALUES ("+getId(a, idPostCode)+","+a.getName()+");";
+			statut=statement.executeUpdate(insertion);
 
 
 			return statut;
@@ -496,16 +515,44 @@ public class DatabaseManager {
 						+ "SET num="+a.getNum()+","
 						+ "way_type='"+a.getWaytype()+"',"
 						+ "way_name='"+a.getWayName()+"',"
-						+ "id_postcode="+idPostcode+" "
+						+ "id_postcode="+idPostcode+","
+						+ "longitude="+a.getLon()+","
+						+ "latitude="+a.getLat()+" "
 						+ "WHERE id="+a.getId()+";";
 				code=statement.executeUpdate(sql);
 			} else{
 
-				code=insert(a, getId(a.getPostCode()), true);
+				code=insert(a, getId(a.getPostCode()));
 
 			}
 
 
+
+		}catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+
+		return code;
+	}
+
+	public int update(Workplace w){
+		int code=-1;
+		try{
+			connect();
+
+			int idPostcode=getId(w.getPostCode());
+			String sql="UPDATE Addresses "
+					+ "SET num="+w.getNum()+","
+					+ "way_type='"+w.getWaytype()+"',"
+					+ "way_name='"+w.getWayName()+"',"
+					+ "id_postcode="+idPostcode+","
+					+ "longitude="+w.getLon()+","
+					+ "latitude="+w.getLat()+","
+					+ "name="+w.getName()+" "
+					+ "WHERE id="+w.getId()+";";
+			code=statement.executeUpdate(sql);
 
 		}catch (Exception e){
 			e.printStackTrace();

@@ -5,13 +5,13 @@ package sopraturage.models.tables;
 public class Address {
 	
 
-	private String waytype;
-	private String wayName;
-	private PostCode postCode;
-	private int num;
-	private int id;
-	private double lon;
-	private double lat;
+	protected String waytype;
+	protected String wayName;
+	protected PostCode postCode;
+	protected int num;
+	protected int id;
+	protected double lon;
+	protected double lat;
 	
 	
 	

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -89,7 +90,8 @@ public class ConnexionServlet extends HttpServlet {
 
 
 		}else {
-			writer.println("Le mot de passe est mauvais");
+			RequestDispatcher view=request.getRequestDispatcher("badpass.jsp");
+			view.forward(request, response);
 		}
 
 	}

@@ -4,11 +4,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Sopraturage</title>
+<link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
+<link href="css/admin.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<p>Your password is wrong</p>
-	<a href='index.html'>Try again</a>
-	<a href='forgot'>Did you forgot your password ?</a>
+
+	<a href="admin" style="font-size: 15px;" class="back_website">Back to the admin page</a>
+	<br />
+	<br />
+	<br />
+	<br />
+	
+<div class="page">
+
+	<p class='notification_information' >Your password is wrong</p>
+	<div class='links'>
+	<a class='notification_information' href='index.html'>Try again</a> &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+	<a class='notification_information' href='forgot'>Did you forgot your password ?</a>
+	</div>
+	<br />
+	<br />
+	
+</div>	
 </body>
 </html>

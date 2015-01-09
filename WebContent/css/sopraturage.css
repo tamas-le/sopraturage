@@ -239,6 +239,22 @@ p {
 	
 }
 
+.links {
+	width : 100%;
+	text-align:center;
+}
+
+.links a{
+	text-align:center;
+	text-decoration:none;
+	color : #cc0000;
+	font-family : "Helvetica", Arial;
+}
+
+.links a:hover{
+	color : rgb(100,100,100);
+}
+
 
 
 

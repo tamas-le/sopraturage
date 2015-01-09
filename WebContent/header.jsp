@@ -11,7 +11,7 @@
 			ApplicationData data=(ApplicationData)session.getAttribute("data");
 	
 			String email=data.localUser.getEmail();
-			out.println("<a href='admin'>"+ email +"</a>");
+			out.println("<a href='modify' title='Mon profil'>"+ email +"</a>");
 			%>
 	
 		</div>

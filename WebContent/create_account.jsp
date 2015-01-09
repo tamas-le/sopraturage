@@ -39,18 +39,16 @@
 
 
 				<p>Personal information :</p>
-				<input type="text" name="name" placeholder="Name" /><br /> <br />
-				<input type="text" name="surname" placeholder="Surname" /><br /> <br />
-				<input type="password" name="pass" placeholder="Password" /><br />
+				<input type="text" name="name" placeholder="Name" required/><br /> <br />
+				<input type="text" name="surname" placeholder="Surname" required/><br /> <br />
+				<input type="password" name="pass" placeholder="Password" required/><br />
 				<br /> 
-				<p>Once chosen, your email will become your pseudo</p>
-				<input type="email" id="email" name="email"
-					placeholder="Email" /><br /> <br /> <input type="tel" id="phone"
-					name="phoneNumber" placeholder="Phone Number" maxlength="10" /><br />
+				<input type="email" id="email" name="email" placeholder="Email" required/><br /> <br /> 
+				<input type="tel" id="phone" name="phoneNumber" placeholder="Phone Number" maxlength="10" required/><br />
 				<br /> <br />
 				<p>Address :</p>
-				<input type="text" name="number" placeholder="Number" /> <br /> <br />
-				<SELECT name="typeWay">
+				<input type="text" name="number" placeholder="Number" required/> <br /> <br />
+				<SELECT name="typeWay" required>
 					<option>rue</option>
 					<option>avenue</option>
 					<option>chemin</option>
@@ -58,15 +56,15 @@
 					<option>boulevard</option>
 					<option>route</option>
 					<option>ruelle</option>
-				</SELECT><br /> <br /> <input type="text" name="way"
-					placeholder="Name of the way" /> <br /> <br /> <input
-					type="number" id="postCode" name="postCode" placeholder="PostCode"
-					required /> <br />
-				<p class="error"></p>
-				<br /> <input type="text" name="city" placeholder="City" /> <br />
+				</SELECT><br /> <br /> 
+				<input type="text" name="way" placeholder="Name of the way" required/> <br /> <br /> 
+				<input type="number" id="postCode" name="postCode" placeholder="PostCode" required /> <br />
+				
+				
+				<br /> <input type="text" name="city" placeholder="City" required /> <br />
 				<br /> <br />
 				<p>Workplace :</p>
-				<SELECT name="workplace">
+				<SELECT name="workplace" required>
 					<%
 						LinkedList<Address> attribut = (LinkedList<Address>) request.getAttribute("adresse");
 												for (Address a:attribut){
@@ -77,10 +75,83 @@
 				</SELECT> <br /> <br />
 				<p>More information :</p>
 				<input type="checkbox" name="driver" value="driver_ok" /><label
-					for="driver">I am a driver</label> <br /> <input type="checkbox"
-					name="notify" value="notify_ok" /><label for="notify">I
-					want to be notify</label><br /> <br /> <br /> <input type="submit" id="submit"
-					name="connexion" value="&rarr;" /><br />
+					for="driver">I am a driver</label> <br /> 
+				<input type="checkbox" name="notify" value="notify_ok" /><label for="notify">I want to be notify</label><br /> <br /> 
+				
+				<p>Days of work :</p>
+				<input type="checkbox" name="lundi" value="lundi_ok" /><label for="lundi">Monday</label> 
+				<input type="checkbox" name="mardi" value="mardi_ok" /><label for="mardi">Thusday</label> 
+				<input type="checkbox" name="mercredi" value="mercredi_ok" /><label for="mercredi">Wednesday</label> 
+				<input type="checkbox" name="jeudi" value="jeudi_ok" /><label for="jeudi">Thirsday</label> 
+				<input type="checkbox" name="vendredi" value="vendredi_ok" /><label for="vendredi">Friday</label> 
+				<input type="checkbox" name="samedi" value="samedi_ok" /><label for="samedi">Saturday</label> 
+				
+				<br/>
+				<br/>
+				
+				<p>Hours of work : </p>
+				
+				<p>Beginning : </p>
+				<SELECT class="time" name="Heures" required>
+				<%
+					for (Integer i=0; i<=23 ; i++){
+						if (i.toString().length()==1){
+							out.println("<option>0" + i + "</option>");
+						}
+						else {
+							out.println("<option>" + i + "</option>");
+						}
+					}
+				
+				%>
+				</SELECT>:
+				<SELECT class="time" name="Minutes" required>
+				<%
+					for (Integer i=0; i<=59 ; i++){
+						if (i.toString().length()==1){
+							out.println("<option>0" + i + "</option>");
+						}
+						else {
+							out.println("<option>" + i + "</option>");
+						}
+					}
+				
+				%>
+				</SELECT>
+				
+				<p>Ending : </p>
+				<SELECT class="time" name="Heures" required>
+				<%
+					for (Integer i=0; i<=23 ; i++){
+						if (i.toString().length()==1){
+							out.println("<option>0" + i + "</option>");
+						}
+						else {
+							out.println("<option>" + i + "</option>");
+						}
+					}
+				
+				%>
+				</SELECT>:
+				<SELECT class="time" name="Minutes" required>
+				<%
+					for (Integer i=0; i<=59 ; i++){
+						if (i.toString().length()==1){
+							out.println("<option>0" + i + "</option>");
+						}
+						else {
+							out.println("<option>" + i + "</option>");
+						}
+					}
+				
+				%>
+				</SELECT>
+				<br />
+				<br />
+				<br />
+				
+				<input type="submit" id="submit" name="connexion" value="&rarr;" /> <br /> <br />
+				
 			</form>
 			<p></p>
 		</div>

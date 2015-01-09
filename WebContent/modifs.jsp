@@ -31,7 +31,7 @@
 		<%
 	
 	User u = (User) request.getAttribute("user");
-	out.println("<p class='important_information'>Your pseudo is "+u.getEmail()+"</p>");
+	out.println("<p class='important_information'>Your email is "+u.getEmail()+"</p>");
 	%>
 		
 		<br/>

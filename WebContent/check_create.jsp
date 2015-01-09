@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sopraturage</title>
 <link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
+<link href="css/admin.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -13,19 +14,24 @@
 
 <body>
 
-	<%@ include file="header.jsp" %>
+	<a href="index.html" style="font-size: 15px;" class="back_website">Back to the connect form</a>
+	<br />
+	<br />
+	<br />
+	<br />
+	
+	<div class="page">
 
 	<%
 		Boolean create = (Boolean) request.getAttribute("created");
 		if (create) {
-			out.println("<p>Your account has been created successfully</p>");
+			out.println("<p class='notification_information' >Your account has been created successfully</p>");
 		} else {
-			out.println("<p>Something went wrong, please go back and check that your information are correct</p>");
+			out.println("<p class='notification_information' >Something went wrong, please go back and check that your information are correct</p>");
 		}
 	%>
 
-	<a href="index.html">Back to the connexion page</a>
-	<br/>
+</div>
 
 </body>
 </html>

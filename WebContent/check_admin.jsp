@@ -6,24 +6,36 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sopraturage</title>
 <link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
+<link href="css/admin.css" rel="stylesheet" type="text/css" />
 
 
 </head>
 
 <body>
-
-	<%@ include file="header.jsp" %>
+	
+	<a href="admin" style="font-size: 15px;" class="back_website">Back to the admin page</a>
+	<br />
+	<br />
+	<br />
+	<br />
+	
+<div class="page">
 	
 	<%
 		Boolean status = (Boolean) request.getAttribute("status");
 		if (status) {
-			out.println("<p>Your changes have been saved</p>");
+			out.println("<p class='notification_information' >Your changes have been saved</p>");
 		} else {
-			out.println("<p>Something went wrong </p>");
+			out.println("<p class='notification_information'>Something went wrong </p>");
 		}
 		
 	%>
-	<a href='admin'>Back to the admin home page</a>
+	
+	
+	
+</div>
+
+
 
 </body>
 </html>

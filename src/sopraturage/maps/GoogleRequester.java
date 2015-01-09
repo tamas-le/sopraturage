@@ -13,28 +13,50 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.google.gson.Gson;
 
+import sopraturage.maps.results.CoordinatesRequestResults;
+import sopraturage.maps.results.LatLng;
 import sopraturage.maps.results.Location;
 import sopraturage.maps.results.Results;
+import sopraturage.maps.results.WrapperCoordinatesResult;
+import sopraturage.maps.results.WrapperDirectionsResult;
 import sopraturage.maps.results.WrapperResult;
 
 public class GoogleRequester {
 
 	private static final String APIKEY="AIzaSyAyImkhBKOOBmc3oDTQbW2arRqAtR_JCrE";
-	private static final String URLBASE="https://maps.googleapis.com/maps/api/geocode/json?address=";
+	private static final String URL_BASE_COORDINATE_REQUEST="https://maps.googleapis.com/maps/api/geocode/json?address=";
+	private static final String URL_BASE_DIRECTION_REQUEST="https://maps.googleapis.com/maps/api/directions/json?";
 
+	
+	
 
 	public GoogleRequester(){
 
 	}
 
 
-	private String generateAdressForUrl(String formattedAddress){
+	private String generateAddressForUrl(String formattedAddress){
 		formattedAddress=formattedAddress.replaceAll(" ", "+");
-		String url=URLBASE+formattedAddress+"&key="+APIKEY;
+		String url = URL_BASE_COORDINATE_REQUEST + formattedAddress + "&key="+APIKEY;
 		return url;
 	}
+	
+	private String generateDirectionRequestURL(LatLng departure_coordinates, LatLng arrival_coordinates){
+		return URL_BASE_DIRECTION_REQUEST 
+				+ "origin=" + departure_coordinates.lat + "+" + departure_coordinates.lng 
+				+ "&destination=" + arrival_coordinates.lat + "+" + arrival_coordinates.lng 
+				+ "&key=" + APIKEY;
+	}
+	
+	private String generateDirectionRequestURL(LatLng departure_coordinates, LatLng arrival_coordinates, LatLng waypoint){
+		return URL_BASE_DIRECTION_REQUEST 
+				+ "origin=" + departure_coordinates.lat + "+" + departure_coordinates.lng 
+				+ "&destination=" + arrival_coordinates.lat + "+" + arrival_coordinates.lng 
+				+ "&waypoints=via:" + waypoint.lat + "+" + waypoint.lng 
+				+ "&key=" + APIKEY;
+	}
 
-	private Results[] fetchResults(String url){
+	private String fetchResults(String url){
 		HttpClient client = new DefaultHttpClient();
 		HttpGet httpGet = new HttpGet(url);
 
@@ -56,18 +78,19 @@ public class GoogleRequester {
 					{
 						out.append(line);
 					}
-					System.out.println(out);
+					//System.out.println(out);
 
 					bufferedReader.close();
 
-					Gson gson =new Gson();
+					//Gson gson =new Gson();
 
-					WrapperResult resultat=gson.fromJson(out.toString(),WrapperResult.class );
+					//return gson.fromJson(out.toString(), WrapperResult.class);
+					return out.toString();
 //					System.out.println(resultat);
-					return resultat.results;
+					//return resultat.results;
 
 				} else {
-					System.out.println("Erreur serveur "+statusLine);
+					System.out.println("Erreur serveur " + statusLine);
 				}
 			} catch (Exception e){
 				System.out.println("Erreur avec le json");
@@ -86,11 +109,13 @@ public class GoogleRequester {
 	}
 
 
-	public Location getCoordinate(String formattedAdress){
+	public LatLng getCoordinate(String formattedAdress){
 
-		String url =generateAdressForUrl(formattedAdress);
+		String url = generateAddressForUrl(formattedAdress);
+		Gson gson = new Gson();
+		WrapperCoordinatesResult wrapper_result = gson.fromJson(this.fetchResults(url), WrapperCoordinatesResult.class);
 		
-		Results[] results=fetchResults(url);
+		CoordinatesRequestResults[] results = wrapper_result.results;
 		
 		if (results.length<1){
 			return null;
@@ -99,17 +124,63 @@ public class GoogleRequester {
 		}
 		
 	}
-
+	
+	
+	//Retourne le temps du trajet en seconde en passant par waypoint sans arrÃªt
+	public Long getTravelTime(LatLng origin, LatLng destination, LatLng waypoint) throws Exception{
+		
+		String url = generateDirectionRequestURL(origin, destination, waypoint);
+		//2 legs because there is a Waypoint
+		Gson gson = new Gson();
+		WrapperDirectionsResult request_output = gson.fromJson(this.fetchResults(url), WrapperDirectionsResult.class);
+		
+		if (!"OK".equals(request_output.status)){
+			throw new Exception("Aucune solution de route trouvÃ© par Google Map.");
+		}
+		
+		return request_output.routes[0].legs[0].duration.value;
+	}
+	
+	//Retourne le temps du trajet en seconde
+	public Long getTravelTime(LatLng origin, LatLng destination) throws Exception{
+		
+		String url = generateDirectionRequestURL(origin, destination);
+		Gson gson = new Gson();
+		WrapperDirectionsResult request_output = gson.fromJson(this.fetchResults(url), WrapperDirectionsResult.class);
+		
+		if (!"OK".equals(request_output.status)){
+			throw new Exception("Aucune solution de route trouvÃ© par Google Map.");
+		}
+		
+		return request_output.routes[0].legs[0].duration.value;
+	}
+	
+	/*
 	public static void main(String[] args) {
-		String test = "883 chemin de la pâle 31620 castelnau d'estrètefonds";
-		GoogleRequester requester=new GoogleRequester();
-		//System.out.println(requester.generateAdressForUrl(test));
-		Location loc=requester.getCoordinate(test);
-		System.out.println(loc);
+		//String test = "883 chemin de la pï¿½le 31620 castelnau d'estrï¿½tefonds";
+		GoogleRequester requester = new GoogleRequester();
+		//System.out.println(requester.generateAddressForUrl(test));
+		//LatLng loc = requester.getCoordinate(test);
+		//System.out.println(loc);
+		
+		LatLng origin = requester.getCoordinate("Pau"),
+				 destination = requester.getCoordinate("Toulouse"),
+				 waypoint = requester.getCoordinate("Tarbes");
+		
+		try {
+			System.out.println(origin);
+			System.out.println(destination);
+			System.out.println(waypoint);
+			System.out.println(requester.getTravelTime(origin, waypoint));
+			System.out.println(requester.getTravelTime(waypoint, destination));
+			System.out.println(requester.getTravelTime(origin, destination, waypoint));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
-
+	*/
 
 
 

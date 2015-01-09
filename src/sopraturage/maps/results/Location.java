@@ -11,6 +11,7 @@ public class Location {
 		this.lat = lat;
 		this.lng = lng;
 	}
+	
 	@Override
 	public String toString() {
 		return "Location [lat=" + lat + ", lng=" + lng + "]";

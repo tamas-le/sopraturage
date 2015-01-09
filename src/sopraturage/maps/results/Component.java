@@ -1,7 +1,6 @@
 package sopraturage.maps.results;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 
 public class Component {
 
@@ -26,10 +25,6 @@ public class Component {
 		return "Component [long_name=" + long_name + ", short_name="
 				+ short_name + ", types=" + Arrays.toString(types) + "]";
 	}
-
-
-
-
 
 
 }

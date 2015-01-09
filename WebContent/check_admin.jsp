@@ -5,8 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sopraturage</title>
+<link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
+
+
 </head>
+
 <body>
+
+	<%@ include file="header.jsp" %>
+	
 	<%
 		Boolean status = (Boolean) request.getAttribute("status");
 		if (status) {

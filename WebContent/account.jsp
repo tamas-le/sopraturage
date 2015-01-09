@@ -7,9 +7,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sopraturage</title>
+<link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
 
+<div class="page">
+
+	<div class="form_create_account">
 	<form method='post'>
 		<TABLE BORDER="1">
 			<TR>
@@ -38,6 +43,7 @@
 	</form>
 	<a href='admin'>Back to the admin home page</a>
 
-
+	</div>
+</div>
 </body>
 </html>

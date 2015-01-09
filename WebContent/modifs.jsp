@@ -19,16 +19,22 @@
 	
 	<div class="content">
 	
-	<h2>Modify user information</h2>
-	<%
+	<div class="titre_page">
+		<h2>Modify user information</h2>
+	</div>
+	
+	
+
+	<div class="form_create_account">
+	<form action='' method='post'>
+	
+		<%
 	
 	User u = (User) request.getAttribute("user");
-	out.println("<h3>Email : "+u.getEmail()+"</h3>");
+	out.println("<p class='important_information'>Your pseudo is "+u.getEmail()+"</p>");
 	%>
-
-
-	<form action='' method='post'>
-
+		
+		<br/>
 		<p>Phone number :</p>
 
 		<%
@@ -127,6 +133,7 @@
 			type='submit' id='submit' name='connexion' value='Save changes' /><br />
 
 	</form>
+	</div>
 
 </div>
 	

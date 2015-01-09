@@ -42,7 +42,9 @@
 				<input type="text" name="name" placeholder="Name" /><br /> <br />
 				<input type="text" name="surname" placeholder="Surname" /><br /> <br />
 				<input type="password" name="pass" placeholder="Password" /><br />
-				<br /> <input type="email" id="email" name="email"
+				<br /> 
+				<p>Once chosen, your email will become your pseudo</p>
+				<input type="email" id="email" name="email"
 					placeholder="Email" /><br /> <br /> <input type="tel" id="phone"
 					name="phoneNumber" placeholder="Phone Number" maxlength="10" /><br />
 				<br /> <br />

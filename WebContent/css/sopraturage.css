@@ -189,10 +189,14 @@ p {
 
 .content {
 	width : 100%;
-	height : 800px;
-
+	min-height : 700px;
 }
 
 .selected {
 	color : rgb(80,80,80);
 }
+
+.important_information {
+	font-size : 18px;
+}
+

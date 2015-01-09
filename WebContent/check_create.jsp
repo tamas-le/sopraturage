@@ -14,7 +14,7 @@
 
 <body>
 
-	<a href="index.html" style="font-size: 15px;" class="back_website">Back to the connect form</a>
+	<a href="index.html" style="font-size: 15px;" class="back_website">Back to the home page</a>
 	<br />
 	<br />
 	<br />

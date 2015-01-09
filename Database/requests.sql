@@ -28,7 +28,7 @@ INSERT INTO Workplaces (id, name)
 	 VALUES ((SELECT id FROM Addresses WHERE num = "37" and 
 	 										 way_type="chemin" and 
 	 										 way_name="Ramassiers" and 
-	 										 id_postcode = (SELECT id FROM Postcodes WHERE postcode = "31770")), "yes babey");
+	 										 id_postcode = (SELECT id FROM Postcodes WHERE postcode = "31770")), "Sopra Ramassiers");
 
 INSERT INTO Users (first_name, last_name, email, password, phone_number, workplace, home)
 	 VALUES ('Julien', 'Baladier', "julien.baladier@gmail.com", "beaugosse", "0642971715", 2, 1),

@@ -19,6 +19,6 @@ package sopraturage.maps.results;
  * The north east and south west points that delineate the outer bounds of a map.
  */
 public class Bounds {
-  public Location northeast;
-  public Location southwest;
+  public LatLng northeast;
+  public LatLng southwest;
 }

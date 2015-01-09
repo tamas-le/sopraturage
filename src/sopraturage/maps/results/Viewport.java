@@ -1,9 +1,9 @@
 package sopraturage.maps.results;
 
 public class Viewport {
-	public Location northeast;
-	public Location southwest;
-	public Viewport(Location northeast, Location southwest) {
+	public LatLng northeast;
+	public LatLng southwest;
+	public Viewport(LatLng northeast, LatLng southwest) {
 		super();
 		this.northeast = northeast;
 		this.southwest = southwest;

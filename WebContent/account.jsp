@@ -24,13 +24,13 @@
 
 			<form method='post'>
 				<TABLE BORDER="1">
-					<TR>
-						<TH><p class='important_information'>Name</p></TH>
-						<TH><p class='important_information'>Email</p></TH>
+					<tr>
+						<th><p class='important_information'>Name</p></TH>
+						<th><p class='important_information'>Email</p></TH>
 
-						<TH><p class='important_information'>Modify</p></TH>
-						<TH><p class='important_information'>Delete</p></TH>
-					</TR>
+						<th><p class='important_information'>Modify</p></TH>
+						<th><p class='important_information'>Delete</p></TH>
+					</tr>
 					
 					<%
 						LinkedList<TinyUser> list = (LinkedList) request.getAttribute("list");

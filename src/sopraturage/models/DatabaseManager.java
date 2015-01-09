@@ -418,8 +418,8 @@ public class DatabaseManager {
 		try {
 			while (resultat.next()){
 				User u =new User(
-						resultat.getString("surname"), 
-						resultat.getString("name"), 
+						resultat.getString("first_name"), 
+						resultat.getString("last_name"), 
 						resultat.getString("email"), 
 						resultat.getString("phone_number"), 
 						resultat.getString("password"), 

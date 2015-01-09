@@ -7,26 +7,43 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sopraturage</title>
+<link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
-	<h1>Manage workplaces</h1>
-	<h2>List of the workplaces</h2>
+	
+	<div class="page">
 
-	<ul>
+	<h1 style="color:black;">Manage workplaces</h1>
+	
+	<div class="titre_page">
+		<h2>List of the workplaces</h2>
+	</div>
+
+	
 		<%
 			LinkedList<Address> workplaces = (LinkedList<Address>) request
 					.getAttribute("adresses");
 
 			for (Address a : workplaces) {
-				out.println("<li>" + a.toStringBetter() + "</li>");
+				out.println("<p class='address'>" + a.toStringBetter() + "<p>");
 
 			}
 		%>
-	</ul>
-	<form action="" method="post">
+	
+	
+	
+	<br />
+	<br />
+	<br />
 
-
+	<div class="titre_page">
 		<h2>Add a workplace</h2>
+	</div>
+	
+	<div class="form_create_account">
+	
+	<form action="" method="post">
 
 		<input type="text" name="number" placeholder="Number" /> <br /> <br />
 		<SELECT name="typeWay">
@@ -44,18 +61,41 @@
 		<p class="error"></p>
 		<br /> <input type="text" name="city" placeholder="City" /> <br />
 		<br /> <br /> <input type="submit" name="Add" value="Add" />
+	
+	</form>
+	
+	</div>
+		
+		<br/>
+		<br/>
+		
 
+	<div class="titre_page">
 		<h2>Modify a workplace</h2>
+	</div>
 
+	<div class="form_create_account">
+	<form action="" method="post">
+	
 		<select name="workplace">
 			<%
 				for (Address a : workplaces) {
 					out.println("<option>" + a.toStringBetter() + "</option>");
 				}
 			%>
-		</select> <input type="submit" name="Modify" value="Modify" />
+			
+		
+		</select> 
+		<br />
+		<br />
+		<br />
+		<input type="submit" name="Modify" value="Modify" />
 
 
 	</form>
+	
+	</div>
+	
+	</div>
 </body>
 </html>

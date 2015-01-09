@@ -6,9 +6,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sopraturage</title>
+<link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
-	<h2>Modify</h2>
+
+	<div class="page">
+	
+	
+	<h1 style="color:black;">Modify</h1>
+	
+	<div class="form_create_account">
 	<form method='post'>
 
 		<%
@@ -57,10 +65,12 @@
 			out.println("<input type='text' name='city' placeholder='City' value='"
 					+ ad.getPostCode().getCity() + "' />");
 		%>
-
+		<br />
+		<br />
 		<input type='submit' name='Modification' value='Modify'>
 	</form>
-
+	</div>
+	</div>
 
 </body>
 </html>

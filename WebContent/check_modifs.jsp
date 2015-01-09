@@ -5,8 +5,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sopraturage</title>
+<link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
+<link href="css/admin.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
+
+	<a href="index.html" style="font-size: 15px;" class="back_website">Back to the home page</a>
+	<br />
+	<br />
+	<br />
+	<br />
+	
+	<div class="page">
 	<%
 		Boolean create = (Boolean) request.getAttribute("created");
 		if (create) {
@@ -15,6 +26,7 @@
 			out.println("<p >Something went wrong, please go back and check that your information are correct</p>");
 		}
 	%>
+	</div>
 
 </body>
 </html>

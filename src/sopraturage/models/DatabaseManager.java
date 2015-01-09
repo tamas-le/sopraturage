@@ -215,9 +215,20 @@ public class DatabaseManager {
 
 			connect();
 			statut=statement.executeUpdate(insertionAdress);
+			String insertionHome;
+			
+			if (a instanceof Workplace){
+				Workplace w=(Workplace)a;
+				insertionHome="INSERT INTO Workplaces (id, name) "
+						+ "VALUES ("+getId(a, idPostCode)+",'"+w.getName()+"');";
+				
+			} else {
+				insertionHome="INSERT INTO Homes "
+						+ "VALUES ("+getId(a, idPostCode)+");";
+				
+			}
 
-			String insertionHome="INSERT INTO Homes "
-					+ "VALUES ("+getId(a, idPostCode)+");";
+
 			statut=statement.executeUpdate(insertionHome);
 			return statut;
 		} catch (Exception e){
@@ -228,31 +239,6 @@ public class DatabaseManager {
 		return statut;
 	}
 
-
-	public int insert(Workplace a,int idPostCode){
-		int statut=-1;
-
-		try{
-			String insertionAdress="INSERT INTO Addresses (num, way_type, way_name, id_postcode, longitude, latitude)"
-					+ "VALUES ("+a.getNum()+",'"+a.getWaytype()+"','"+a.getWayName()+"','"+idPostCode+"',"+a.getLon()+","+a.getLat()+");";
-
-			connect();
-			statut=statement.executeUpdate(insertionAdress);
-
-
-			String insertion="INSERT INTO Workplaces (id, name) "
-					+ "VALUES ("+getId(a, idPostCode)+","+a.getName()+");";
-			statut=statement.executeUpdate(insertion);
-
-
-			return statut;
-		} catch (Exception e){
-			e.printStackTrace();
-		} finally {
-			closeConnection();
-		}
-		return statut;
-	}
 
 	public int insert(User u,int idAdress){
 		int statut=-1;
@@ -320,7 +306,7 @@ public class DatabaseManager {
 		ResultSet resultat=query(sql);
 		try{
 			while(resultat.next()){
-				userList.add(new TinyUser(resultat.getString("email"),resultat.getInt("id"), resultat.getString("surname"), resultat.getString("name")));
+				userList.add(new TinyUser(resultat.getString("email"),resultat.getInt("id"), resultat.getString("first_name"), resultat.getString("last_name")));
 
 			}
 			return userList;

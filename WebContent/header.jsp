@@ -20,7 +20,7 @@
 
 	<ul class="menu">
 
-	<a href="#"><li>Search</li></a>
+	<a href="search"><li>Search</li></a>
 
 	<a href="modify"><li>My Account</li></a>
 	

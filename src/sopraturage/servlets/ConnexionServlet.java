@@ -85,7 +85,7 @@ public class ConnexionServlet extends HttpServlet {
 			manager.saveSession(dataSession.localUser.getUserId(),timestamp,timestampfin);
 			
 			
-			response.sendRedirect("home");
+			response.sendRedirect("search");
 
 
 		}else {

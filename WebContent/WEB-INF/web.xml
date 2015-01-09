@@ -74,14 +74,6 @@
     <url-pattern>/test</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>Home</servlet-name>
-    <servlet-class>sopraturage.servlets.HomeServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Home</servlet-name>
-    <url-pattern>/home</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>Disco</servlet-name>
     <servlet-class>sopraturage.servlets.DisconnectServlet</servlet-class>
   </servlet>

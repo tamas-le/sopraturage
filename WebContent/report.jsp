@@ -5,9 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sopraturage</title>
+<link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
+	
+<div class="page">
+
+	<h4>Generate report</h4>
+	
+	<div class="titre_page">
 	<h2>What kind of report do you want ?</h2>
+	</div>
+	
+	<div class="form_create_account">
 	<form method='POST'>
 
 		<input type='radio' name='report' value='Connexion' >
@@ -20,8 +31,8 @@
 		User number per location
 		<br /><br /><br /> <input type="submit" name="go" value="Generate Report" >
 	</form>
-
-	<a href='admin'>Back to the admin home page</a>
+	</div>
+</div>
 
 </body>
 </html>

@@ -39,7 +39,11 @@ li {
 
 li:hover{
 	color : rgb(80,80,80);
-	
+	-webkit-transform : scale(1.1);
+	-moz-transform : scale(1.1);
+	-o-transform : scale(1.1);
+	-ms-transform : scale(1.1);
+	transform : scale(1.1);
 	
 }
 
@@ -120,6 +124,17 @@ h1{
 	font-family: 'Mistral', Arial;
 	font-weight:normal;
 	color : white;
+}
+
+h4{
+	line-height : 35px;
+	padding:20px;
+	margin:0;
+	font-size : 30px;
+	text-align:left;
+	font-family: 'Mistral', Arial;
+	font-weight:normal;
+	color : black;
 }
 
 
@@ -222,5 +237,9 @@ p {
 	font-size : 18px;
 	text-align:center;
 	
+}
+
+.table{
+	border-collapse: collapse;
 }
 

@@ -14,7 +14,7 @@
 	
 	<div class="page">
 
-	<h1 style="color:black;">Manage workplaces</h1>
+	<h4>Manage workplaces</h1>
 	
 	<div class="titre_page">
 		<h2>List of the workplaces</h2>

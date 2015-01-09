@@ -14,7 +14,7 @@
 	<div class="page">
 	
 	
-	<h1 style="color:black;">Modify</h1>
+	<h4>Modify</h4>
 	
 	<div class="form_create_account">
 	<form method='post'>

@@ -14,8 +14,16 @@
 
 <div class="page">
 
+	<h4>Manage accounts</h4>
+	
+	<div class="titre_page">
+		<h2>List of the users</h2>
+	</div>
+
 	<div class="form_create_account">
+	
 	<form method='post'>
+		
 		<TABLE BORDER="1">
 			<TR>
 				<TH>Name</TH>

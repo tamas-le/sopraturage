@@ -15,11 +15,8 @@ import com.google.gson.Gson;
 
 import sopraturage.maps.results.CoordinatesRequestResults;
 import sopraturage.maps.results.LatLng;
-import sopraturage.maps.results.Location;
-import sopraturage.maps.results.Results;
 import sopraturage.maps.results.WrapperCoordinatesResult;
 import sopraturage.maps.results.WrapperDirectionsResult;
-import sopraturage.maps.results.WrapperResult;
 
 public class GoogleRequester {
 

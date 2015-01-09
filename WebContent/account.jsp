@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sopraturage</title>
-<link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
+<link href="css/account.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
@@ -20,18 +20,18 @@
 			<h2>List of the users</h2>
 		</div>
 
-		<div class="form_create_account">
+		<div class="form_create_account" >
 
 			<form method='post'>
 				<TABLE BORDER="1">
 					<TR>
-						<TH>Name</TH>
-						<TH>Email</TH>
+						<TH><p class='important_information'>Name</p></TH>
+						<TH><p class='important_information'>Email</p></TH>
 
-						<TH>Modify</TH>
-						<TH>Delete</TH>
+						<TH><p class='important_information'>Modify</p></TH>
+						<TH><p class='important_information'>Delete</p></TH>
 					</TR>
-
+					
 					<%
 						LinkedList<TinyUser> list = (LinkedList) request.getAttribute("list");
 											
@@ -45,9 +45,9 @@
 						else{
 							out.println("<TR class='impaire'>");
 						}
-						out.println("<td>" + t.getName() + " " + t.getSurname() + "</td>");
-						out.println("<td>" + t.getEmail() + "</td>");
-						out.println("<td> <input class='action' type='submit' name='M" + t.getId()+ "' value='Modify'/> </td>");
+						out.println("<td><p>" + t.getName() + " " + t.getSurname() + "</p></td>");
+						out.println("<td><p>" + t.getEmail() + "</p></td>");
+						out.println("<td><div class='special_input'> <input class='action' type='submit' name='M" + t.getId()+ "' value='Modify'/></div> </td>");
 						out.println("<td>"+ "<input class='action' type='submit' name='D"+ t.getId() + "' value='Delete'/></td>");
 						out.println("</TR>");
 						i++;
@@ -57,9 +57,11 @@
 
 				</TABLE>
 			</form>
-
-
+		
+		<br />
+		
 		</div>
 	</div>
+	
 </body>
 </html>

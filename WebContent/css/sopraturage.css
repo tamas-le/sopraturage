@@ -239,22 +239,6 @@ p {
 	
 }
 
-table{
-	border-collapse: collapse;
-}
 
-.paire{
-	background-color : rgb(235,235,235);
-	
-}
 
-.impaire{
-	background-color : rgb(250,250,250);
-	
-}
 
-.action{
-	height:20px;
-	background-color : white;
-	color : black;
-}

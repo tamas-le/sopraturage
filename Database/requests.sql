@@ -1,7 +1,7 @@
 INSERT INTO Postcodes (postcode, city)
 	 VALUES ('31400', 'Toulouse'),
 	 		('31770', 'Colomiers'),
-			('30100', 'Alès');
+			('30100', 'Ales');
 
 
 INSERT INTO Addresses (num, way_type, way_name, id_postcode, longitude, latitude)

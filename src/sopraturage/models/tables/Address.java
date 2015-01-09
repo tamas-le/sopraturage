@@ -10,7 +10,27 @@ public class Address {
 	private PostCode postCode;
 	private int num;
 	private int id;
+	private double lon;
+	private double lat;
 	
+	
+	
+	public double getLon() {
+		return lon;
+	}
+
+	public void setLon(double lon) {
+		this.lon = lon;
+	}
+
+	public double getLat() {
+		return lat;
+	}
+
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+
 	public int getId() {
 		return id;
 	}

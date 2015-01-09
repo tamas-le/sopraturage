@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sopraturage.maps.GoogleRequester;
+import sopraturage.maps.results.LatLng;
 import sopraturage.models.DatabaseManager;
 import sopraturage.models.tables.Address;
 import sopraturage.models.tables.PostCode;
@@ -88,6 +90,13 @@ public class InscriptionServlet extends HttpServlet {
 		String way=request.getParameter("way");
 
 		Address adress=new Address(wayChoice, way,postcode , num);
+		GoogleRequester requester=new GoogleRequester();
+		
+		LatLng coord=requester.getCoordinate(adress.toStringBetter());
+		adress.setLat(coord.lat);
+		adress.setLon(coord.lng);
+		
+		
 		writer.println("<p>"+adress+"</p>");
 
 		//Création de l'utilisateur

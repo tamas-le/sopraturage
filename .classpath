@@ -15,30 +15,5 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/javax.mail.jar" sourcepath=""/>
-	<classpathentry kind="lib" path="libs/google-api-services-mapsengine-v1-rev57-1.19.1.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-api-services-mapsengine-v1-rev57-1.19.1-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-api-client-1.19.1.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-api-client-1.19.1-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-api-client-android-1.19.1.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-api-client-android-1.19.1-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-api-client-appengine-1.19.1.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-api-client-appengine-1.19.1-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-api-client-java6-1.19.1.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-api-client-java6-1.19.1-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-api-client-servlet-1.19.1.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-api-client-servlet-1.19.1-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-oauth-client-1.19.0.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-oauth-client-1.19.0-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-oauth-client-appengine-1.19.0.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-oauth-client-appengine-1.19.0-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-oauth-client-java6-1.19.0.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-oauth-client-java6-1.19.0-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-oauth-client-jetty-1.19.0.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-oauth-client-jetty-1.19.0-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-oauth-client-servlet-1.19.0.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-oauth-client-servlet-1.19.0-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-http-client-1.19.0.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-http-client-1.19.0-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-http-client-android-1.19.0.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-http-client-android-1.19.0-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-http-client-appengine-1.19.0.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-http-client-appengine-1.19.0-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-http-client-gson-1.19.0.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-http-client-gson-1.19.0-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-http-client-jackson2-1.19.0.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-http-client-jackson2-1.19.0-sources.jar"/>
-	<classpathentry kind="lib" path="libs/google-http-client-jdo-1.19.0.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/google-http-client-jdo-1.19.0-sources.jar"/>
-	<classpathentry kind="lib" path="libs/commons-logging-1.1.1.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/commons-logging-1.1.1-sources.jar"/>
-	<classpathentry kind="lib" path="libs/gson-2.1.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/gson-2.1-sources.jar"/>
-	<classpathentry kind="lib" path="libs/httpclient-4.0.1.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/httpclient-4.0.1-sources.jar"/>
-	<classpathentry kind="lib" path="libs/httpcore-4.0.1.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/httpcore-4.0.1-sources.jar"/>
-	<classpathentry kind="lib" path="libs/jackson-core-2.1.3.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/jackson-core-2.1.3-sources.jar"/>
-	<classpathentry kind="lib" path="libs/jdo2-api-2.3-eb.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/jdo2-api-2.3-eb-sources.jar"/>
-	<classpathentry kind="lib" path="libs/jsr305-1.3.9.jar"/>
-	<classpathentry kind="lib" path="libs/transaction-api-1.1.jar" sourcepath="C:/Users/Aurélien/Nouveau dossier (2)/Sopraturage/WebContent/WEB-INF/lib/transaction-api-1.1-sources.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

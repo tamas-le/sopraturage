@@ -209,8 +209,8 @@ public class DatabaseManager {
 		int statut=-1;
 
 		try{
-			String insertionAdress="INSERT INTO Addresses (num, way_type, way_name, id_postcode)"
-					+ "VALUES ("+a.getNum()+",'"+a.getWaytype()+"','"+a.getWayName()+"','"+idPostCode+"');";
+			String insertionAdress="INSERT INTO Addresses (num, way_type, way_name, id_postcode, longitude, latitude)"
+					+ "VALUES ("+a.getNum()+",'"+a.getWaytype()+"','"+a.getWayName()+"','"+idPostCode+"',"+a.getLon()+","+a.getLat()+");";
 
 			connect();
 			statut=statement.executeUpdate(insertionAdress);
@@ -238,7 +238,7 @@ public class DatabaseManager {
 	public int insert(User u,int idAdress){
 		int statut=-1;
 		try{
-			String insertUser="INSERT INTO Users (surname, name, email, password, phone_number, workplace, home,is_a_driver,accept_notifications)"
+			String insertUser="INSERT INTO Users (first_name, last_name, email, password, phone_number, workplace, home,is_a_driver,accept_notifications)"
 					+ "VALUES ('"+u.getName()+"', '"+u.getSurname()+"', '"+u.getEmail()+"', '"+u.getPassword()+"', '"
 					+ ""+u.getPhone()+"', "+u.getWorplaceId()+","+idAdress+","
 					+ ""+u.isDriver()+","+u.isNotification()+" )";

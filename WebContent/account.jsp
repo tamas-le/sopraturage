@@ -25,11 +25,11 @@
 			<form method='post'>
 				<TABLE BORDER="1">
 					<tr>
-						<th><p class='important_information'>Name</p></TH>
-						<th><p class='important_information'>Email</p></TH>
+						<th><p class='th'>Name</p></TH>
+						<th><p class='th'>Email</p></TH>
 
-						<th><p class='important_information'>Modify</p></TH>
-						<th><p class='important_information'>Delete</p></TH>
+						<th><p class='th'>Modify</p></TH>
+						<th><p class='th'>Delete</p></TH>
 					</tr>
 					
 					<%

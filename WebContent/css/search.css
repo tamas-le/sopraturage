@@ -18,6 +18,14 @@
 	display:none;
 }
 
+#home_input{
+	display:none;
+}
+
+#workplaces_input{
+	display:none;
+}
+
 html{}
 
 body {

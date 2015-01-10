@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="css/search.css" rel="stylesheet" type="text/css" />
-<title>Sopraturage</title>
+
 <script type="text/javascript">
 function switchInfoPerso()
 {
@@ -18,7 +18,32 @@ divInfo.style.display = 'block';
 else
 divInfo.style.display = 'none';
 }
+
+function displayHome()
+{
+divHome = document.getElementById('home_input');
+if (document.getElementById('home').checked)
+divHome.style.display = 'block';
+else
+divHome.style.display = 'none';
+}
+
+function displayWorkplace()
+{
+divWorkplace = document.getElementById('workplaces_input');
+if (document.getElementById('workplace').checked)
+divWorkplace.style.display = 'block';
+else
+divWorkplace.style.display = 'none';
+}
+
+
 </script>
+
+
+
+<title>Sopraturage</title>
+
 
 </head>
 <body>
@@ -34,9 +59,7 @@ divInfo.style.display = 'none';
 	</div>-->
  
  
- 	<div class="titre_page">
-		<h2>Search by</h2>
-	</div>
+ 	
 	<br /><br /><br />
 		
 	<div class="button_adv">
@@ -44,23 +67,31 @@ divInfo.style.display = 'none';
 	</div>
 	<br /><br /><br />	
 		
+	
+		
  	<div id="divacacher" class="form_create_account" >
+ 	
+ 	<div class="titre_page">
+		<h2>Search by</h2>
+	</div>
+ 	
 	<form method="post" action="">   
   
-  		<p><input type="checkbox"	name="home" value="home_ok" />
+  		<p><input type="checkbox" id="home"	onClick="displayHome();" name="home" value="home_ok" />
   		<label for="home">Home</label></p>
 		
+		<div id="home_input">
         <p><label for="town">  Town :</label>
 	    <input type="text" name="town" id="town" /></p> 
 	    
 	    <p><label for="PostCode"> Post code : </label>    
 	    <input type="text" name="PostCode" id="PostCode" /></p> 
-	  
+	   </div>
 	  	
-	  	<p><input type="checkbox"	name="workplace_box" value="workplace_ok" />
+	  	<p><input type="checkbox" id="workplace" onClick="displayWorkplace();" name="workplace_box" value="workplace_ok" />
 	    <label for="workplace">Workplace</label></p>
        
-		<select name="workplace">
+		<select id="workplaces_input" name="workplace">
 					 <%
 // 						LinkedList<Address> workplaces = (LinkedList<Address>) request
 // 						.getAttribute("adresses");

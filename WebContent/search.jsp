@@ -90,8 +90,9 @@ divWorkplace.style.display = 'none';
 	  	
 	  	<p><input type="checkbox" id="workplace" onClick="displayWorkplace();" name="workplace_box" value="workplace_ok" />
 	    <label for="workplace">Workplace</label></p>
-       
-		<select id="workplaces_input" name="workplace">
+       	
+       	<div id="workplaces_input">
+		<select name="workplace">
 					 <%
 // 						LinkedList<Address> workplaces = (LinkedList<Address>) request
 // 						.getAttribute("adresses");
@@ -103,7 +104,8 @@ divWorkplace.style.display = 'none';
 						
 
 		</select>
-		<br /><br/>
+		<br />
+		</div>
 		
 		<p><input type="checkbox"	name="driver" value="driver_ok" />
 		<label for="driver">Driver</label>

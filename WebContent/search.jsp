@@ -108,16 +108,16 @@ divWorkplace.style.display = 'none';
 		</div>
 		<br />
 		
-		<p class="important_information">Are you a driver budd ?</p>
+		<p class="important_information">Are you a driver ?</p>
 		
 		<p><input type="radio"	name="driver" value="driver_ok" />
-		<label for="driver">Yes, BRO ! Come with me ;)</label>
+		<label for="driver">Yes</label>
         <br />
 		<input type="radio"	name="driver" value="not_driver_ok" />
-		<label for="not_driver">No, pity huh ?</label>
+		<label for="not_driver">No</label>
 		<br />
 		<input type="radio"	name="driver" value="not_driver_ok" />
-		<label for="not_driver">I don't give a fuck !</label>
+		<label for="not_driver">I do not mind</label>
 		</p>
 		
   

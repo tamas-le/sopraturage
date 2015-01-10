@@ -128,6 +128,77 @@
 
 		<label for='notify'>I want to be notify</label><br /> <br /> 
 		
+		<p>Days of work :</p>
+				<input type="checkbox" name="lundi" value="lundi_ok" /><label for="lundi">Monday</label> 
+				<input type="checkbox" name="mardi" value="mardi_ok" /><label for="mardi">Thusday</label> 
+				<input type="checkbox" name="mercredi" value="mercredi_ok" /><label for="mercredi">Wednesday</label> 
+				<input type="checkbox" name="jeudi" value="jeudi_ok" /><label for="jeudi">Thirsday</label> 
+				<input type="checkbox" name="vendredi" value="vendredi_ok" /><label for="vendredi">Friday</label> 
+				<input type="checkbox" name="samedi" value="samedi_ok" /><label for="samedi">Saturday</label> 
+				
+				<br/>
+				<br/>
+				
+				<p>Hours of work : </p>
+				
+				<p>Beginning : </p>
+				<SELECT class="time" name="Heures" required>
+				<%
+					for (Integer i=0; i<=23 ; i++){
+						if (i.toString().length()==1){
+							out.println("<option>0" + i + "</option>");
+						}
+						else {
+							out.println("<option>" + i + "</option>");
+						}
+					}
+				
+				%>
+				</SELECT>:
+				<SELECT class="time" name="Minutes" required>
+				<%
+					for (Integer i=0; i<=59 ; i++){
+						if (i.toString().length()==1){
+							out.println("<option>0" + i + "</option>");
+						}
+						else {
+							out.println("<option>" + i + "</option>");
+						}
+					}
+				
+				%>
+				</SELECT>
+				
+				<p>Ending : </p>
+				<SELECT class="time" name="Heures" required>
+				<%
+					for (Integer i=0; i<=23 ; i++){
+						if (i.toString().length()==1){
+							out.println("<option>0" + i + "</option>");
+						}
+						else {
+							out.println("<option>" + i + "</option>");
+						}
+					}
+				
+				%>
+				</SELECT>:
+				<SELECT class="time" name="Minutes" required>
+				<%
+					for (Integer i=0; i<=59 ; i++){
+						if (i.toString().length()==1){
+							out.println("<option>0" + i + "</option>");
+						}
+						else {
+							out.println("<option>" + i + "</option>");
+						}
+					}
+				
+				%>
+				</SELECT>
+				<br />
+				<br />
+				<br />
 		
 		<input
 			type='submit' id='submit' name='connexion' value='Save changes' /><br />

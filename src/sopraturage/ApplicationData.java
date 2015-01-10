@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import sopraturage.models.DatabaseManager;
 import sopraturage.models.tables.Address;
 import sopraturage.models.tables.User;
+import sopraturage.models.tables.Workplace;
 
 
 public class ApplicationData {
@@ -12,7 +13,7 @@ public class ApplicationData {
 
 	public User localUser;
 	public boolean admin;
-	public LinkedList<Address> workplaces;
+	public LinkedList<Workplace> workplaces;
 	public Address home;
 	
 	

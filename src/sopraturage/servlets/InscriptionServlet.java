@@ -18,6 +18,7 @@ import sopraturage.models.DatabaseManager;
 import sopraturage.models.tables.Address;
 import sopraturage.models.tables.PostCode;
 import sopraturage.models.tables.User;
+import sopraturage.models.tables.Workplace;
 
 /**
  * Servlet implementation class InscriptionServlet
@@ -26,7 +27,7 @@ import sopraturage.models.tables.User;
 public class InscriptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private LinkedList<Address> addressList;
+	private LinkedList<Workplace> addressList;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -116,7 +117,7 @@ public class InscriptionServlet extends HttpServlet {
 		
 		String workplace=request.getParameter("workplace");
 		int id=0;
-		addressList=new LinkedList<Address>();
+		addressList=new LinkedList<Workplace>();
 		addressList=manager.getWorkplaces();
 		
 		

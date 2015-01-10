@@ -1,6 +1,5 @@
 package sopraturage.servlets.admin;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
@@ -13,9 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sopraturage.models.DatabaseManager;
+import sopraturage.models.tables.Address;
 import sopraturage.models.tables.Session;
 import sopraturage.models.tables.TinyUser;
 import sopraturage.models.tables.User;
+import sopraturage.models.tables.UserAddresses;
+import sopraturage.models.tables.Workplace;
 
 /**
  * Servlet implementation class ReportServlet
@@ -53,10 +55,10 @@ public class ReportServlet extends HttpServlet {
 			if (rapport.equals("Connexion")){
 				LinkedList<Session> sessions=manager.getSessions();
 				response.setContentType("text/csv");
-				response.setHeader("Content-Disposition", "attachment; filename=\"connexion.csv\"");
-				
+				response.setHeader("Content-Disposition", "attachment; filename=\"connexions.csv\"");
+
 				PrintWriter writer = response.getWriter();
-				
+
 				for(Session s:sessions){
 					writer.append(s.getTinyUser().getSurname());
 					writer.append(",");
@@ -69,11 +71,33 @@ public class ReportServlet extends HttpServlet {
 					writer.append(s.getFin().toString());
 					writer.append("\n");	
 				}
-				
-//				request.setAttribute("list", sessions);
-//				RequestDispatcher view=request.getRequestDispatcher("reportConnexion.jsp");
-//				view.forward(request, response);
+
+				//				request.setAttribute("list", sessions);
+				//				RequestDispatcher view=request.getRequestDispatcher("reportConnexion.jsp");
+				//				view.forward(request, response);
 			} else if (rapport.equals("Location")){
+				LinkedList<UserAddresses> userList=manager.getUsersForLocationReport();
+				response.setContentType("text/csv");
+				response.setHeader("Content-Disposition", "attachment; filename=\"connexions.csv\"");
+				PrintWriter writer = response.getWriter();
+				User u;
+				Address a;
+				Workplace w;
+				for(UserAddresses ua:userList){
+					u=ua.getUser();
+					w=ua.getWorkplace();
+					a=ua.getHome();
+
+					writer.append(u.getName()+" "+u.getSurname());
+					writer.append(",");
+					writer.append(u.getEmail());
+					writer.append(",");
+					writer.append(a.toStringBetter());
+					writer.append(",");
+					writer.append(w.toStringBetter());
+					writer.append("\n");
+				}
+
 
 			} else if (rapport.equals("Driver")){
 				LinkedList<TinyUser> list=manager.getUsers();
@@ -90,7 +114,7 @@ public class ReportServlet extends HttpServlet {
 						numbernDriver++;
 					}
 				}
-				
+
 				out.println("Nombre d'utilisateurs :"+numberTotal);
 				out.println("Nombre de conducteurs : "+numberDriver);
 				out.println("Nombre de non conducteurs"+numbernDriver);
@@ -99,7 +123,7 @@ public class ReportServlet extends HttpServlet {
 				request.setAttribute("ndriver", numbernDriver);
 				RequestDispatcher view=request.getRequestDispatcher("reportDriver.jsp");
 				view.forward(request, response);
-				
+
 			}
 		}
 	}

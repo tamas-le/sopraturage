@@ -14,6 +14,7 @@ import sopraturage.models.tables.PostCode;
 import sopraturage.models.tables.Session;
 import sopraturage.models.tables.TinyUser;
 import sopraturage.models.tables.User;
+import sopraturage.models.tables.UserAddresses;
 import sopraturage.models.tables.Workplace;
 
 
@@ -216,16 +217,16 @@ public class DatabaseManager {
 			connect();
 			statut=statement.executeUpdate(insertionAdress);
 			String insertionHome;
-			
+
 			if (a instanceof Workplace){
 				Workplace w=(Workplace)a;
 				insertionHome="INSERT INTO Workplaces (id, name) "
 						+ "VALUES ("+getId(a, idPostCode)+",'"+w.getName()+"');";
-				
+
 			} else {
 				insertionHome="INSERT INTO Homes "
 						+ "VALUES ("+getId(a, idPostCode)+");";
-				
+
 			}
 
 
@@ -319,6 +320,39 @@ public class DatabaseManager {
 		return null;
 	}
 
+	public LinkedList<UserAddresses> getUsersForLocationReport(){
+		String sql;
+		LinkedList<UserAddresses> userList=new LinkedList<UserAddresses>();
+		try {
+			connect();
+			sql ="SELECT * FROM Users;";
+			ResultSet resultat=query(sql);
+			while (resultat.next()){
+				userList.add(new UserAddresses(new User(
+						resultat.getString("first_name"),
+						resultat.getString("last_name"), 
+						resultat.getString("email"), 
+						resultat.getString("phone_number"), 
+						resultat.getString("password"), 
+						resultat.getBoolean("is_a_driver"), 
+						resultat.getBoolean("accept_notifications"), 
+						null, 
+						resultat.getInt("id"), 
+						resultat.getInt("home")),getAddressFromID(resultat.getInt("home")), getWorkplaceFromID(resultat.getInt("workplace"))));
+			}
+			return userList;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+		return null;
+
+	}
+
+
+
 	public LinkedList<Session> getSessions(){
 		String sql="SELECT first_name, last_name,email,time_stamp_connection,time_stamp_deconnection,Users.id "
 				+ "FROM Users "
@@ -349,19 +383,19 @@ public class DatabaseManager {
 		return null;
 	}
 
-	public LinkedList<Address> getWorkplaces(){
+	public LinkedList<Workplace> getWorkplaces(){
 
-		String sql="SELECT num, way_type, way_name, postcode,Addresses.id, "
-				+ "city FROM Addresses INNER JOIN Postcodes "
-				+ "ON Addresses.id_postcode = Postcodes.id INNER "
-				+ "JOIN Workplaces ON Workplaces.id = Addresses.id;";
+		String sql="SELECT num, way_type, way_name, postcode,Addresses.id,Workplaces.name,city "
+				+ " FROM Workplaces,Addresses,Postcodes "
+				+ "WHERE Addresses.id_postcode = Postcodes.id AND "
+				+ " Workplaces.id = Addresses.id;";
 
 		int num;
 		int id;
-		String wayType,wayName,postcode,city;
+		String wayType,wayName,postcode,city,name;
 		PostCode pCode;
-		Address address;
-		LinkedList<Address> addressList= new LinkedList<Address>();
+		Workplace workplace;
+		LinkedList<Workplace> addressList= new LinkedList<Workplace>();
 		ResultSet resultat=query(sql);
 
 		try{
@@ -373,9 +407,10 @@ public class DatabaseManager {
 				num=resultat.getInt("num");
 				id=resultat.getInt("id");
 				city=resultat.getString("city");
-				address=new Address(wayType, wayName,new PostCode(postcode, city), num);
-				address.setId(id);
-				addressList.add(address);
+				name=resultat.getString("name");
+				workplace=new Workplace(wayType, wayName, new PostCode(postcode, city), num, name);
+				workplace.setId(id);
+				addressList.add(workplace);
 			}
 			return addressList;
 
@@ -416,6 +451,39 @@ public class DatabaseManager {
 		}
 		return null;
 	}
+
+	public Workplace getWorkplaceFromID(int id){
+		try {
+			connect();
+
+			String sql ="SELECT name,num,way_type,postcode,city,way_name "
+					+ "FROM Workplaces,Addresses,PostCodes "
+					+ "WHERE Workplaces.id="+id+" "
+					+ "AND Postcodes.id=Addresses.id_postcode "
+					+ "AND Workplaces.id=Addresses.id;";
+
+			ResultSet resultat = query(sql);
+			while (resultat.next()){
+				return new Workplace(
+						resultat.getString("way_type"), 
+						resultat.getString("way_name"), 
+						new PostCode(resultat.getString("postcode"), resultat.getString("city")),
+						resultat.getInt("num"),
+						resultat.getString("name"));
+
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+
+		} finally {
+
+		}
+		return null;
+	}
+
+
+
 
 	public User getUserFromLogin(String login){
 

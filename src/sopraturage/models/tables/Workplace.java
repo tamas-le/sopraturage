@@ -17,6 +17,14 @@ public class Workplace extends Address {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toStringBetter() {
+		
+		return name+" - "+ super.toStringBetter();
+	}
+	
+	
 	
 	
 	

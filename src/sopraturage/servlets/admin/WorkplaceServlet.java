@@ -108,7 +108,7 @@ public class WorkplaceServlet extends HttpServlet {
 			out.println("modification");
 			String workplace=request.getParameter("workplace");
 			int id=0;
-			LinkedList<Address> addressList=new LinkedList<Address>();
+			LinkedList<Workplace> addressList=new LinkedList<Workplace>();
 			addressList=manager.getWorkplaces();
 
 			Address ad=null;

@@ -106,14 +106,15 @@ divWorkplace.style.display = 'none';
 		</select>
 		<br />
 		</div>
+		<br />
+		
+		<p class="important_information">Are you a driver budd ?</p>
 		
 		<p><input type="checkbox"	name="driver" value="driver_ok" />
-		<label for="driver">Driver</label>
-        </p>
-		
-		<p>
+		<label for="driver">Yes, BRO ! Come with me ;)</label>
+        <br />
 		<input type="checkbox"	name="not_driver" value="not_driver_ok" />
-		<label for="not_driver">Not Driver</label>
+		<label for="not_driver">No, pity huh ?</label>
 		</p>
 		
   

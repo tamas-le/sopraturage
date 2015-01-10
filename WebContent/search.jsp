@@ -7,8 +7,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
+<link href="css/search.css" rel="stylesheet" type="text/css" />
 <title>Sopraturage</title>
+<script type="text/javascript">
+function switchInfoPerso()
+{
+divInfo = document.getElementById('divacacher');
+if (divInfo.style.display == 'none')
+divInfo.style.display = 'block';
+else
+divInfo.style.display = 'none';
+}
+</script>
+
 </head>
 <body>
 
@@ -26,8 +37,14 @@
  	<div class="titre_page">
 		<h2>Search by</h2>
 	</div>
+	<br /><br /><br />
 		
- 	<div class="form_create_account" >
+	<div class="button_adv">
+		<a href="javascript: switchInfoPerso();">Advanced research</a> 	
+	</div>
+	<br /><br /><br />	
+		
+ 	<div id="divacacher" class="form_create_account" >
 	<form method="post" action="">   
   
   		<p><input type="checkbox"	name="home" value="home_ok" />

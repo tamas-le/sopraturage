@@ -1,22 +1,27 @@
 package sopraturage;
 
 import sopraturage.models.tables.Address;
+import sopraturage.models.tables.PostCode;
 import sopraturage.models.tables.Workplace;
 
 public class Recherche {
-	
+
 	private boolean defaultRecherche;
 	private Workplace workplace;
-	private Address address;
-	private boolean driver;
-	
-	
+	private PostCode pc;
+
+	public enum Driver{
+		DRIVER,NOT_DRIVER,DONT_CARE
+	}
+
+	private Driver driver;
+
 	public Recherche(boolean defaultRecherche, Workplace workplace,
-			Address address, boolean driver) {
+			PostCode pc, Driver driver) {
 		super();
 		this.defaultRecherche = defaultRecherche;
 		this.workplace = workplace;
-		this.address = address;
+		this.pc = pc;
 		this.driver = driver;
 	}
 
@@ -41,27 +46,63 @@ public class Recherche {
 	}
 
 
-	public Address getAddress() {
-		return address;
+
+
+
+	public PostCode getPc() {
+		return pc;
 	}
 
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setPc(PostCode pc) {
+		this.pc = pc;
 	}
 
 
-	public boolean isDriver() {
+	public Driver getDriver() {
 		return driver;
 	}
 
 
-	public void setDriver(boolean driver) {
+	public void setDriver(Driver driver) {
 		this.driver = driver;
 	}
-	
-	
-	
-	
+
+	public String displayRecherche(){
+		if (defaultRecherche){
+			return "You are looking for people who work at the same place as you";
+		} else {
+			StringBuilder builder=new StringBuilder();
+			switch (this.driver){
+			case DONT_CARE:
+				builder.append("You are looking for people ");
+				break;
+			case DRIVER:
+				builder.append("You are looking for driver ");
+				break;
+			case NOT_DRIVER:
+				builder.append("You are looking for people who do not drive ");
+				break;
+			}
+			
+			if (this.pc!=null){
+				builder.append("that live in "+pc.getCity()+" ");
+			}
+			
+			if (this.workplace!=null){
+				builder.append("working at "+workplace.getName());
+			}
+			
+			
+			return builder.toString();
+		}
+	}
+
+
+
+
+
+
+
 
 }

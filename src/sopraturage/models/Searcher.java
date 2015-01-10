@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 import sopraturage.Recherche;
+import sopraturage.Recherche.Driver;
 import sopraturage.models.tables.User;
 import sun.awt.image.ImageWatched.Link;
 
@@ -26,9 +27,14 @@ public class Searcher extends DatabaseManager {
 
 			results=getUserFromWorkplace(me.getWorplaceId());
 		} else {
+			results=executeSearch();
 
 		}
 		return results;
+	}
+
+	public void setRecherche(Recherche recherche){
+		this.recherche=recherche;
 	}
 
 	public LinkedList<User> getUserFromWorkplace(int id){
@@ -64,6 +70,74 @@ public class Searcher extends DatabaseManager {
 
 
 	}
+
+	public LinkedList<User> executeSearch(){
+		LinkedList<User> list =new LinkedList<User>();
+		String sql;
+		switch (this.recherche.getDriver()){
+		case DRIVER:
+			if (this.recherche.getPc()!=null){
+				if (this.recherche.getWorkplace()!=null){
+
+				} else {
+
+				}
+			} else {
+				if (this.recherche.getWorkplace()!=null){
+
+				} else {
+
+				}
+
+			}
+			break;
+		case DONT_CARE:
+			if (this.recherche.getPc()!=null){
+				if (this.recherche.getWorkplace()!=null){
+
+				} else {
+
+				}
+			} else {
+				if (this.recherche.getWorkplace()!=null){
+
+				} else {
+
+				}
+
+			}
+			break;
+		case NOT_DRIVER:
+			if (this.recherche.getPc()!=null){
+				if (this.recherche.getWorkplace()!=null){
+
+				} else {
+
+				}
+			} else {
+				if (this.recherche.getWorkplace()!=null){
+
+				} else {
+
+				}
+
+			}
+			break;
+
+		}
+		
+		try {
+			connect();
+			//ResultSet resultat=query(sql);
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			closeConnection();
+		}
+
+		return list;
+	}
+
 
 
 

@@ -45,7 +45,7 @@ public class DatabaseManager {
 		}
 	}
 
-	private void connect() throws SQLException{
+	protected void connect() throws SQLException{
 		if (LOCAL){
 			connectoDatabase();
 		} else {
@@ -55,7 +55,7 @@ public class DatabaseManager {
 
 
 	// Se connecte à la base de donnée en local
-	private void connectoDatabase() throws SQLException{
+	protected void connectoDatabase() throws SQLException{
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connexion = DriverManager.getConnection( url, utilisateur, motDePasse );
@@ -69,7 +69,7 @@ public class DatabaseManager {
 
 	}
 
-	private void connectoDatabaseOnline() throws SQLException{
+	protected void connectoDatabaseOnline() throws SQLException{
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connexion = DriverManager.getConnection( urlServ, utilisateurServ, motDePasseServ );
@@ -427,7 +427,7 @@ public class DatabaseManager {
 		try {
 			connect();
 
-			String sql="SELECT num,way_type,way_name,postcode,city "
+			String sql="SELECT num,way_type,way_name,postcode,city,longitude,latitude "
 					+ "FROM Addresses "
 					+ "INNER JOIN Postcodes "
 					+ "ON Addresses.id_postcode=Postcodes.id "
@@ -435,11 +435,14 @@ public class DatabaseManager {
 
 			ResultSet resultat = query(sql);
 			while (resultat.next()){
-				return new Address(
+				Address a =new Address(
 						resultat.getString("way_type"), 
 						resultat.getString("way_name"), 
 						new PostCode(resultat.getString("postcode"), resultat.getString("city")),
 						resultat.getInt("num"));
+				a.setLat(resultat.getDouble("latitude"));
+				a.setLon(resultat.getDouble("longitude"));
+				return a;
 
 			}
 

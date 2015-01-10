@@ -110,11 +110,14 @@ divWorkplace.style.display = 'none';
 		
 		<p class="important_information">Are you a driver budd ?</p>
 		
-		<p><input type="checkbox"	name="driver" value="driver_ok" />
+		<p><input type="radio"	name="driver" value="driver_ok" />
 		<label for="driver">Yes, BRO ! Come with me ;)</label>
         <br />
-		<input type="checkbox"	name="not_driver" value="not_driver_ok" />
+		<input type="radio"	name="driver" value="not_driver_ok" />
 		<label for="not_driver">No, pity huh ?</label>
+		<br />
+		<input type="radio"	name="driver" value="not_driver_ok" />
+		<label for="not_driver">I don't give a fuck !</label>
 		</p>
 		
   

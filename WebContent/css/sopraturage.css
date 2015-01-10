@@ -11,7 +11,7 @@ background: url('../images/brushed.png'); /*#4b8baf*/
 ul{
 	
 	width : 80%;
-	height : 45px;
+	height : auto;
 	text-align:center;
 	padding:0;
 	margin:auto;	
@@ -207,7 +207,6 @@ p {
 
 .content {
 	width : 100%;
-	min-height : 700px;
 }
 
 .selected {

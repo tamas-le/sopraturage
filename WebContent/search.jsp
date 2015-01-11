@@ -117,7 +117,7 @@
 				</div>
 				<br />
 
-				<p class="important_information">Are you a driver ?</p>
+				<p class="important_information">Are you looking for a driver ?</p>
 
 				<p>
 					<input type="radio" name="driver" value="driver" /> <label

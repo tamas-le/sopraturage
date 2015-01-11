@@ -119,10 +119,17 @@ public class SearchServlet extends HttpServlet {
 		request.setAttribute("recherche", recherche);
 		
 		Searcher searcher=new Searcher(recherche, data.localUser);
+		LinkedList <User>list=searcher.getResults();
+		LinkedList<UserTime> time=handleResults(list, data.home, out);
 		
+		for(UserTime ut:time){
+			out.println(ut);
+		}
 		
-		RequestDispatcher view = request.getRequestDispatcher("search.jsp");
-		view.forward(request, response);
+
+		
+//		RequestDispatcher view = request.getRequestDispatcher("search.jsp");
+//		view.forward(request, response);
 		
 	}
 	
@@ -139,11 +146,6 @@ public class SearchServlet extends HttpServlet {
 		for (User u:result){
 			
 			homeR=manager.getAddressFromID(u.getHomeId());
-			
-			out.print(homeR);
-			
-			out.print(homeR.getLat()+" ");
-			out.print(homeR.getLon()+" ");
 			
 			homeRCoord=new LatLng(homeR.getLat(), homeR.getLon());
 			

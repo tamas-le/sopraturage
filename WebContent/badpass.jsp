@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<a href="admin" style="font-size: 15px;" class="back_website">Back to the admin page</a>
+	<a href="admin" style="font-size: 15px;" class="back_website">Back to the home page</a>
 	<br />
 	<br />
 	<br />

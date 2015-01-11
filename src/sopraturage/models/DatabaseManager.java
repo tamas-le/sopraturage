@@ -21,7 +21,7 @@ import sopraturage.models.tables.Workplace;
 
 public class DatabaseManager {
 
-	private static final boolean LOCAL=true;
+	private static final boolean LOCAL=false;
 
 	// Pour la base de donnée en local
 	private static final String url = "jdbc:mysql://localhost:3306/sopraturage";
@@ -41,7 +41,7 @@ public class DatabaseManager {
 		{
 			String dbhost=System.getenv("OPENSHIFT_MYSQL_DB_HOST");
 			String dbport=System.getenv("OPENSHIFT_MYSQL_DB_PORT");
-			urlServ="jdbc:mysql://"+dbhost+":"+dbport+"/tomcatsopra";
+			urlServ="jdbc:mysql://"+dbhost+":"+dbport+"/Sopraturage";
 		}
 	}
 

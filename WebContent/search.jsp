@@ -1,3 +1,5 @@
+<%@page import="sopraturage.util.Time"%>
+<%@page import="sopraturage.models.tables.UserTime"%>
 <%@page import="sopraturage.Recherche"%>
 <%@page import="sopraturage.models.tables.Workplace"%>
 <%@page import="sopraturage.models.tables.Address"%>
@@ -131,6 +133,22 @@
 				<input type="submit" id="submit" name="connexion" value="&rarr;" /><br />
 			</form>
 		</div>
+
+		<div class="titre_page">
+			<h2>Results</h2>
+		</div>
+
+		<%
+			LinkedList<UserTime> listResults = (LinkedList) request
+					.getAttribute("resultats");
+			for (UserTime ut : listResults) {
+				out.println("<p>"+ut.getUser().getName()+" "+ut.getUser().getSurname()+"</p>");
+				out.println("<p>"+ut.getUser().getEmail()+"</p>");
+				out.print("<p>Location :"+Time.convertToTime(ut.getTime())+" from you</p>");
+
+			}
+		%>
+
 
 	</div>
 

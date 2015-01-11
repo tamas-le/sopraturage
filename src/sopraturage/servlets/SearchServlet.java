@@ -66,6 +66,7 @@ public class SearchServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("recherche", recherche);
+		request.setAttribute("resultats", userTimeList);
 		RequestDispatcher view = request.getRequestDispatcher("search.jsp");
 		view.forward(request, response);
 	}
@@ -126,10 +127,9 @@ public class SearchServlet extends HttpServlet {
 			out.println(ut);
 		}
 		
-
-		
-//		RequestDispatcher view = request.getRequestDispatcher("search.jsp");
-//		view.forward(request, response);
+		request.setAttribute("resultats", time);
+		RequestDispatcher view = request.getRequestDispatcher("search.jsp");
+		view.forward(request, response);
 		
 	}
 	

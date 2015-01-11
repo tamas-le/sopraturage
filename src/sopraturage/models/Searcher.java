@@ -101,7 +101,7 @@ public class Searcher extends DatabaseManager {
 				if (this.recherche.getWorkplace()!=null){
 					Workplace workplace=recherche.getWorkplace();
 					int idWork=getId(workplace, getId(workplace.getPostCode()));
-					
+
 					sql ="SELECT * FROM Users "
 							+ "WHERE is_a_driver=true "
 							+ "AND NOT(Users.id="+me.getUserId()+")"
@@ -118,20 +118,43 @@ public class Searcher extends DatabaseManager {
 			break;
 		case DONT_CARE:
 			if (this.recherche.getPc()!=null){
+				PostCode pc=recherche.getPc();
+				int idPost=getId(pc);
 				if (this.recherche.getWorkplace()!=null){
+					Workplace workplace=recherche.getWorkplace();
+					int idWork=getId(workplace, getId(workplace.getPostCode()));
+					sql ="SELECT * FROM Users,Addresses,Postcodes "
+							+ "WHERE NOT(Users.id="+me.getUserId()+")"
+							+ "AND Users.home=Addresses.id "
+							+ "AND Users.workplace="+idWork+" "
+							+ "AND Postcodes.id=Addresses.id_postcode "
+							+ "AND Postcodes.id="+idPost+";";
 
 				} else {
+					sql ="SELECT * FROM Users,Addresses,Postcodes "
+							+ "WHERE NOT(Users.id="+me.getUserId()+")"
+							+ "AND Users.home=Addresses.id "
+							+ "AND Postcodes.id=Addresses.id_postcode "
+							+ "AND Postcodes.id="+idPost+";";
 
 				}
 			} else {
 				if (this.recherche.getWorkplace()!=null){
+					Workplace workplace=recherche.getWorkplace();
+					int idWork=getId(workplace, getId(workplace.getPostCode()));
+
+					sql ="SELECT * FROM Users "
+							+ "WHERE NOT(Users.id="+me.getUserId()+")"
+							+ "AND Users.workplace="+idWork+" ";
 
 				} else {
-					sql ="SELECT * FROM Users WHERE NOT(Users.id="+me.getUserId()+");";
+					sql="SELECT * FROM Users "
+							+ "WHERE NOT(Users.id="+me.getUserId()+");";
 
 				}
 
 			}
+
 			break;
 		case NOT_DRIVER:
 			if (this.recherche.getPc()!=null){
@@ -161,7 +184,7 @@ public class Searcher extends DatabaseManager {
 				if (this.recherche.getWorkplace()!=null){
 					Workplace workplace=recherche.getWorkplace();
 					int idWork=getId(workplace, getId(workplace.getPostCode()));
-					
+
 					sql ="SELECT * FROM Users "
 							+ "WHERE is_a_driver=false "
 							+ "AND NOT(Users.id="+me.getUserId()+")"

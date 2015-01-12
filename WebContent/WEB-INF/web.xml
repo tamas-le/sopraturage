@@ -10,6 +10,14 @@
     <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
     <servlet>
+    <servlet-name>Profile</servlet-name>
+    <servlet-class>sopraturage.servlets.ProfileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Profile</servlet-name>
+    <url-pattern>/profile</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>Search</servlet-name>
     <servlet-class>sopraturage.servlets.SearchServlet</servlet-class>
   </servlet>

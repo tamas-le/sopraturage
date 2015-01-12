@@ -1,10 +1,11 @@
 @font-face {
-    font-family: 'archivo_narrowregular';
-    src: url('font/archivonarrow-regular-webfont.eot');
-    src: url('font/archivonarrow-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('font/archivonarrow-regular-webfont.woff') format('woff'),
-         url('font/archivonarrow-regular-webfont.ttf') format('truetype'),
-         url('font/archivonarrow-regular-webfont.svg#archivo_narrowregular') format('svg');
+    font-family: 'mistralregular';
+    src: url('../font/mistral-webfont.eot');
+    src: url('../font/mistral-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/mistral-webfont.woff2') format('woff2'),
+         url('../font/mistral-webfont.woff') format('woff'),
+         url('../font/mistral-webfont.ttf') format('truetype'),
+         url('../font/mistral-webfont.svg#mistralregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -133,7 +134,7 @@ h1{
 	margin:0;
 	font-size : 30px;
 	text-align:left;
-	font-family: 'Mistral', Arial;
+	font-family: 'mistralregular', Arial;
 	font-weight:normal;
 	color : white;
 }
@@ -144,7 +145,7 @@ h4{
 	margin:0;
 	font-size : 30px;
 	text-align:left;
-	font-family: 'Mistral', Arial;
+	font-family: 'mistralregular', Arial;
 	font-weight:normal;
 	color : black;
 }

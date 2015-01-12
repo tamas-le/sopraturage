@@ -10,6 +10,19 @@
 
 }
 
+@font-face {
+    font-family: 'mistralregular';
+    src: url('../font/mistral-webfont.eot');
+    src: url('../font/mistral-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/mistral-webfont.woff2') format('woff2'),
+         url('../font/mistral-webfont.woff') format('woff'),
+         url('../font/mistral-webfont.ttf') format('truetype'),
+         url('../font/mistral-webfont.svg#mistralregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 
 .connect_admin {
 margin:auto;

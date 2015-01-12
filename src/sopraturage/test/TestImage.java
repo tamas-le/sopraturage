@@ -1,4 +1,4 @@
-package sopraturage.servlets;
+package sopraturage.test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,20 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sopraturage.models.DatabaseManager;
-import sopraturage.models.tables.User;
-
 /**
- * Servlet implementation class ProfileServlet
+ * Servlet implementation class TestImage
  */
-@WebServlet("/ProfileServlet")
-public class ProfileServlet extends HttpServlet {
+@WebServlet("/TestImage")
+public class TestImage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProfileServlet() {
+    public TestImage() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,33 +29,21 @@ public class ProfileServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out =response.getWriter();
-		String queryString =request.getQueryString();
-		out.println("query : "+queryString);
-		
-		String integerString=queryString.substring(3, queryString.length());
-		out.println("id : "+integerString);
-		
-		int id=Integer.parseInt(integerString);
-		
-		DatabaseManager manager=new DatabaseManager();
-		User user=manager.getUserFromId(id);
-		
-		out.println(user);
-		
-		request.setAttribute("user", user);
-		
-		RequestDispatcher view=request.getRequestDispatcher("profile.jsp");
+		RequestDispatcher view=request.getRequestDispatcher("testFile.html");
 		view.forward(request, response);
-		
-		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		PrintWriter out=response.getWriter();
+		String image=request.getParameter("file");
+
+		out.println(image);
+
+		
+		
 	}
 
 }

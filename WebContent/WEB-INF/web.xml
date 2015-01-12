@@ -9,7 +9,7 @@
     <servlet-name>Connexion</servlet-name>
     <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>Profile</servlet-name>
     <servlet-class>sopraturage.servlets.ProfileServlet</servlet-class>
   </servlet>
@@ -97,6 +97,13 @@
     <servlet-name>Modify</servlet-name>
     <url-pattern>/modify</url-pattern>
   </servlet-mapping>
+  <context-param>
+    <description>Location to store uploaded file</description>
+    <param-name>file-upload</param-name>
+    <param-value>
+        C:\Users\Aurélien\Nouveau dossier (2)\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\Sopraturage\images\avatar
+     </param-value>
+  </context-param>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

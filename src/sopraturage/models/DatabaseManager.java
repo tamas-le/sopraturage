@@ -516,6 +516,35 @@ public class DatabaseManager {
 		return null;
 
 	}
+	
+	
+	public User getUserFromId(int id){
+		ResultSet resultat=query("SELECT *  FROM Users WHERE id="+id+";");
+		try {
+			while (resultat.next()){
+				User u =new User(
+						resultat.getString("first_name"), 
+						resultat.getString("last_name"), 
+						resultat.getString("email"), 
+						resultat.getString("phone_number"), 
+						resultat.getString("password"), 
+						resultat.getBoolean("is_a_driver"), 
+						resultat.getBoolean("accept_notifications"), 
+						null,
+						resultat.getInt("workplace"),
+						resultat.getInt("home"));
+				u.setUserId(resultat.getInt("id"));
+				return u;
+
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+		return null;
+		
+	}
 
 	public int update(User u){
 		int code=-1;

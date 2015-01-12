@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sopraturage.models.DatabaseManager;
+import sopraturage.models.tables.User;
+
 /**
  * Servlet implementation class ProfileServlet
  */
@@ -29,6 +32,20 @@ public class ProfileServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out =response.getWriter();
+		String queryString =request.getQueryString();
+		out.println("query : "+queryString);
+		
+		String integerString=queryString.substring(3, queryString.length());
+		out.println("id : "+integerString);
+		
+		int id=Integer.parseInt(integerString);
+		
+		DatabaseManager manager=new DatabaseManager();
+		User user=manager.getUserFromId(id);
+		
+		out.println(user);
+		
+		
 		
 	}
 

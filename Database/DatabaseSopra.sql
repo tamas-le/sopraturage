@@ -52,6 +52,7 @@ CREATE TABLE Users (
 	email VARCHAR(255) NOT NULL,
 	password CHAR(32) NOT NULL,
 	phone_number CHAR(10) NOT NULL,
+	profile_image VARCHAR(255) DEFAULT "/images/inconnu.jpg",
 	workplace INT UNSIGNED NOT NULL,
 	home INT UNSIGNED NOT NULL,
 	is_a_driver BOOLEAN NOT NULL DEFAULT FALSE,

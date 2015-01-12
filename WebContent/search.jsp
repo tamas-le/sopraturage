@@ -150,7 +150,7 @@
 				else{
 					out.println("<div class='impair'>");
 				}
-				out.println("<div class='avatar'><img src='images/inconnu.jpg' height='90px' width='90px'/></div>");
+				out.println("<div class='avatar'><img src='images/avatar/lolo.jpg' height='90px' width='80px'/></div>");
 				out.println("<div class='infos'>");
 				out.println("<p class='nom'>"+ut.getUser().getName()+" "+ut.getUser().getSurname()+"</p>");
 				out.println("<p class='email'>"+ut.getUser().getEmail()+"</p>");

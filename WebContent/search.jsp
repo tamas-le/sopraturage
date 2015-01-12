@@ -137,16 +137,30 @@
 		<div class="titre_page">
 			<h2>Results</h2>
 		</div>
-
+	
+	
 		<%
 			LinkedList<UserTime> listResults = (LinkedList) request
 					.getAttribute("resultats");
+			int j=0;
 			for (UserTime ut : listResults) {
-				out.println("<p>"+ut.getUser().getName()+" "+ut.getUser().getSurname()+"</p>");
-				out.println("<p>"+ut.getUser().getEmail()+"</p>");
-				out.println("<p>Location :"+Time.convertToTime(ut.getTime())+" from you</p>");
-				out.println("<a href='profile?id="+ut.getUser().getUserId()+"'>More ...</a>");
-
+				if (j%2==0){
+	 				out.println("<div class='pair'>");
+				}
+				else{
+					out.println("<div class='impair'>");
+				}
+				out.println("<div class='avatar'><img src='images/inconnu.jpg' height='90px' width='90px'/></div>");
+				out.println("<div class='infos'>");
+				out.println("<p class='nom'>"+ut.getUser().getName()+" "+ut.getUser().getSurname()+"</p>");
+				out.println("<p class='email'>"+ut.getUser().getEmail()+"</p>");
+				out.println("<p class='location'>Location :"+Time.convertToTime(ut.getTime())+" from you</p>");
+				out.println("</div>");
+				out.println("<div class='more_profil'>");
+				out.println("<a class='more' href='profile?id="+ut.getUser().getUserId()+"'>View profil</a>");
+				out.println("</div>");
+				out.println("</div>");
+				j++;
 			}
 		%>
 

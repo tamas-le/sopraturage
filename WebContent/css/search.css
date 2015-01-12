@@ -283,6 +283,87 @@ p {
 	color : rgb(100,100,100);
 }
 
+.pair, .impair{
+	margin:0;
+	padding:20px;
+}
+
+.pair{
+	background-color : rgb(240,240,240);
+	text-align:center;
+}
+
+.impair{
+	background-color : rgb(250,250,250);
+	text-align:center;
+}
+
+.nom{
+	font-size : 18px;
+	color : #CC0000;
+	font-family : "Helvetica", Arial;
+	
+}
+
+.email{
+	font-size : 14px;
+	color : rgb(80,80,80);
+	font-family : "Helvetica", Arial;
+}
+
+.location{
+	font-size : 14px;
+	color : rgb(40,40,40);
+	font-family : "Helvetica", Arial;
+}
+
+.more{
+	background-color : white;
+	padding: 10px;
+	border-radius : 5px;
+	color : #CC0000;
+	text-decoration:none;
+	font-size : 14px;
+	font-family: "Helvetica", Arial;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	box-shadow : 0px 0px 2px rgb(150,150,150);
+	
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	-ms-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+
+.more:hover{
+	background-color: #CC0000;
+	color : white;
+}
+
+.infos{
+	width:65%;
+	text-align:left;
+}
+
+.more_profil{
+	min-width:80px;
+	text-align:right;
+}
+
+
+
+.avatar{
+	width: 90px;
+	height: 90px;
+	margin-right:30px;
+}
+
+.avatar, .infos, .more_profil{
+	display:inline-block;
+	vertical-align:middle;
+}
+
 
 
 

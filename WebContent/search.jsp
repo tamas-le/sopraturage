@@ -144,7 +144,8 @@
 			for (UserTime ut : listResults) {
 				out.println("<p>"+ut.getUser().getName()+" "+ut.getUser().getSurname()+"</p>");
 				out.println("<p>"+ut.getUser().getEmail()+"</p>");
-				out.print("<p>Location :"+Time.convertToTime(ut.getTime())+" from you</p>");
+				out.println("<p>Location :"+Time.convertToTime(ut.getTime())+" from you</p>");
+				out.println("<a href='profile?id="+ut.getUser().getUserId()+"'>More ...</a>");
 
 			}
 		%>

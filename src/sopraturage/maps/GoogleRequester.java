@@ -152,32 +152,32 @@ public class GoogleRequester {
 		return request_output.routes[0].legs[0].duration.value;
 	}
 	
-	/*
+
 	public static void main(String[] args) {
-		//String test = "883 chemin de la p�le 31620 castelnau d'estr�tefonds";
+		String test = "883 chemin de la p�le 31620 castelnau d'estr�tefonds";
 		GoogleRequester requester = new GoogleRequester();
-		//System.out.println(requester.generateAddressForUrl(test));
-		//LatLng loc = requester.getCoordinate(test);
-		//System.out.println(loc);
+		System.out.println(requester.generateAddressForUrl(test));
+//		LatLng loc = requester.getCoordinate(test);
+//		System.out.println(loc);
 		
-		LatLng origin = requester.getCoordinate("Pau"),
-				 destination = requester.getCoordinate("Toulouse"),
-				 waypoint = requester.getCoordinate("Tarbes");
-		
-		try {
-			System.out.println(origin);
-			System.out.println(destination);
-			System.out.println(waypoint);
-			System.out.println(requester.getTravelTime(origin, waypoint));
-			System.out.println(requester.getTravelTime(waypoint, destination));
-			System.out.println(requester.getTravelTime(origin, destination, waypoint));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		LatLng origin = requester.getCoordinate("Pau"),
+//				 destination = requester.getCoordinate("Toulouse"),
+//				 waypoint = requester.getCoordinate("Tarbes");
+//		
+//		try {
+//			System.out.println(origin);
+//			System.out.println(destination);
+//			System.out.println(waypoint);
+//			System.out.println(requester.getTravelTime(origin, waypoint));
+//			System.out.println(requester.getTravelTime(waypoint, destination));
+//			System.out.println(requester.getTravelTime(origin, destination, waypoint));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		
 	}
 
-	*/
+
 
 
 

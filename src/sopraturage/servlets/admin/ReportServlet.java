@@ -78,7 +78,7 @@ public class ReportServlet extends HttpServlet {
 			} else if (rapport.equals("Location")){
 				LinkedList<UserAddresses> userList=manager.getUsersForLocationReport();
 				response.setContentType("text/csv");
-				response.setHeader("Content-Disposition", "attachment; filename=\"connexions.csv\"");
+				response.setHeader("Content-Disposition", "attachment; filename=\"location.csv\"");
 				PrintWriter writer = response.getWriter();
 				User u;
 				Address a;

@@ -10,38 +10,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="css/search.css" rel="stylesheet" type="text/css" />
-
-<script type="text/javascript">
-	function switchInfoPerso() {
-		divInfo = document.getElementById('divacacher');
-		if (divInfo.style.display == 'none')
-			divInfo.style.display = 'block';
-		else
-			divInfo.style.display = 'none';
-	}
-
-	function displayHome() {
-		divHome = document.getElementById('home_input');
-		if (document.getElementById('home').checked)
-			divHome.style.display = 'block';
-		else
-			divHome.style.display = 'none';
-	}
-
-	function displayWorkplace() {
-		divWorkplace = document.getElementById('workplaces_input');
-		if (document.getElementById('workplace').checked)
-			divWorkplace.style.display = 'block';
-		else
-			divWorkplace.style.display = 'none';
-	}
-</script>
-
-
-
-<title>Sopraturage</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link href="css/search.css" rel="stylesheet" type="text/css" />
+	<script src="jquery-2.1.1.min.js"></script>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASDA0eZvH1781uZidsoWCbt_8s4aj1P88"></script>
+    <script type="text/javascript" src="./scripts/maps.js"></script>
+	<script type="text/javascript">
+		function switchInfoPerso() {
+			divInfo = document.getElementById('divacacher');
+			if (divInfo.style.display == 'none')
+				divInfo.style.display = 'block';
+			else
+				divInfo.style.display = 'none';
+		}
+	
+		function displayHome() {
+			divHome = document.getElementById('home_input');
+			if (document.getElementById('home').checked)
+				divHome.style.display = 'block';
+			else
+				divHome.style.display = 'none';
+		}
+	
+		function displayWorkplace() {
+			divWorkplace = document.getElementById('workplaces_input');
+			if (document.getElementById('workplace').checked)
+				divWorkplace.style.display = 'block';
+			else
+				divWorkplace.style.display = 'none';
+		}
+	</script>
+	
+	
+	
+	<title>Sopraturage</title>
 
 
 </head>
@@ -53,7 +56,7 @@
 
 		<div class="content">
 		
-			<div></div>
+			<div id="map-canvas"></div>
 				
 		</div>
 

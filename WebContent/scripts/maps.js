@@ -7,6 +7,8 @@ $(document).ready(function () {
 		data_home_profile_lng = $("#map-canvas").attr("data-home-profile-lng"),
 		data_workplace_profile_lat = $("#map-canvas").attr("data-workplace-profile-lat"),
 		data_workplace_profile_lng = $("#map-canvas").attr("data-workplace-profile-lng"),
+		data_home_coworker_lat = $("#map-canvas").attr("data-home-coworker-lat"),
+		data_home_coworker_lng = $("#map-canvas").attr("data-home-coworker-lng"),
 		home_profile = new google.maps.LatLng(parseFloat(data_home_profile_lat), parseFloat(data_home_profile_lng)),
 		workplace_profile = new google.maps.LatLng(parseFloat(data_workplace_profile_lat), parseFloat(data_workplace_profile_lng));
 
@@ -28,13 +30,17 @@ $(document).ready(function () {
 	  directionsDisplay.setMap(map);
 	  calcRoute(home_profile, workplace_profile);
 
+	if (typeof data_home_coworker_lat !== typeof undefined && data_home_coworker_lat !== false && typeof data_home_coworker_lng !== typeof undefined && data_home_coworker_lng !== false) {
 
-	  var myMarker = new google.maps.Marker({
-			// Coordonnées du cinéma
-			position: new google.maps.LatLng(43.604462, 1.444247),
-			map: map,
-			title: "Cinéma Pathé Bellecour"
-		});
+		var myMarker = new google.maps.Marker({
+				// Coordonnées du cinéma
+				position: new google.maps.LatLng(parseFloat(data_home_coworker_lat), parseFloat(data_home_coworker_lng)),
+				map: map,
+				title: "Coworker Home"
+			});
+		
+	}
+	  
 
         google.maps.event.addListener(map, 'click', function(event){
           this.setOptions({scrollwheel:true});

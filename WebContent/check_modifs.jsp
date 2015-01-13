@@ -22,9 +22,9 @@
 	<%
 		Boolean create = (Boolean) request.getAttribute("created");
 		if (create) {
-			out.println("<p  >Your changes have been saved</p>");
+			out.println("<p class='notification_information'>Your changes have been saved</p>");
 		} else {
-			out.println("<p >Something went wrong, please go back and check that your information are correct</p>");
+			out.println("<p class='notification_information'>Something went wrong, please go back and check that your information are correct</p>");
 		}
 	%>
 	</div>

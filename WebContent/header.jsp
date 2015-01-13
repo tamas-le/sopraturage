@@ -11,9 +11,11 @@
 			<%
 				ApplicationData data = (ApplicationData) session
 						.getAttribute("data");
+				boolean LOCAL=true;
 
 				String email = data.localUser.getEmail();
-				out.println("<a href='profile?id=" + data.localUser.getUserId() + "' title='My profile'>" + email + "</a>");
+				out.println("<a href='profile?id=" + data.localUser.getUserId()
+						+ "' title='My profile'>" + email + "</a>");
 			%>
 
 		</div>

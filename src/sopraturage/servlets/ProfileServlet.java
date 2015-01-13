@@ -60,6 +60,9 @@ public class ProfileServlet extends HttpServlet {
 		Workplace wp = manager.getWorkplaceFromID(user.getWorplaceId());
 		request.setAttribute("wp", wp);
 		
+		Workplace myWorkplace=manager.getWorkplaceFromID(data.localUser.getWorplaceId());
+		request.setAttribute("mywp", myWorkplace);
+		
 		request.setAttribute("user", user);
 		
 		RequestDispatcher view=request.getRequestDispatcher("profile.jsp");

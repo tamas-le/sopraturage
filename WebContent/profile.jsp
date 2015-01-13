@@ -28,6 +28,7 @@
 				User user = (User) request.getAttribute("user");
 				Address address = (Address) request.getAttribute("address"); 
 				Workplace wp = (Workplace) request.getAttribute("wp");
+				Workplace myWorkplace=(Workplace) request.getAttribute("mywp");
 				out.println("<h2>Profile of "+ user.getSurname() + " " + user.getName() + "</h2>");
 				
 			%>
@@ -42,15 +43,27 @@
 				
 				<% 
 				
-				if (user.getImagePath().equals("/images/inconnu.jpg")){
-					out.println("<img src='images/avatar/inconnu.jpg' height='250px' width='240px'/>");
+				if (LOCAL){
+					if (user.getImagePath().equals("/images/inconnu.jpg")){
+						out.println("<img src='images/avatar/inconnu.jpg' height='250px' width='240px'/>");
+					} else {
+						out.println("<img src='images/avatar/"+user.getImagePath()+"' height='250px' width='240px'/>");
+					}
+					
 				} else {
-					out.println("<img src='images/avatar/"+user.getImagePath()+"' height='250px' width='240px'/>");
+					if (user.getImagePath().equals("/images/inconnu.jpg")){
+						out.println("<img src='images/avatar/inconnu.jpg' height='250px' width='240px'/>");
+					} else {
+						out.println("<img src='/uploads/"+user.getImagePath()+"' height='250px' width='240px'/>");
+					}
+					
+					
 				}
-				
+
+
 				
 				if (user.equals(data.localUser)){
-					out.println("<div class='button_more'><a class='more' href='upload'>Change avatar</a></div>");
+					out.println("<div class='button_more'><a class='more' href='display'>Change avatar</a></div>");
 				}
 				
 				%>
@@ -89,10 +102,10 @@
 		<div id="map-canvas"
 					data-home-profile-lat="<%= data.home.getLat() %>"
 					data-home-profile-lng="<%= data.home.getLon() %>"
-					data-workplace-profile-lat="<%= wp.getLat() %>"
-					data-workplace-profile-lng="<%= wp.getLon() %>"
-					data-home-coworker-lat="<%=  %>"
-					data-home-coworker-lng="<%=  %>"></div>
+					data-workplace-profile-lat="<%= myWorkplace.getLat() %>"
+					data-workplace-profile-lng="<%= myWorkplace.getLon() %>"
+					data-home-coworker-lat="<%=address.getLat()  %>"
+					data-home-coworker-lng="<%=address.getLon()  %>"></div>
 		
 	</div>
 

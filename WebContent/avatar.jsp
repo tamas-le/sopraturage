@@ -23,7 +23,7 @@
 			<p class="important_information">Select a file to upload :</p>
 			<br />
 
-			<form action="upload" method="post" enctype="multipart/form-data">
+			<form action="uploads" method="post" enctype="multipart/form-data">
 				<input type="file" name="file" size="50" /> <br /><br /><br /> <input
 					type="submit" value="Upload File" />
 			</form>

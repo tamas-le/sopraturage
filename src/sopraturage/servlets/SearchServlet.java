@@ -65,6 +65,7 @@ public class SearchServlet extends HttpServlet {
 			out.println(ut);
 		}
 		
+		request.setAttribute("wp", searcher.getWorkplaceFromID(data.localUser.getWorplaceId()));
 		request.setAttribute("recherche", recherche);
 		request.setAttribute("resultats", userTimeList);
 		RequestDispatcher view = request.getRequestDispatcher("search.jsp");

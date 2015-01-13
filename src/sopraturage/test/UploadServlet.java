@@ -47,7 +47,7 @@ public class UploadServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		HttpSession session =request.getSession();
 		ApplicationData data=(ApplicationData)session.getAttribute("data");
-		
+
 		if (data !=null){
 			request.setAttribute("adresses",data.workplaces );
 			request.setAttribute("user", data.localUser);
@@ -58,11 +58,11 @@ public class UploadServlet extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("index.html");
 			view.forward(request, response);
 		}
-		
-//		out.println("kikoo");
-//		File file = new File("./");
-//		String dirPath = file.getAbsoluteFile().getParentFile().getAbsolutePath();
-//		out.println(dirPath);
+
+		//		out.println("kikoo");
+		//		File file = new File("./");
+		//		String dirPath = file.getAbsoluteFile().getParentFile().getAbsolutePath();
+		//		out.println(dirPath);
 
 
 	}
@@ -80,29 +80,32 @@ public class UploadServlet extends HttpServlet {
 		BufferedImage image=ImageIO.read(fileContent);
 		HttpSession session =request.getSession();
 		ApplicationData data=(ApplicationData)session.getAttribute("data");
-		
+
 
 
 		try{
 			String baseChemin="/Users/Lox/Documents/Eclipse/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Sopraturage/images/avatar/";
 
 			String extension = ExtensionGetter.getExtension(fileName);
-			
+
 			File file = new File(baseChemin+"pic"+data.localUser.getUserId()+extension);
 
 			DatabaseManager manager=new DatabaseManager();
-			
+
 			manager.updateProfileImage(file.getName(), data.localUser.getUserId());
-			
+
+
 			ImageIO.write(image, "png", file);
 
 			ImageIO.write(image, "jpg", file);
-			
+
 			data.refreshUser();
 			session.setAttribute("data",data);
 			response.sendRedirect("profile?id="+data.localUser.getUserId());
 
-		
+
+
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

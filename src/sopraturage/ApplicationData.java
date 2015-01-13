@@ -16,9 +16,6 @@ public class ApplicationData {
 	public LinkedList<Workplace> workplaces;
 	public Address home;
 	
-	
-
-
 
 
 	public void fetch(String login){

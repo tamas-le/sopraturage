@@ -7,8 +7,8 @@ $(document).ready(function () {
 		data_home_profile_lng = $("#map-canvas").attr("data-home-profile-lng"),
 		data_workplace_profile_lat = $("#map-canvas").attr("data-workplace-profile-lat"),
 		data_workplace_profile_lng = $("#map-canvas").attr("data-workplace-profile-lng"),
-		home_profile = new google.maps.LatLng(parseFloat(data_home_profile_lng), parseFloat(data_home_profile_lat)),
-		workplace_profile = new google.maps.LatLng(parseFloat(data_workplace_profile_lng), parseFloat(data_workplace_profile_lat));
+		home_profile = new google.maps.LatLng(parseFloat(data_home_profile_lat), parseFloat(data_home_profile_lng)),
+		workplace_profile = new google.maps.LatLng(parseFloat(data_workplace_profile_lat), parseFloat(data_workplace_profile_lng));
 
 
 	function initialize() {

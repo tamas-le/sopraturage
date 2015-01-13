@@ -20,7 +20,7 @@
 			
 			<% 
 				User user = (User) request.getAttribute("user");
-				out.println("<h2>Profil of "+ user.getSurname() + " " + user.getName() + "</h2>");
+				out.println("<h2>Profile of "+ user.getSurname() + " " + user.getName() + "</h2>");
 				
 			%>
 			
@@ -42,7 +42,7 @@
 			<div class="the_information">
 			
 				<% 
-					out.println("<p class='nom'>"+ user.getName()+" <span class='surnom'>"+ user.getSurname()+"</span></p>");
+					out.println("<p class='nom'>"+ user.getSurname() +" <span class='surnom'>"+ user.getName() +"</span></p>");
 					out.println("<p class='email'>"+ user.getEmail()+"</p>");
 					out.println("<p class='email'>"+ user.getPhone()+"</p>");
 					

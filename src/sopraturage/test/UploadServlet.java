@@ -31,6 +31,8 @@ import sopraturage.util.ExtensionGetter;
 @MultipartConfig
 public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static final boolean LOCAL=true;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -84,21 +86,31 @@ public class UploadServlet extends HttpServlet {
 
 
 		try{
-			String baseChemin="/Users/Lox/Documents/Eclipse/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Sopraturage/images/avatar/";
+			
+			if (LOCAL){
+				String baseChemin="C:/Users/Aurélien/Nouveau dossier (2)/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Sopraturage/images/avatar";
 
-			String extension = ExtensionGetter.getExtension(fileName);
+				String extension = ExtensionGetter.getExtension(fileName);
 
-			File file = new File(baseChemin+"pic"+data.localUser.getUserId()+extension);
+				File file = new File(baseChemin+"pic"+data.localUser.getUserId()+extension);
 
-			DatabaseManager manager=new DatabaseManager();
+				DatabaseManager manager=new DatabaseManager();
 
-			manager.updateProfileImage(file.getName(), data.localUser.getUserId());
+				manager.updateProfileImage(file.getName(), data.localUser.getUserId());
 
 
-			ImageIO.write(image, "png", file);
+				ImageIO.write(image, "png", file);
 
-			ImageIO.write(image, "jpg", file);
+				ImageIO.write(image, "jpg", file);
+				
+			}
 
+
+			
+			
+			
+			
+			
 			data.refreshUser();
 			session.setAttribute("data",data);
 			response.sendRedirect("profile?id="+data.localUser.getUserId());

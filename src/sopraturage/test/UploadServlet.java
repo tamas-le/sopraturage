@@ -52,7 +52,7 @@ public class UploadServlet extends HttpServlet {
 			request.setAttribute("adresses",data.workplaces );
 			request.setAttribute("user", data.localUser);
 			request.setAttribute("adress", data.home);
-			RequestDispatcher view = request.getRequestDispatcher("testFile.html");
+			RequestDispatcher view = request.getRequestDispatcher("avatar.jsp");
 			view.forward(request, response);
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("index.html");

@@ -1,5 +1,7 @@
 <%@page import="sopraturage.ApplicationData"%>
 <%@page import="sopraturage.models.tables.User"%>
+<%@page import="sopraturage.models.tables.Address"%>
+<%@page import="sopraturage.models.tables.Workplace"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,6 +22,8 @@
 			
 			<% 
 				User user = (User) request.getAttribute("user");
+				Address address = (Address) request.getAttribute("address"); 
+				Workplace wp = (Workplace) request.getAttribute("wp");
 				out.println("<h2>Profile of "+ user.getSurname() + " " + user.getName() + "</h2>");
 				
 			%>
@@ -47,11 +51,11 @@
 					out.println("<p class='email'>"+ user.getPhone()+"</p>");
 					
 					out.println("<br /><p class='titre' > Address : </p>");
-					out.println("<p>"+ user.getHomeId()+"</p>");
+					out.println("<p class='titre'>"+ address.toStringBetter() +"</p>");
 					
 					
 					out.println("<br /><p class='titre'> Workplace : </p>");
-					out.println("<p class='titre'>"+ user.getWorplaceId()+"</p><br />");
+					out.println("<p class='titre'>"+ wp.toStringBetter()  +"</p><br />");
 					
 					if (user.isDriver()){
 						out.println("<p class='titre'>This person is a driver</p>");

@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sopraturage.models.DatabaseManager;
+import sopraturage.models.tables.Address;
 import sopraturage.models.tables.User;
+import sopraturage.models.tables.Workplace;
 
 /**
  * Servlet implementation class ProfileServlet
@@ -46,6 +48,13 @@ public class ProfileServlet extends HttpServlet {
 		
 		out.println(user);
 		
+		Address address = manager.getAddressFromID(user.getHomeId());
+		request.setAttribute("address", address);
+		
+		
+		Workplace wp = manager.getWorkplaceFromID(user.getWorplaceId());
+		request.setAttribute("wp", wp);
+		
 		request.setAttribute("user", user);
 		
 		RequestDispatcher view=request.getRequestDispatcher("profile.jsp");
@@ -53,6 +62,8 @@ public class ProfileServlet extends HttpServlet {
 		
 		
 	}
+	
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

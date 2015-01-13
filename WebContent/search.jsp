@@ -12,10 +12,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link href="css/search.css" rel="stylesheet" type="text/css" />
-	<script src="jquery-2.1.1.min.js"></script>
+	<script src="scripts/jquery-2.1.1.min.js"></script>
     <script type="text/javascript"
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASDA0eZvH1781uZidsoWCbt_8s4aj1P88"></script>
-    <script type="text/javascript" src="./scripts/maps.js"></script>
+    <script type="text/javascript" src="scripts/maps.js"></script>
 	<script type="text/javascript">
 		function switchInfoPerso() {
 			divInfo = document.getElementById('divacacher');
@@ -56,7 +56,16 @@
 
 		<div class="content">
 		
-			<div id="map-canvas"></div>
+		<%
+		Workplace wp=(Workplace)request.getAttribute("wp");
+		
+		%>
+		
+			<div id="map-canvas"
+					data-home-profile-lat="<%= data.home.getLat() %>"
+					data-home-profile-lng="<%= data.home.getLon() %>"
+					data-workplace-profile-lat="<%= wp.getLat() %>"
+					data-workplace-profile-lng="<%= wp.getLon() %>"></div>
 				
 		</div>
 

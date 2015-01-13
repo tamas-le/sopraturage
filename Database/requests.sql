@@ -4,8 +4,7 @@ INSERT INTO Postcodes (postcode, city)
 	 		('31770', 'Colomiers'),
 			('30100', 'Ales');
 
-
-INSERT INTO Addresses (num, way_type, way_name, id_postcode, longitude, latitude)
+INSERT INTO Addresses (num, way_type, way_name, id_postcode, latitude, longitude)
 	 VALUES ('1', 'avenue', "Andre marie Ampere", (SELECT id FROM Postcodes WHERE postcode = "31770"), '43.6122296','1.3075650'),
 	 		('2', 'avenue', "Leon Foucault", (SELECT id FROM Postcodes WHERE postcode = "31770"), '43.6121522','1.3103126999999404'),
 	 		('5', 'rue', "Jean Borotra", (SELECT id FROM Postcodes WHERE postcode = "81000"), '43.9185965','2.1709938000000193'),

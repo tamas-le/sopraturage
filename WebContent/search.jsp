@@ -157,7 +157,7 @@
 				if (ut.getUser().getImagePath().equals("/images/inconnu.jpg")){
 					out.println("<img src='images/avatar/inconnu.jpg' height='90px' width='80px'/>");
 				} else {
-					out.println("<img src='images/avatar/"+ut.getUser().getImagePath()+"' height='250px' width='240px'/>");
+					out.println("<img src='images/avatar/"+ut.getUser().getImagePath()+"' height='90px' width='80px'/>");
 				}
 				out.println("</div>");
 				

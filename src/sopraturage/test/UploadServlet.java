@@ -1,10 +1,8 @@
 package sopraturage.test;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -32,7 +30,8 @@ import sopraturage.util.ExtensionGetter;
 public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final boolean LOCAL=true;
+	private static final boolean LOCAL=false;
+	int BUFFER_LENGTH = 4096;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -75,11 +74,7 @@ public class UploadServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		PrintWriter out=response.getWriter();
-		Part filePart = request.getPart("file"); 
-		String fileName = getFileName(filePart);
-		out.println(fileName);
-		InputStream fileContent = filePart.getInputStream();
-		BufferedImage image=ImageIO.read(fileContent);
+
 		HttpSession session =request.getSession();
 		ApplicationData data=(ApplicationData)session.getAttribute("data");
 
@@ -88,6 +83,12 @@ public class UploadServlet extends HttpServlet {
 		try{
 			
 			if (LOCAL){
+				
+				Part filePart = request.getPart("file"); 
+				String fileName = getFileName(filePart);
+				out.println(fileName);
+				InputStream fileContent = filePart.getInputStream();
+				BufferedImage image=ImageIO.read(fileContent);
 				String baseChemin="C:/Users/Aurélien/Nouveau dossier (2)/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Sopraturage/images/avatar/";
 
 				String extension = ExtensionGetter.getExtension(fileName);
@@ -103,6 +104,26 @@ public class UploadServlet extends HttpServlet {
 
 				ImageIO.write(image, "jpg", file);
 				
+				data.refreshUser();
+				session.setAttribute("data",data);
+				response.sendRedirect("profile?id="+data.localUser.getUserId());
+				
+			} else {
+				for (Part part : request.getParts()) {
+			        InputStream is = request.getPart(part.getName()).getInputStream();
+			        String fileName = getFileName(part);
+			        FileOutputStream os = new FileOutputStream(System.getenv("OPENSHIFT_DATA_DIR") + fileName);
+			        byte[] bytes = new byte[BUFFER_LENGTH];
+			        int read = 0;
+			        while ((read = is.read(bytes, 0, BUFFER_LENGTH)) != -1) {
+			            os.write(bytes, 0, read);
+			        }
+			        os.flush();
+			        is.close();
+			        os.close();
+			        out.println(fileName + " was uploaded to " + System.getenv("OPENSHIFT_DATA_DIR"));
+			    }
+				
 			}
 
 
@@ -111,9 +132,7 @@ public class UploadServlet extends HttpServlet {
 			
 			
 			
-			data.refreshUser();
-			session.setAttribute("data",data);
-			response.sendRedirect("profile?id="+data.localUser.getUserId());
+
 
 
 

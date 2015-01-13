@@ -1,7 +1,6 @@
 package sopraturage.models;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -459,7 +458,7 @@ public class DatabaseManager {
 		try {
 			connect();
 
-			String sql ="SELECT name,num,way_type,postcode,city,way_name "
+			String sql ="SELECT name,num,way_type,postcode,city,way_name,longitude,latitude "
 					+ "FROM Workplaces,Addresses,PostCodes "
 					+ "WHERE Workplaces.id="+id+" "
 					+ "AND Postcodes.id=Addresses.id_postcode "
@@ -467,12 +466,16 @@ public class DatabaseManager {
 
 			ResultSet resultat = query(sql);
 			while (resultat.next()){
-				return new Workplace(
+				
+				Workplace w = new Workplace(
 						resultat.getString("way_type"), 
 						resultat.getString("way_name"), 
 						new PostCode(resultat.getString("postcode"), resultat.getString("city")),
 						resultat.getInt("num"),
 						resultat.getString("name"));
+				w.setLat(resultat.getDouble("latitude"));
+				w.setLon(resultat.getDouble("longitude"));
+				return w;
 
 			}
 

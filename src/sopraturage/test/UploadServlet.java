@@ -41,9 +41,12 @@ public class UploadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
 		out.println("kikoo");
+		File file = new File("./");
+		String dirPath = file.getAbsoluteFile().getParentFile().getAbsolutePath();
+		out.println(dirPath);
 
-		RequestDispatcher view=request.getRequestDispatcher("testFile.html");
-		view.forward(request, response);
+//		RequestDispatcher view=request.getRequestDispatcher("testFile.html");
+//		view.forward(request, response);
 
 	}
 
@@ -65,7 +68,7 @@ public class UploadServlet extends HttpServlet {
 
 
 			
-			File file = new File("./webapps/ROOT/images/avatar/"+fileName);
+			File file = new File("./"+fileName);
 			ImageIO.write(image, "png", file);
 
 			ImageIO.write(image, "jpg", file);

@@ -82,15 +82,11 @@
 		
 		</div>
 		
-	<%
-
-	
-// 	out.println(user);
-		
-// 		if (user.equals(data.localUser)){
-// 			out.println("C'est ton profil");
-// 		}
-	%>
+		<div id="map-canvas"
+					data-home-profile-lat="<%= data.home.getLat() %>"
+					data-home-profile-lng="<%= data.home.getLon() %>"
+					data-workplace-profile-lat="<%= wp.getLat() %>"
+					data-workplace-profile-lng="<%= wp.getLon() %>"></div>
 		
 	</div>
 

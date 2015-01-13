@@ -6,22 +6,79 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Sopraturage</title>
+
+<link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
 
-	<%
-	
-	ApplicationData data=(ApplicationData)session.getAttribute("data");
-	
+<%@ include file="header.jsp" %>
 
-		User user = (User) request.getAttribute("user");
-		out.println(user);
+	<div class="page">
+		<div class="titre_page">
+			
+			<% 
+				User user = (User) request.getAttribute("user");
+				out.println("<h2>Profil of "+ user.getSurname() + " " + user.getName() + "</h2>");
+				
+			%>
+			
+		</div>
+		<br />
 		
-		if (user.equals(data.localUser)){
-			out.println("C est ton profil");
-		}
+		<div class="the_profile">
+		
+			<br />
+			<div class="the_avatar">
+				
+				<% 
+				out.println("<img src='images/inconnu.jpg' height='250px' width='240px'/>");
+				out.println("<div class='button_more'><a class='more' href=''>Change avatar</a></div>");
+				%>
+					
+			</div>
+		
+			<div class="the_information">
+			
+				<% 
+					out.println("<p class='nom'>"+ user.getName()+" <span class='surnom'>"+ user.getSurname()+"</span></p>");
+					out.println("<p class='email'>"+ user.getEmail()+"</p>");
+					out.println("<p class='email'>"+ user.getPhone()+"</p>");
+					
+					out.println("<br /><p class='titre' > Address : </p>");
+					out.println("<p>"+ user.getHomeId()+"</p>");
+					
+					
+					out.println("<br /><p class='titre'> Workplace : </p>");
+					out.println("<p class='titre'>"+ user.getWorplaceId()+"</p><br />");
+					
+					if (user.isDriver()){
+						out.println("<p class='titre'>This person is a driver</p>");
+					}
+					else {
+						out.println("<p class='titre'>This person is not a driver</p>");
+					}
+					
+				%>
+			</div>
+			<br />
+			<br />
+			<br />
+		
+		</div>
+		
+	<%
+
+	
+// 	out.println(user);
+		
+// 		if (user.equals(data.localUser)){
+// 			out.println("C'est ton profil");
+// 		}
 	%>
+		
+	</div>
 
 </body>
 </html>

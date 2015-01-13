@@ -90,7 +90,9 @@
 					data-home-profile-lat="<%= data.home.getLat() %>"
 					data-home-profile-lng="<%= data.home.getLon() %>"
 					data-workplace-profile-lat="<%= wp.getLat() %>"
-					data-workplace-profile-lng="<%= wp.getLon() %>"></div>
+					data-workplace-profile-lng="<%= wp.getLon() %>"
+					data-home-coworker-lat="<%=  %>"
+					data-home-coworker-lng="<%=  %>"></div>
 		
 	</div>
 

@@ -18,6 +18,20 @@ public class User {
 	private int homeId;
 	private int userId;
 	
+	private String imagePath;
+	
+	
+	
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
 
 	public int getUserId() {
 		return userId;

@@ -56,7 +56,7 @@ INSERT INTO Users (first_name, last_name, email, password, phone_number, workpla
 
 
 INSERT INTO Administrators
-	 VALUES (1);
+	 VALUES (2);
 
 INSERT INTO Sessions (id, time_stamp_connection, time_stamp_deconnection)
 	 VALUES (1, "2000-01-01 00:00:01", "2000-01-01 00:00:01");

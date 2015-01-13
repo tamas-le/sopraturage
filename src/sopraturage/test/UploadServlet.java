@@ -45,8 +45,8 @@ public class UploadServlet extends HttpServlet {
 		String dirPath = file.getAbsoluteFile().getParentFile().getAbsolutePath();
 		out.println(dirPath);
 
-//		RequestDispatcher view=request.getRequestDispatcher("testFile.html");
-//		view.forward(request, response);
+		RequestDispatcher view=request.getRequestDispatcher("testFile.html");
+		view.forward(request, response);
 
 	}
 
@@ -65,10 +65,9 @@ public class UploadServlet extends HttpServlet {
 
 
 		try{
-
-
 			
-			File file = new File("./"+fileName);
+			File file = new File("C:/Users/Aurélien/Nouveau dossier (2)/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Sopraturage/images/avatar/"+fileName);
+
 			ImageIO.write(image, "png", file);
 
 			ImageIO.write(image, "jpg", file);

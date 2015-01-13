@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<a href="index.html" style="font-size: 15px;" class="back_website">Back to the home page</a>
+	<a href="search" style="font-size: 15px;" class="back_website">Back to the home page</a>
 	<br />
 	<br />
 	<br />

@@ -505,6 +505,7 @@ public class DatabaseManager {
 						resultat.getInt("workplace"),
 						resultat.getInt("home"));
 				u.setUserId(resultat.getInt("id"));
+				u.setImagePath(resultat.getString("profile_image"));
 				return u;
 
 			}
@@ -534,6 +535,7 @@ public class DatabaseManager {
 						resultat.getInt("workplace"),
 						resultat.getInt("home"));
 				u.setUserId(resultat.getInt("id"));
+				u.setImagePath(resultat.getString("profile_image"));
 				return u;
 
 			}
@@ -741,6 +743,25 @@ public class DatabaseManager {
 					+ "SET time_stamp_deconnection='"+fin+"', time_stamp_connection='"+debut+"'  "
 					+ "WHERE id="+id+" AND "
 					+ "time_stamp_connection='"+debut+"'; ";
+			statement.executeUpdate(sql);
+			code =0;
+
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+		return code;
+	}
+	
+	
+	public int updateProfileImage(String path, int id){
+		int code=-1;
+		try {
+			connect();
+			String sql="UPDATE Users "
+					+ "SET profile_image='"+path+"' "
+					+ "WHERE id="+id+"; ";
 			statement.executeUpdate(sql);
 			code =0;
 

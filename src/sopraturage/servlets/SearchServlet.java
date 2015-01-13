@@ -127,8 +127,14 @@ public class SearchServlet extends HttpServlet {
 		for(UserTime ut:time){
 			out.println(ut);
 		}
-		
+		request.setAttribute("wp", searcher.getWorkplaceFromID(data.localUser.getWorplaceId()));
 		request.setAttribute("resultats", time);
+		
+		out.println("------------------------------");
+		out.println(searcher.getWorkplaceFromID(data.localUser.getWorplaceId()));
+		out.println(time);
+		out.println(recherche);
+		
 		RequestDispatcher view = request.getRequestDispatcher("search.jsp");
 		view.forward(request, response);
 		

@@ -221,6 +221,7 @@ public class Searcher extends DatabaseManager {
 						resultat.getInt("workplace"), 
 						resultat.getInt("home"));
 				u.setUserId(resultat.getInt("Users.id"));
+				u.setImagePath(resultat.getString("profile_image"));
 				list.add(u);
 			}
 		} catch (Exception e){

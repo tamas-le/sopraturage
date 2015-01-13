@@ -2,13 +2,15 @@ package sopraturage.test;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 
+import javax.activation.MimetypesFileTypeMap;
 import javax.imageio.ImageIO;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +27,7 @@ import sopraturage.util.ExtensionGetter;
 /**
  * Servlet implementation class UploadServlet
  */
-@WebServlet({ "/UploadServlet", "/upload" })
+@WebServlet(name = "uploads",urlPatterns = {"/uploads/*"})
 @MultipartConfig
 public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -45,20 +47,25 @@ public class UploadServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out=response.getWriter();
-		HttpSession session =request.getSession();
-		ApplicationData data=(ApplicationData)session.getAttribute("data");
 
-		if (data !=null){
-			request.setAttribute("adresses",data.workplaces );
-			request.setAttribute("user", data.localUser);
-			request.setAttribute("adress", data.home);
-			RequestDispatcher view = request.getRequestDispatcher("avatar.jsp");
-			view.forward(request, response);
-		} else {
-			RequestDispatcher view = request.getRequestDispatcher("index.html");
-			view.forward(request, response);
-		}
+		String filePath = request.getRequestURI();
+		 
+	    File file = new File(System.getenv("OPENSHIFT_DATA_DIR") + filePath.replace("/uploads/",""));
+	    InputStream input = new FileInputStream(file);
+	 
+	    response.setContentLength((int) file.length());
+	    response.setContentType(new MimetypesFileTypeMap().getContentType(file));
+	 
+	    OutputStream output = response.getOutputStream();
+	    byte[] bytes = new byte[BUFFER_LENGTH];
+	    int read = 0;
+	    while ((read = input.read(bytes, 0, BUFFER_LENGTH)) != -1) {
+	        output.write(bytes, 0, read);
+	        output.flush();
+	    }
+	 
+	    input.close();
+	    output.close();
 
 		//		out.println("kikoo");
 		//		File file = new File("./");
@@ -112,7 +119,12 @@ public class UploadServlet extends HttpServlet {
 				for (Part part : request.getParts()) {
 			        InputStream is = request.getPart(part.getName()).getInputStream();
 			        String fileName = getFileName(part);
-			        FileOutputStream os = new FileOutputStream(System.getenv("OPENSHIFT_DATA_DIR") + fileName);
+			        String extension = ExtensionGetter.getExtension(fileName);
+			        String fileNameClean="pic"+data.localUser.getUserId()+extension;
+			        DatabaseManager manager=new DatabaseManager();
+			        
+			        FileOutputStream os = new FileOutputStream(System.getenv("OPENSHIFT_DATA_DIR") + fileNameClean);
+			        manager.updateProfileImage(fileNameClean, data.localUser.getUserId());
 			        byte[] bytes = new byte[BUFFER_LENGTH];
 			        int read = 0;
 			        while ((read = is.read(bytes, 0, BUFFER_LENGTH)) != -1) {
@@ -122,6 +134,9 @@ public class UploadServlet extends HttpServlet {
 			        is.close();
 			        os.close();
 			        out.println(fileName + " was uploaded to " + System.getenv("OPENSHIFT_DATA_DIR"));
+			        data.refreshUser();
+					session.setAttribute("data",data);
+					response.sendRedirect("profile?id="+data.localUser.getUserId());
 			    }
 				
 			}

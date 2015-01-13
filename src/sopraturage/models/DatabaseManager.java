@@ -459,7 +459,7 @@ public class DatabaseManager {
 			connect();
 
 			String sql ="SELECT name,num,way_type,postcode,city,way_name,longitude,latitude "
-					+ "FROM Workplaces,Addresses,PostCodes "
+					+ "FROM Workplaces,Addresses,Postcodes "
 					+ "WHERE Workplaces.id="+id+" "
 					+ "AND Postcodes.id=Addresses.id_postcode "
 					+ "AND Workplaces.id=Addresses.id;";
@@ -704,6 +704,7 @@ public class DatabaseManager {
 				yadautremec=true;
 			}
 			connect();
+			statement.executeUpdate("DELETE FROM Sessions WHERE id="+id+";");
 			statement.executeUpdate("DELETE FROM Users WHERE id="+id+";");
 
 			if (!yadautremec){

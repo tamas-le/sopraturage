@@ -59,6 +59,7 @@
 		<%
 		Workplace wp=(Workplace)request.getAttribute("wp");
 		
+		
 		%>
 		
 			<div id="map-canvas"
@@ -163,11 +164,23 @@
 					out.println("<div class='impair'>");
 				}
 				out.println("<div class='avatar'>");
-				if (ut.getUser().getImagePath().equals("/images/inconnu.jpg")){
-					out.println("<img src='images/avatar/inconnu.jpg' height='90px' width='80px'/>");
+				
+				if (LOCAL){
+					if (ut.getUser().getImagePath().equals("/images/inconnu.jpg")){
+						out.println("<img src='images/avatar/inconnu.jpg' height='90px' width='80px'/>");
+					} else {
+						out.println("<img src='images/avatar/"+ut.getUser().getImagePath()+"' height='90px' width='80px'/>");
+					}
 				} else {
-					out.println("<img src='images/avatar/"+ut.getUser().getImagePath()+"' height='90px' width='80px'/>");
+					if (ut.getUser().getImagePath().equals("/images/inconnu.jpg")){
+						out.println("<img src='images/avatar/inconnu.jpg' height='90px' width='80px'/>");
+					} else {
+						out.println("<img src='/uploads/"+ut.getUser().getImagePath()+"' height='90px' width='80px'/>");
+					}
+					
 				}
+				
+
 				out.println("</div>");
 				
 				out.println("<div class='infos'>");

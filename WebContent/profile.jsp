@@ -37,8 +37,18 @@
 			<div class="the_avatar">
 				
 				<% 
-				out.println("<img src='images/inconnu.jpg' height='250px' width='240px'/>");
-				out.println("<div class='button_more'><a class='more' href=''>Change avatar</a></div>");
+				
+				if (user.getImagePath().equals("/images/inconnu.jpg")){
+					out.println("<img src='images/avatar/inconnu.jpg' height='250px' width='240px'/>");
+				} else {
+					out.println("<img src='images/avatar/"+user.getImagePath()+"' height='250px' width='240px'/>");
+				}
+				
+				
+				if (user.equals(data.localUser)){
+					out.println("<div class='button_more'><a class='more' href='upload'>Change avatar</a></div>");
+				}
+				
 				%>
 					
 			</div>

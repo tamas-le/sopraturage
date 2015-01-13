@@ -153,7 +153,13 @@
 				else{
 					out.println("<div class='impair'>");
 				}
-				out.println("<div class='avatar'><img src='images/avatar/10424266_10152444948906555_9189562097428624070_n.jpg' height='90px' width='80px'/></div>");
+				
+				if (ut.getUser().getImagePath().equals("/images/inconnu.jpg")){
+					out.println("<img src='images/avatar/inconnu.jpg' height='90px' width='80px'/>");
+				} else {
+					out.println("<img src='images/avatar/"+ut.getUser().getImagePath()+"' height='250px' width='240px'/>");
+				}
+				
 				out.println("<div class='infos'>");
 				out.println("<p class='nom'>"+ut.getUser().getName()+" "+ut.getUser().getSurname()+"</p>");
 				out.println("<p class='email'>"+ut.getUser().getEmail()+"</p>");

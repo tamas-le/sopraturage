@@ -17,7 +17,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
+import sopraturage.ApplicationData;
+import sopraturage.models.DatabaseManager;
+import sopraturage.util.ExtensionGetter;
 
 /**
  * Servlet implementation class UploadServlet
@@ -40,13 +45,25 @@ public class UploadServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
-		out.println("kikoo");
-		File file = new File("./");
-		String dirPath = file.getAbsoluteFile().getParentFile().getAbsolutePath();
-		out.println(dirPath);
+		HttpSession session =request.getSession();
+		ApplicationData data=(ApplicationData)session.getAttribute("data");
+		
+		if (data !=null){
+			request.setAttribute("adresses",data.workplaces );
+			request.setAttribute("user", data.localUser);
+			request.setAttribute("adress", data.home);
+			RequestDispatcher view = request.getRequestDispatcher("testFile.html");
+			view.forward(request, response);
+		} else {
+			RequestDispatcher view = request.getRequestDispatcher("index.html");
+			view.forward(request, response);
+		}
+		
+//		out.println("kikoo");
+//		File file = new File("./");
+//		String dirPath = file.getAbsoluteFile().getParentFile().getAbsolutePath();
+//		out.println(dirPath);
 
-		RequestDispatcher view=request.getRequestDispatcher("testFile.html");
-		view.forward(request, response);
 
 	}
 
@@ -61,18 +78,31 @@ public class UploadServlet extends HttpServlet {
 		out.println(fileName);
 		InputStream fileContent = filePart.getInputStream();
 		BufferedImage image=ImageIO.read(fileContent);
+		HttpSession session =request.getSession();
+		ApplicationData data=(ApplicationData)session.getAttribute("data");
 		
 
 
 		try{
-			
-			File file = new File("C:/Users/Aurélien/Nouveau dossier (2)/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Sopraturage/images/avatar/"+fileName);
+			String baseChemin="C:/Users/Aurélien/Nouveau dossier (2)/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Sopraturage/images/avatar/";
 
+			String extension = ExtensionGetter.getExtension(fileName);
+			
+			File file = new File(baseChemin+"pic"+data.localUser.getUserId()+extension);
+
+			DatabaseManager manager=new DatabaseManager();
+			
+			manager.updateProfileImage(file.getName(), data.localUser.getUserId());
+			
 			ImageIO.write(image, "png", file);
 
 			ImageIO.write(image, "jpg", file);
+			
+			data.refreshUser();
+			session.setAttribute("data",data);
+			response.sendRedirect("profile?id="+data.localUser.getUserId());
 
-
+		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -41,6 +41,11 @@ public class ApplicationData {
 		DatabaseManager manager=new DatabaseManager();
 		workplaces=manager.getWorkplaces();
 	}
+	
+	public void refreshUser(){
+		DatabaseManager manager=new DatabaseManager();
+		localUser=manager.getUserFromId(localUser.getUserId());
+	}
 
 
 

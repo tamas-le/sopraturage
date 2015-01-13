@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sopraturage</title>
+<link rel="icon" href="images/auto.ico" />
 <%
 	Integer numberDriver = (Integer) request.getAttribute("driver");
 	Integer numbernDriver = (Integer) request.getAttribute("ndriver");

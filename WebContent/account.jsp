@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sopraturage</title>
 <link href="css/account.css" rel="stylesheet" type="text/css" />
+<link rel="icon" href="images/auto.ico" />
 
 </head>
 <body>

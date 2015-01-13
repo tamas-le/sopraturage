@@ -7,7 +7,7 @@
 <title>Sopraturage</title>
 <link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
 <link href="css/admin.css" rel="stylesheet" type="text/css" />
-
+<link rel="icon" href="images/auto.ico" />
 
 </head>
 

@@ -14,7 +14,7 @@
 <meta name="keywords" content="" />
 
 <link href="css/sopraturage.css" rel="stylesheet" type="text/css" />
-
+<link rel="icon" href="images/auto.ico" />
 
 </head>
 

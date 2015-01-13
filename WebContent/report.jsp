@@ -21,7 +21,7 @@
 	<div class="form_create_account">
 	<form method='POST'>
 
-		<input type='radio' name='report' value='Connexion' >
+		<p class="important_information"><input type='radio' name='report' value='Connexion' >
 		Connexion number
 		<br /> <input type='radio' name='report'
 			value='Driver' checked>
@@ -29,7 +29,7 @@
 		<br /> <input type='radio' name='report'
 			value='Location' >
 		User number per location
-		<br /><br /><br /> <input type="submit" name="go" value="Generate Report" >
+		</p><br /> <input type="submit" name="go" value="Generate Report" >
 	</form>
 	</div>
 </div>

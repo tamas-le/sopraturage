@@ -6,38 +6,43 @@
 			<h1>Sopraturage</h1>
 		</div>
 		<div class="pseudo">
-			<span class="img_rouages"><img src="images/gear.png" width="20px" height="20px"></span>
+			<span class="img_rouages"><img src="images/gear.png"
+				width="20px" height="20px"></span>
 			<%
-			ApplicationData data=(ApplicationData)session.getAttribute("data");
-	
-			String email=data.localUser.getEmail();
-			out.println("<a href='modify' title='Mon profil'>"+ email +"</a>");
+				ApplicationData data = (ApplicationData) session
+						.getAttribute("data");
+
+				String email = data.localUser.getEmail();
+				out.println("<a href='modify' title='Mon profil'>" + email + "</a>");
 			%>
-	
+
 		</div>
 	</div>
-	
+
 
 	<ul class="menu">
 
-	<a href="search"><li>Search</li></a>
-	
-	<a href="profil?id="><li>My profile</li></a>
+		<a href="search"><li>Search</li></a>
+		<%
+			out.println("<a href='profile?id=" + data.localUser.getUserId()
+					+ "'><li>My profile</li></a>");
+		%>
 
-	<a href="modify"><li>Modify account</li></a>
-	
-	<%
-	
-	Boolean admin=data.admin;
-		if (admin) {
-			out.println("<a href='admin'><li>Administration</li></a>");
-		}
-	%>
 
-	<a href="disconnect"><li>Log out</li></a>
+
+		<a href="modify"><li>Modify account</li></a>
+
+		<%
+			Boolean admin = data.admin;
+			if (admin) {
+				out.println("<a href='admin'><li>Administration</li></a>");
+			}
+		%>
+
+		<a href="disconnect"><li>Log out</li></a>
 
 	</ul>
-	
+
 
 </div>
 

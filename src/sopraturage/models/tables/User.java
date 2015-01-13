@@ -126,6 +126,13 @@ public class User {
 	public void setWorking(boolean[] working) {
 		this.working = working;
 	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		User another=(User)obj;
+		return this.userId==another.getUserId();
+	}
 	
 
 	

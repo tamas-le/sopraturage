@@ -1,3 +1,4 @@
+<%@page import="sopraturage.ApplicationData"%>
 <%@page import="sopraturage.models.tables.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -10,7 +11,16 @@
 <body>
 
 	<%
+	
+	ApplicationData data=(ApplicationData)session.getAttribute("data");
+	
+
 		User user = (User) request.getAttribute("user");
+		out.println(user);
+		
+		if (user.equals(data.localUser)){
+			out.println("C est ton profil");
+		}
 	%>
 
 </body>

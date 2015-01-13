@@ -84,7 +84,7 @@ public class UploadServlet extends HttpServlet {
 
 
 		try{
-			String baseChemin="C:/Users/Aurélien/Nouveau dossier (2)/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Sopraturage/images/avatar/";
+			String baseChemin="/Users/Lox/Documents/Eclipse/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Sopraturage/images/avatar/";
 
 			String extension = ExtensionGetter.getExtension(fileName);
 			

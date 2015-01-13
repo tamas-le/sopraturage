@@ -11,7 +11,7 @@
 			<%
 				ApplicationData data = (ApplicationData) session
 						.getAttribute("data");
-				boolean LOCAL=true;
+				boolean LOCAL=false;
 
 				String email = data.localUser.getEmail();
 				out.println("<a href='profile?id=" + data.localUser.getUserId()

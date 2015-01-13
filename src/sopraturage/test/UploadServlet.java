@@ -32,7 +32,7 @@ import sopraturage.util.ExtensionGetter;
 public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final boolean LOCAL=true;
+	private static final boolean LOCAL=false;
 	int BUFFER_LENGTH = 4096;
 
 	/**

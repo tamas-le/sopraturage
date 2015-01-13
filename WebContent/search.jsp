@@ -56,11 +56,7 @@
 
 		<div class="content">
 		
-		<%
-		Workplace wp=(Workplace)request.getAttribute("wp");
-		
-		
-		%>
+		<% Workplace wp=(Workplace)request.getAttribute("wp"); %>
 		
 			<div id="map-canvas"
 					data-home-profile-lat="<%= data.home.getLat() %>"

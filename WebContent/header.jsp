@@ -13,7 +13,7 @@
 						.getAttribute("data");
 
 				String email = data.localUser.getEmail();
-				out.println("<a href='modify' title='Mon profil'>" + email + "</a>");
+				out.println("<a href='profile?id=" + data.localUser.getUserId() + "' title='My profile'>" + email + "</a>");
 			%>
 
 		</div>
